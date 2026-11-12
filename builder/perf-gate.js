@@ -54,6 +54,9 @@ export function installPerfGate(stage, { qs = new URLSearchParams(location.searc
     publish();
     // loading (the scene's files, the first shader builds) is not judged: the window starts 1.5 s after the builder is ready
     if (!started) { if (!window.__BUILDER_READY__) return; started = true; ctl.reset(now + 1500); }
+    // nor is a precompile (builder/prewarm.js, the scene view's compile-first sync): its 8 ms slices between frames are the
+    // cost of not stalling later, not the scene's own load; stepping the quality down for them would also change what is compiled
+    if (stage.compiling) { ctl.reset(now); return; }
     // the frame just finished: its interval, and the CPU work the stage timed for it
     const step = ctl.sample(interval, stage.workMs, now);
     if (step) apply();

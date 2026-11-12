@@ -63,7 +63,7 @@ function createBeams(ctx) {
       for (const it of list) beamPositions(it.params.count).forEach((p, k) => beams.push({ uid: it.uid, matrix: (it.matrix || new THREE.Matrix4()).clone(), pos: new THREE.Vector3(...p), ph: k * 1.7, sweep: it.params.sweep, colour: it.params.colour }));
       if (!im || capacity < beams.length) {
         if (im) { im.removeFromParent(); im.dispose(); }
-        capacity = Math.max(1, 2 ** Math.ceil(Math.log2(Math.max(1, beams.length))));
+        capacity = Math.max(64, 2 ** Math.ceil(Math.log2(Math.max(1, beams.length)))); // at least 64: a new InstancedMesh is a new shader build (lib/runtime/scene-view.mjs MIN_CAPACITY)
         // one instanced draw for all the beams; each beam sways on its own phase (matrices set before each draw)
         im = new THREE.InstancedMesh(geometry, bm, capacity);
         im.frustumCulled = false; im.renderOrder = 2; im.name = 'searchlight beams';

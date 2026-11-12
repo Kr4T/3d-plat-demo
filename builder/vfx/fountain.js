@@ -33,6 +33,7 @@ import { basin, jetLights, collider } from '../sculpt/basin.js';
 export const MODULE = 'builder/vfx/fountain.js';
 export const TALL_JET = 24.67; // m: Boulevard's tall centre jet, 22 m/s up (22^2 / (2 x 9.81))
 export const N = 4000, FN = 8 * 70, SN = 8 * 24; // main.js: drops, fire sprites (8 columns x 70), smoke sprites (8 x 24)
+export const MIN_SHOW = 2; // fountains the show is made for at least (see set())
 const NEAR = 160; // m: main.js spray.near()
 
 /** Whether the spray runs on this preset and backend: High and WebGPU only, as Boulevard. */
@@ -140,7 +141,9 @@ function createShow(ctx, { renderer = null, camera = null } = {}) {
     /** Every fountain: [{ uid, matrix (Matrix4), params }]. The arrays grow to the next power of two (a new simulation). */
     set(fountains) {
       list = fountains.slice();
-      const need = Math.max(1, 2 ** Math.ceil(Math.log2(Math.max(1, list.length))));
+      // never under MIN_SHOW rows: a second fountain then finds the show (compute passes, sprite materials, pipelines) that the
+      // prewarm compiled for the first, and only a third makes a new one (docs/gpu/drop-latency.md, a second fountain)
+      const need = Math.max(MIN_SHOW, 2 ** Math.ceil(Math.log2(Math.max(1, list.length))));
       if (!gpu || gpu.C < need) { free(); gpu = makeShow(ctx, need); object.add(gpu.sp, gpu.fire); started = false; }
       for (let i = 0; i < gpu.C; i++) {
         const r = list[i] ? showRow(THREE, list[i]) : { place: [0, 0, 0, 0], show: [1, 8, 0, 1], tint: [1, 1, 1, 0] };
@@ -157,6 +160,8 @@ function createShow(ctx, { renderer = null, camera = null } = {}) {
       if (!started) { renderer.compute(gpu.init); started = true; }
       if (list.some((_, i) => gpu.TINT.array[i].w > 0.5)) renderer.compute(gpu.step);
     },
+    /** The show's compute passes, for the view's prewarm (stage.precompileCompute). */
+    computeNodes: () => (gpu && renderer ? [gpu.init, gpu.step] : []),
     /** For tests and the gate: the show's GPU objects (arrays, sprites, compute nodes). */
     get gpu() { return gpu; },
     dispose() { free(); object.removeFromParent(); },

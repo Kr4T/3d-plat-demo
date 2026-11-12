@@ -75,6 +75,7 @@ export async function createStage(host, { qs = new URLSearchParams(location.sear
 
   // ---------- post: a copy of Boulevard buildPipeline (SSGI, god rays, DoF, motion blur left out: REFERENCES.md) ----------
   let pipeline = null, pipelineName = '';
+  let scenePass = null, fxPass = null; // the two passes a piece is drawn in: what precompile() compiles for
   const OFF = new Set(); // features the audit switches off while it measures them
   let QOFF = new Set(); // passes the fps gate has switched off (setQuality below; builder/perf-gate.js)
   const isOff = (f) => OFF.has(f) || QOFF.has(f);
@@ -88,11 +89,12 @@ export async function createStage(host, { qs = new URLSearchParams(location.sear
   function buildPipeline() {
     pipeline?.dispose?.();
     pipeline = new THREE.RenderPipeline(renderer);
-    const fx = pass(fxScene, camera).getTextureNode(); // premultiplied particles over the finished frame
+    fxPass = pass(fxScene, camera);
+    const fx = fxPass.getTextureNode(); // premultiplied particles over the finished frame
     // additive sprites push alpha past 1: clamp it, or (1 - a) turns negative and paints false colours (worlds stage)
     const overFx = (c) => vec4(c.rgb.mul(fx.a.clamp(0, 1).oneMinus()).add(fx.rgb.max(0)), 1);
     if (HIGH()) {
-      const sp = pass(scene, camera);
+      const sp = scenePass = pass(scene, camera);
       sp.setMRT(mrt({ output, normal: packNormalToRGB(normalView), metalrough: vec2(metalness, roughness), velocity })); // webgpu_postprocessing_ssr + _traa
       const colRaw = sp.getTextureNode('output'), col = sanitizeHDR(colRaw), dep = sp.getTextureNode('depth'), nor = sp.getTextureNode('normal'), vel = sp.getTextureNode('velocity'), mr = sp.getTextureNode('metalrough');
       sp.getTexture('normal').type = THREE.UnsignedByteType; sp.getTexture('metalrough').type = THREE.UnsignedByteType;
@@ -125,7 +127,7 @@ export async function createStage(host, { qs = new URLSearchParams(location.sear
       else if (dbg === 'mr') pipeline.outputNode = vec4(mr.r, mr.g, 0, 1);
       pipelineName = names.join(' · ') + (dbg ? ` · debug ${dbg}` : '');
     } else {
-      const sp = pass(scene, camera), col = sanitizeHDR(sp.getTextureNode());
+      const sp = scenePass = pass(scene, camera), col = sanitizeHDR(sp.getTextureNode());
       const fin = isOff('bloom') ? col : col.add(bloom(col, 1.0, 0.4, 0.85).mul(uBloom));
       const composed = overFx(sanitizeHDR(fin));
       // anti-aliasing without TRAA: FXAA in sRGB, after tone mapping, as webgpu_postprocessing_fxaa
@@ -154,8 +156,42 @@ export async function createStage(host, { qs = new URLSearchParams(location.sear
     OFF.add(f); buildPipeline(); const ms = await avg(); OFF.delete(f); buildPipeline(); return ms;
   }, measurable: ['ssr', 'gtao', 'bloom', 'traa', 'shadow_soft'] });
 
+  // ---------- precompile: a piece's pipelines built ahead of its first frame, without blocking one ----------
+  // r187 example webgpu_compile_async: `await renderer.compileAsync(meshGroup, camera, scene)` before `scene.add(meshGroup)`, so
+  // the frame that first draws the meshes builds nothing. Here the scene is drawn inside a pass, so the compile has to ask
+  // for that pass's pipelines: r187 PassNode.compileAsync (three.tsl.js) compiles a
+  // pass's whole scene with the pass's own target and MRT set, so the pipelines are the ones the pass will ask for. This is
+  // the same for one object (Renderer.compileAsync(object, camera, targetScene): "if you want to add a 3D object to an
+  // existing scene"): the pass's target, sample count, size and MRT are set while the renderer queues the object's work
+  // (synchronous), then the renderer builds the shaders in 8 ms slices between frames and creates the pipelines with
+  // createRenderPipelineAsync (WebGPU) or KHR_parallel_shader_compile (WebGL 2). One at a time: the renderer holds one
+  // precompile state.
+  let compiling = 0, compileChain = Promise.resolve();
+  const bufferSize = new THREE.Vector2();
+  function precompile(object, { layer = 'scene', before = null, after = null } = {}) {
+    const run = async () => {
+      const p = layer === 'fx' ? fxPass : scenePass, target = layer === 'fx' ? fxScene : scene;
+      if (disposed || !p) return;
+      const rt = renderer.getRenderTarget(), m = renderer.getMRT();
+      compiling++;
+      try {
+        p.renderTarget.samples = p.options?.samples === undefined ? renderer.samples : p.options.samples;
+        renderer.getDrawingBufferSize(bufferSize); p.setSize(bufferSize.width, bufferSize.height);
+        renderer.setRenderTarget(p.renderTarget); renderer.setMRT(p._mrt ?? null);
+        before?.(); // the caller's state for the synchronous part only: the renderer walks the object and queues its work
+        let work;
+        try { work = renderer.compileAsync(object, camera, target); } finally { after?.(); }
+        await work;
+      } finally { compiling--; renderer.setRenderTarget(rt); renderer.setMRT(m); }
+    };
+    const done = compileChain.then(run, run); compileChain = done.catch(() => {});
+    return done;
+  }
+  /** The compute passes of an effect, compiled ahead (r187 Renderer.compileComputeAsync; nothing to do on WebGL 2). */
+  const precompileCompute = (nodes) => (nodes?.length && typeof renderer.compileComputeAsync === 'function' ? renderer.compileComputeAsync(nodes) : Promise.resolve());
+
   // ---------- frame loop ----------
-  const callbacks = new Set();
+  const callbacks = new Set(), rendered = new Set(); // rendered: told after each frame's render (builder/drop-meter.js)
   let last = performance.now(), t = 0, frames = 0, envFrames = 0, shot = false, disposed = false;
   let fps = 0, fpsFrames = 0, fpsT = 0, workMs = 0, frameInfo = { draws: 0, triangles: 0 };
   renderer.setAnimationLoop(() => {
@@ -165,7 +201,13 @@ export async function createStage(host, { qs = new URLSearchParams(location.sear
     env.update(camera, controls.target);
     for (const cb of [...callbacks]) { try { cb(dt, t); } catch (e) { console.error('stage onFrame callback', e); } }
     renderer.info.reset();
+    const r0 = performance.now();
+    // a precompile in flight leaves its pass's target and MRT set between its slices (see precompile): the frame draws to the canvas
+    const heldRT = compiling ? renderer.getRenderTarget() : null, heldMRT = compiling ? renderer.getMRT() : null;
+    if (heldRT || heldMRT) { renderer.setRenderTarget(null); renderer.setMRT(null); }
     pipeline.render();
+    if (heldRT || heldMRT) { renderer.setRenderTarget(heldRT); renderer.setMRT(heldMRT); }
+    if (rendered.size) { const r1 = performance.now(); for (const cb of [...rendered]) { try { cb({ start: n, callbacksMs: r0 - n, renderMs: r1 - r0, end: r1 }); } catch (e) { console.error('stage onRendered callback', e); } } }
     workMs = performance.now() - n; // CPU time of this frame (the GPU runs later): the fps gate's headroom signal on a 60 Hz display
     const ri = renderer.info.render; frameInfo = { draws: ri.drawCalls ?? ri.calls, triangles: ri.triangles || 0 };
     frames++; if (frames === 8) window.__READY__ = true; // tests and the gate wait for this
@@ -203,6 +245,10 @@ export async function createStage(host, { qs = new URLSearchParams(location.sear
     },
     lodBias: 1,
     onFrame(cb) { callbacks.add(cb); return () => callbacks.delete(cb); },
+    /** cb({ start, callbacksMs, renderMs, end }) after each frame's render call returned (CPU side; the GPU runs it later). */
+    onRendered(cb) { rendered.add(cb); return () => rendered.delete(cb); },
+    /** Builds an object's shaders and pipelines for the pass it will be drawn in ('scene' or 'fx'), in slices between frames. */
+    precompile, precompileCompute,
     dispose() {
       if (disposed) return; disposed = true;
       renderer.setAnimationLoop(null); callbacks.clear(); removeEventListener('resize', onResize); ro?.disconnect();
@@ -214,6 +260,8 @@ export async function createStage(host, { qs = new URLSearchParams(location.sear
   Object.defineProperty(stage, 'cloudInfo', { enumerable: false, value: () => { const { kind, quality, reason, module } = env.clouds; return { kind, quality, reason, module }; } });
   Object.defineProperty(stage, 'hudInfo', { enumerable: false, value: () => ({ fps, ...frameInfo, pipeline: pipelineName, pixelRatio: renderer.getPixelRatio(), backend: isWebGPU ? 'WebGPU' : 'WebGL 2', revision: THREE.REVISION, preset }) });
   Object.defineProperty(stage, 'workMs', { enumerable: false, get: () => workMs });
+  // a precompile is in flight (the kit's prewarm, a piece compiled before it is shown): the fps gate does not judge those frames
+  Object.defineProperty(stage, 'compiling', { enumerable: false, get: () => compiling > 0 });
   window.__SCENE_FEATURES__ = features();
   return stage;
 }

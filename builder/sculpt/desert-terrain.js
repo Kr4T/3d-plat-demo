@@ -353,14 +353,17 @@ export function terrainGeometry(T, outline, opts = {}) {
   const it = terrainSteps(T, outline, opts);
   for (;;) { const r = it.next(); if (r.done) return r.value; }
 }
-/** As terrainGeometry, yielding to the event loop whenever a slice has run `sliceMs` (the frame keeps drawing). */
-export async function terrainGeometryAsync(T, outline, opts = {}, { sliceMs = 3 } = {}) {
+/** As terrainGeometry, yielding to the event loop whenever a slice has run `sliceMs` (the frame keeps drawing).
+ * `pause` (drop latency, 12 Nov 2026): how to yield; it may resolve with the next slice's milliseconds. The scene view passes
+ * one that waits for the frame's idle time when the terrain is rebuilt round a moved or dropped piece (ctx.pause), so the
+ * rebuild takes what the frame leaves instead of 3 ms of every timer turn. */
+export async function terrainGeometryAsync(T, outline, opts = {}, { sliceMs = 3, pause = () => new Promise((res) => setTimeout(res, 0)) } = {}) {
   const it = terrainSteps(T, outline, opts), now = () => (globalThis.performance?.now ? performance.now() : Date.now());
-  let t = now();
+  let t = now(), slice = sliceMs;
   for (;;) {
     const r = it.next();
     if (r.done) return r.value;
-    if (now() - t > sliceMs) { await new Promise((res) => setTimeout(res, 0)); t = now(); }
+    if (now() - t > slice) { const next = await pause(); slice = typeof next === 'number' && next > 0 ? next : sliceMs; t = now(); }
   }
 }
 
@@ -770,7 +773,7 @@ export async function build(params, ctx) {
   const material = ctx.slot('surface', { windAngle: params.windAngle });
   if (material.userData?.ready && typeof window !== 'undefined') await material.userData.ready;
   const field = duneField({ type: params.duneType, height: params.duneHeight, spacing: params.duneSpacing, windAngle: params.windAngle, irregularity: params.irregularity, seed: params.seed, maxSlope: params.maxSlope });
-  const geometry = await terrainGeometryAsync(THREE, outline, { quality: ctx.preset, y: SAND_Y, field, layout: ctx.layout || [], margin: params.clearMargin, blend: params.clearBlend, maxSlope: params.maxSlope });
+  const geometry = await terrainGeometryAsync(THREE, outline, { quality: ctx.preset, y: SAND_Y, field, layout: ctx.layout || [], margin: params.clearMargin, blend: params.clearBlend, maxSlope: params.maxSlope }, ctx.pause ? { pause: ctx.pause } : {});
   geometry.userData.sculpt = { module: MODULE, from: 'outline' };
   const mesh = new THREE.Mesh(geometry, material);
   mesh.name = 'desert-sand'; mesh.receiveShadow = true;
