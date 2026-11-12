@@ -1,0 +1,225 @@
+{
+  "format": "uew-component@1",
+  "id": "wet-paving",
+  "version": "1.0.0",
+  "name": {
+    "en": "Wet paving",
+    "ar": "رصف مبلل"
+  },
+  "summary": {
+    "en": "Boulevard City's paving as an area: Poly Haven CC0 pavers or sandstone blocks laid in world space over any outline, glossy and reflective at night like wet stone.",
+    "ar": "رصف بوليفارد سيتي كقطعة مساحة: بلاط خرساني أو كتل حجر رملي من Poly Haven (CC0) بإحداثيات العالم على أي مخطط، لامع وعاكس ليلاً كالحجر المبلل."
+  },
+  "tags": {
+    "en": [
+      "paving",
+      "ground",
+      "plaza",
+      "stone",
+      "wet",
+      "footway"
+    ],
+    "ar": [
+      "رصف",
+      "أرض",
+      "ساحة",
+      "حجر",
+      "مبلل",
+      "رصيف المشاة"
+    ]
+  },
+  "kind": "generator",
+  "area": true,
+  "category": "paving",
+  "source": {
+    "repo": "Kr4T/3DPLAT",
+    "branch": "round2/boulevard",
+    "commit": "3352816",
+    "path": "apps/boulevard-city-3d/main.js",
+    "symbol": "groundMaterial (GC.PAVE, GC.PLAZA) on ground (PlaneGeometry at y = 0)",
+    "example": "webgpu_generator_city",
+    "defaults": {
+      "outline": [
+        [-12, -8],
+        [12, -8],
+        [12, 8],
+        [-12, 8]
+      ],
+      "wetness": 1,
+      "stoneSet": "pavers",
+      "tint": "#ffffff",
+      "y": 0,
+      "tileMetres": {
+        "pavers": 2.5,
+        "sandstone": 4
+      },
+      "roughness": {
+        "pavers": 0.7,
+        "sandstone": 0.6
+      },
+      "nightGloss": 0.42,
+      "nightMetalness": 0.3,
+      "albedoScale": 0.82,
+      "macro": 0.045,
+      "micro": 0.31,
+      "secondScale": 2.7,
+      "texq": {
+        "phone": "512",
+        "high": "1k"
+      },
+      "note": "main.js SURF: [GC.PAVE, 'concrete_pavers_03', 2.5, 0.7, true], [GC.PLAZA, 'large_sandstone_blocks_01', 4, 0.6, true]; groundMaterial: two scales (uvB = xz / (m x 2.7) + (0.37, 0.71)) mixed by macro x 0.55, shade mix(0.86, 1.1, macro) x mix(0.95, 1.04, micro), albedo x 0.82, roughness x mix(1, 0.42, uNight) clamped 0.08-1, metalness uNight x 0.3 on PAVE and PLAZA. Boulevard's ground covers the whole map with a class grid; here the outline is the paving. wetness 1 and tint #ffffff are Boulevard's look; the outline is a 24 x 16 m plaza."
+    }
+  },
+  "made_by": "3DPLAT (Boulevard City ground, sculpt module); textures Charlotte Baglioni and Rob Tuytel (Poly Haven, CC0)",
+  "licence": "Apache-2.0",
+  "files": {
+    "module": "../../builder/sculpt/paving.js"
+  },
+  "materials": [
+    {
+      "slot": "surface",
+      "preset": "wet-paving",
+      "overrides": {}
+    }
+  ],
+  "draw": {
+    "phone": {
+      "lods": [
+        "module"
+      ],
+      "shadow": []
+    },
+    "high": {
+      "lods": [
+        "module"
+      ],
+      "shadow": []
+    }
+  },
+  "params": [
+    {
+      "name": "outline",
+      "type": "outline",
+      "default": [
+        [-12, -8],
+        [12, -8],
+        [12, 8],
+        [-12, 8]
+      ],
+      "label": {
+        "en": "Outline",
+        "ar": "المخطط"
+      },
+      "affects": "module"
+    },
+    {
+      "name": "wetness",
+      "type": "number",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.05,
+      "label": {
+        "en": "Wetness at night",
+        "ar": "البلل ليلاً"
+      },
+      "affects": "material"
+    },
+    {
+      "name": "stoneSet",
+      "type": "enum",
+      "default": "pavers",
+      "options": [
+        "pavers",
+        "sandstone"
+      ],
+      "label": {
+        "en": "Stone",
+        "ar": "الحجر"
+      },
+      "affects": "material"
+    },
+    {
+      "name": "tint",
+      "type": "colour",
+      "default": "#ffffff",
+      "label": {
+        "en": "Stone tint",
+        "ar": "لون الحجر"
+      },
+      "affects": "material"
+    }
+  ],
+  "sockets": [
+    {
+      "id": "edge-0",
+      "type": "paving-edge",
+      "pos": [0, 0, -8],
+      "dir": [0, 0, -1],
+      "accepts": [
+        "kerb-run",
+        "water-edge",
+        "lamp-base",
+        "seat-faces-edge",
+        "palm-pit"
+      ],
+      "snap": 0.5
+    },
+    {
+      "id": "edge-1",
+      "type": "paving-edge",
+      "pos": [12, 0, 0],
+      "dir": [1, 0, 0],
+      "accepts": [
+        "kerb-run",
+        "water-edge",
+        "lamp-base",
+        "seat-faces-edge",
+        "palm-pit"
+      ],
+      "snap": 0.5
+    },
+    {
+      "id": "edge-2",
+      "type": "paving-edge",
+      "pos": [0, 0, 8],
+      "dir": [0, 0, 1],
+      "accepts": [
+        "kerb-run",
+        "water-edge",
+        "lamp-base",
+        "seat-faces-edge",
+        "palm-pit"
+      ],
+      "snap": 0.5
+    },
+    {
+      "id": "edge-3",
+      "type": "paving-edge",
+      "pos": [-12, 0, 0],
+      "dir": [-1, 0, 0],
+      "accepts": [
+        "kerb-run",
+        "water-edge",
+        "lamp-base",
+        "seat-faces-edge",
+        "palm-pit"
+      ],
+      "snap": 0.5
+    }
+  ],
+  "placement": {
+    "on": [
+      "ground"
+    ],
+    "keep_out": [
+      "water"
+    ]
+  },
+  "budgets": {"measured_by":"tools/quality-gate/component/check.mjs","at":"2026-11-10","phone":{"tris":2,"draws":1,"lods":[{"lod":"module","tris":2,"draws":1}]},"high":{"tris":2,"draws":1,"lods":[{"lod":"module","tris":2,"draws":1}]}},
+  "thumb": "thumb.jpg",
+  "slots": {
+    "rig": null,
+    "drive": null
+  }
+}

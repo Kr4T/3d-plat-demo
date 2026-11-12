@@ -1,0 +1,90 @@
+{
+  "format": "uew-material@1",
+  "id": "wet-paving",
+  "name": {
+    "en": "Wet paving",
+    "ar": "رصف مبلل"
+  },
+  "source": {
+    "example": "webgpu_postprocessing_ssr",
+    "repo": "Kr4T/3DPLAT",
+    "branch": "round2/boulevard",
+    "commit": "3352816",
+    "path": "apps/boulevard-city-3d/main.js",
+    "symbol": "groundMaterial (GC.PAVE and GC.PLAZA)",
+    "note": "Poly Haven CC0 pavers or sandstone blocks in world space at two scales with macro and micro variation; glossy and slightly metallic at night so SSR reflects the lamps; the lamp light map as emission on the WebGL path. 512 px on Phone, 1k on High."
+  },
+  "params": [
+    {
+      "name": "stoneSet",
+      "type": "enum",
+      "default": "pavers",
+      "options": [
+        "pavers",
+        "sandstone"
+      ]
+    },
+    {
+      "name": "tint",
+      "type": "colour",
+      "default": "#ffffff"
+    },
+    {
+      "name": "wetness",
+      "type": "number",
+      "default": 1,
+      "min": 0,
+      "max": 1
+    }
+  ],
+  "images": [
+    {
+      "file": "tex/512/concrete_pavers_03_diff.jpg",
+      "asset": "concrete_pavers_03",
+      "url": "https://polyhaven.com/a/concrete_pavers_03",
+      "licence": "CC0"
+    },
+    {
+      "file": "tex/512/concrete_pavers_03_nor.jpg",
+      "asset": "concrete_pavers_03",
+      "url": "https://polyhaven.com/a/concrete_pavers_03",
+      "licence": "CC0"
+    },
+    {
+      "file": "tex/512/large_sandstone_blocks_01_diff.jpg",
+      "asset": "large_sandstone_blocks_01",
+      "url": "https://polyhaven.com/a/large_sandstone_blocks_01",
+      "licence": "CC0"
+    },
+    {
+      "file": "tex/512/large_sandstone_blocks_01_nor.jpg",
+      "asset": "large_sandstone_blocks_01",
+      "url": "https://polyhaven.com/a/large_sandstone_blocks_01",
+      "licence": "CC0"
+    },
+    {
+      "file": "tex/1k/concrete_pavers_03_diff.jpg",
+      "asset": "concrete_pavers_03",
+      "url": "https://polyhaven.com/a/concrete_pavers_03",
+      "licence": "CC0"
+    },
+    {
+      "file": "tex/1k/concrete_pavers_03_nor.jpg",
+      "asset": "concrete_pavers_03",
+      "url": "https://polyhaven.com/a/concrete_pavers_03",
+      "licence": "CC0"
+    },
+    {
+      "file": "tex/1k/large_sandstone_blocks_01_diff.jpg",
+      "asset": "large_sandstone_blocks_01",
+      "url": "https://polyhaven.com/a/large_sandstone_blocks_01",
+      "licence": "CC0"
+    },
+    {
+      "file": "tex/1k/large_sandstone_blocks_01_nor.jpg",
+      "asset": "large_sandstone_blocks_01",
+      "url": "https://polyhaven.com/a/large_sandstone_blocks_01",
+      "licence": "CC0"
+    }
+  ]
+}

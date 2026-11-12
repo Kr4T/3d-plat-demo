@@ -1,0 +1,68 @@
+{
+  "format": "uew-behaviour@1",
+  "type": "health",
+  "name": {
+    "en": "Health",
+    "ar": "الصحة"
+  },
+  "summary": {
+    "en": "Hit points: hits from Combo attack take them away, regen gives them back after a pause; at 0 the character or piece dies and sinks away (in Play only: the scene is unchanged when Play ends).",
+    "ar": "نقاط الحياة: ضربات الهجوم المتتابع تنقصها، والتجدد يعيدها بعد توقف؛ عند الصفر تموت الشخصية أو القطعة وتغوص بعيدًا (في وضع اللعب فقط: يبقى المشهد كما هو بعد انتهاء اللعب)."
+  },
+  "targets": [
+    "character",
+    "animal",
+    "piece"
+  ],
+  "params": [
+    {
+      "name": "hp",
+      "type": "number",
+      "default": 100,
+      "label": {
+        "en": "Health",
+        "ar": "الصحة"
+      },
+      "affects": "module",
+      "min": 1,
+      "max": 1000,
+      "step": 1
+    },
+    {
+      "name": "max",
+      "type": "number",
+      "default": 100,
+      "label": {
+        "en": "Most health",
+        "ar": "أقصى صحة"
+      },
+      "affects": "module",
+      "min": 1,
+      "max": 1000,
+      "step": 1
+    },
+    {
+      "name": "regen",
+      "type": "number",
+      "default": 0,
+      "label": {
+        "en": "Regen (per second)",
+        "ar": "التجدد (في الثانية)"
+      },
+      "affects": "module",
+      "min": 0,
+      "max": 50,
+      "step": 0.5
+    },
+    {
+      "name": "dissolve",
+      "type": "bool",
+      "default": true,
+      "label": {
+        "en": "Sink away at 0",
+        "ar": "الغوص عند الصفر"
+      },
+      "affects": "module"
+    }
+  ]
+}

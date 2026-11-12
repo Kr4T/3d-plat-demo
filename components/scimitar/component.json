@@ -1,0 +1,312 @@
+{
+  "format": "uew-component@1",
+  "id": "scimitar",
+  "version": "1.0.0",
+  "name": {
+    "en": "Scimitar",
+    "ar": "سيف"
+  },
+  "summary": {
+    "en": "A curved scimitar with a dark etched blade, a gold guard and a wrapped grip, lying flat. About 0.95 m long at its default size.",
+    "ar": "سيف معقوف بنصل داكن منقوش وواقية ذهبية ومقبض ملفوف، ملقى على الأرض. طوله نحو 0.95 م في حجمه الافتراضي."
+  },
+  "tags": {
+    "en": [
+      "prop",
+      "scimitar",
+      "sword",
+      "weapon"
+    ],
+    "ar": [
+      "سيف",
+      "سلاح",
+      "أداة"
+    ]
+  },
+  "kind": "mesh",
+  "category": "decor",
+  "body": "object",
+  "source": {
+    "repo": "Kr4T/3dplat-builder",
+    "branch": "release:Characters",
+    "path": "72df588a39475be2b22ae89d92f3f3f1.glb (release asset #737706557)",
+    "commit": "cf0213fb1219e7d2a2f01f5a639f3c63399cf23ef39657f504a8d93d666917b0",
+    "symbol": "tools/import-model.mjs",
+    "example": "webgpu_loader_gltf_compressed",
+    "defaults": {
+      "height": 0.0685,
+      "note": "Imported by tools/import-model.mjs: the original (sha256 cf0213fb1219…, kept out of git under assets-src/) turned, centred on its base and scaled to 0.0685 m; lod0 and lod1 decimated from it (import.variants). r187 examples: webgpu_loader_gltf_compressed (meshopt), webgpu_loader_gltf, webgpu_materials_sss and webgpu_loader_gltf_sheen (the auto-r187 recipe)."
+    }
+  },
+  "made_by": "Kereem, generated on Tencent HY 3D V3.1 (release Characters-2026-11-12)",
+  "licence": "Tencent HY 3D Global output, terms pending review",
+  "internal_only": true,
+  "files": {
+    "lod0": "model_lod0.glb",
+    "lod1": "model_lod1.glb"
+  },
+  "materials": [
+    {
+      "slot": "material-001",
+      "preset": "auto-r187",
+      "overrides": {}
+    }
+  ],
+  "draw": {
+    "phone": {
+      "lods": [
+        "lod1"
+      ],
+      "shadow": []
+    },
+    "high": {
+      "lods": [
+        "lod0",
+        "lod1"
+      ],
+      "distances": [
+        30
+      ],
+      "shadow": [],
+      "shadowFrom": "lod1"
+    }
+  },
+  "params": [
+    {
+      "name": "height",
+      "type": "number",
+      "default": 0.0685,
+      "min": 0.02,
+      "max": 0.27,
+      "step": 0.01,
+      "label": {
+        "en": "Height (m)",
+        "ar": "الارتفاع (م)"
+      },
+      "affects": "scale"
+    },
+    {
+      "name": "tint",
+      "type": "colour",
+      "default": "#ffffff",
+      "label": {
+        "en": "Tint",
+        "ar": "الصبغة"
+      },
+      "affects": "material"
+    }
+  ],
+  "sockets": [],
+  "footprint": {
+    "outline": [
+      [
+        -0.472,
+        -0.1
+      ],
+      [
+        0.472,
+        -0.1
+      ],
+      [
+        0.472,
+        0.1
+      ],
+      [
+        -0.472,
+        0.1
+      ]
+    ],
+    "height": [
+      0,
+      0.0685
+    ]
+  },
+  "clearance": 0.3,
+  "placement": {
+    "on": [
+      "paving",
+      "lawn",
+      "ground"
+    ]
+  },
+  "collider": [
+    {
+      "type": "box",
+      "pos": [
+        0,
+        0.034,
+        0
+      ],
+      "half": [
+        0.472,
+        0.034,
+        0.1
+      ]
+    }
+  ],
+  "budgets": {"measured_by":"tools/quality-gate/component/check.mjs","at":"2026-11-12","phone":{"tris":30000,"draws":1,"lods":[{"lod":"lod1","tris":30000,"draws":1}]},"high":{"tris":200000,"draws":1,"lods":[{"lod":"lod0","tris":200000,"draws":1},{"lod":"lod1","tris":30000,"draws":1}]}},
+  "thumb": "thumb.jpg",
+  "slots": {
+    "rig": null,
+    "drive": null
+  },
+  "import": {
+    "tool": "tools/import-model.mjs",
+    "command": "node tools/import-model.mjs --from 'release:Kr4T/3dplat-builder@Characters/#737706557' --sha256 cf0213fb1219e7d2a2f01f5a639f3c63399cf23ef39657f504a8d93d666917b0 --id scimitar --height 0.0685 --pitch 90 --category decor --body object --name-en 'Scimitar' --name-ar 'سيف' --licence 'Tencent HY 3D Global output, terms pending review' --made-by 'Kereem, generated on Tencent HY 3D V3.1 (release Characters-2026-11-12)' --summary-en 'A curved scimitar with a dark etched blade, a gold guard and a wrapped grip, lying flat. About 0.95 m long at its default size.' --summary-ar 'سيف معقوف بنصل داكن منقوش وواقية ذهبية ومقبض ملفوف، ملقى على الأرض. طوله نحو 0.95 م في حجمه الافتراضي.' --tags-en 'prop,scimitar,sword,weapon' --tags-ar 'سيف,سلاح,أداة' --note 'Release asset 72df588a39475be2b22ae89d92f3f3f1.glb: one prop, a scimitar lying in the x-y plane (it stood on its edge; turned 90 degrees about x, --pitch 90, to lie flat). Height 0.0685 m (its thickness when flat) gives a blade about 0.95 m long. Identified by rendering it.'",
+    "original": {
+      "kind": "release",
+      "sha256": "cf0213fb1219e7d2a2f01f5a639f3c63399cf23ef39657f504a8d93d666917b0",
+      "size": 74423232,
+      "faces": 1087570,
+      "fetched": "2026-11-12",
+      "stored": "../3dplat-builder-import/assets-src/models/cf0213fb1219e7d2a2f01f5a639f3c63399cf23ef39657f504a8d93d666917b0.glb",
+      "url": "https://api.github.com/repos/Kr4T/3dplat-builder/releases/assets/737706557",
+      "release": {
+        "repo": "Kr4T/3dplat-builder",
+        "tag": "Characters",
+        "name": "Characters-2026-11-12",
+        "asset": "72df588a39475be2b22ae89d92f3f3f1.glb",
+        "id": 737706557
+      }
+    },
+    "notes": "Release asset 72df588a39475be2b22ae89d92f3f3f1.glb: one prop, a scimitar lying in the x-y plane (it stood on its edge; turned 90 degrees about x, --pitch 90, to lie flat). Height 0.0685 m (its thickness when flat) gives a blade about 0.95 m long. Identified by rendering it.",
+    "normalise": {
+      "yaw": 0,
+      "pitch": 90,
+      "roll": 0,
+      "scale": 0.79750375,
+      "before": {
+        "min": [
+          -0.5136,
+          0,
+          -0.0426
+        ],
+        "max": [
+          0.6697,
+          0.2508,
+          0.0433
+        ]
+      }
+    },
+    "bounds": {
+      "min": [
+        -0.4718,
+        0,
+        -0.1
+      ],
+      "max": [
+        0.4718,
+        0.0685,
+        0.1
+      ]
+    },
+    "textures": "webp",
+    "presets": {
+      "desktop": {
+        "lod": "lod0",
+        "tris": 200000,
+        "band": [
+          180000,
+          200000
+        ],
+        "texture": 2048
+      },
+      "phone": {
+        "lod": "lod1",
+        "tris": 30000,
+        "band": [
+          27000,
+          30000
+        ],
+        "texture": 1024
+      }
+    },
+    "variants": {
+      "lod0": {
+        "preset": "desktop",
+        "file": "model_lod0.glb",
+        "tris": 200000,
+        "simplifier": "meshopt",
+        "bytes": 3398852,
+        "sha256": "012ecc918a89be9d62f641edfb72735cb29cb789b7c17da60d0af702770e9792",
+        "textures": [
+          {
+            "mime": "image/webp",
+            "size": [
+              2048,
+              2048
+            ]
+          },
+          {
+            "mime": "image/webp",
+            "size": [
+              2048,
+              2048
+            ]
+          },
+          {
+            "mime": "image/webp",
+            "size": [
+              2048,
+              2048
+            ]
+          }
+        ]
+      },
+      "lod1": {
+        "preset": "phone",
+        "file": "model_lod1.glb",
+        "tris": 30000,
+        "simplifier": "meshopt",
+        "bytes": 940016,
+        "sha256": "b730936d13c3630ab6971b34ded187931db49f6b9307c29bcabaecdc59d01164",
+        "textures": [
+          {
+            "mime": "image/webp",
+            "size": [
+              1024,
+              1024
+            ]
+          },
+          {
+            "mime": "image/webp",
+            "size": [
+              1024,
+              1024
+            ]
+          },
+          {
+            "mime": "image/webp",
+            "size": [
+              1024,
+              1024
+            ]
+          }
+        ]
+      }
+    },
+    "recipes": {
+      "material-001": {
+        "name": "metal+hair",
+        "sss": false,
+        "sheen": 0,
+        "metalSpecAA": true,
+        "hair": true,
+        "share": {
+          "skin": 0.381,
+          "cloth": 0.019,
+          "metal": 0.502,
+          "other": 0.046,
+          "hair": 0.052
+        },
+        "trust": {
+          "metal": true,
+          "rough": true,
+          "why": []
+        },
+        "material": "Material.001"
+      }
+    },
+    "licence_note": "internal prototype only until reviewed"
+  }
+}

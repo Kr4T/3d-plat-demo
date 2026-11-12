@@ -1,0 +1,105 @@
+{
+  "format": "uew-sources@1",
+  "component": "date-palm",
+  "date": "2026-11-11",
+  "bar": 8,
+  "barSource": "Kereem, 11 Nov 2026, relayed by the coordinator: \"we are not paying but I need above 8 as a look\"",
+  "recipe": "L27 (Kereem, 11 Nov 2026: \"make that the standard recipe for everything ... they need to look and assess which is closest\")",
+  "target": {
+    "image": "docs/gate/scene-quality/sources/targets/2026-11-05-boulevard-city-3d-v20-night-street.jpg",
+    "what": "Boulevard City v20 night street (devlog 5 Nov 2026)",
+    "source": "Kr4T/3DPLAT main e0d91a2, docs/devlog/media/",
+    "licence": "CC BY 4.0 (3DPLAT; the frame carries the ODbL map attribution: © OpenStreetMap contributors, Overture Maps)",
+    "author": "3DPLAT",
+    "crop": [
+      330,
+      0,
+      560,
+      380
+    ]
+  },
+  "scoring": {
+    "method": "Side by side: a crop of the target next to one image per candidate (our builder render, a bench render, the official r187 example screenshot, or the CC0 asset's thumbnail), in docs/gate/scene-quality/sources/<id>.jpg. The score (0-10) is the scene-quality worker's visual judgement of closeness to the target in colour, surface detail, light response and shape, written down with a short reason; not a metric. Our renders are SwiftShader (provisional, L4). Paid candidates are listed and flagged, not downloaded and not scored.",
+    "by": "scene-quality worker (Claude), 11 Nov 2026",
+    "comparison": "docs/gate/scene-quality/sources/date-palm.jpg",
+    "provisional": true
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "kind": "own-library",
+      "name": "shared/materials/palms.js on Boulevard's palm GLB (translucency, per-frond wind, hashed alpha under TRAA, bark derivative normals and rim)",
+      "url": "shared/materials/palms.js",
+      "licence": "Apache 2.0 (code); model CC BY 4.0 (3DPLAT)",
+      "paid": false,
+      "score": 7,
+      "judgement": "Same Phoenix silhouette as the target; the trunk now reads (rings, rim, lamp light); target trunks show a stronger diamond boot pattern and warmer colour."
+    },
+    {
+      "id": "B",
+      "kind": "own-library",
+      "name": "Boulevard City palm.js (the Task 7 conversion)",
+      "url": "components/date-palm/showcase/desktop-webgpu.png",
+      "licence": "Apache 2.0 (code); model CC BY 4.0",
+      "paid": false,
+      "score": 6,
+      "judgement": "The original: right shape, trunk near-black at night, edges harder."
+    },
+    {
+      "id": "C",
+      "kind": "r187-example",
+      "name": "webgpu_custom_fog_scattering (TreeGenerator)",
+      "url": "https://threejs.org/examples/#webgpu_custom_fog_scattering",
+      "licence": "MIT",
+      "paid": false,
+      "score": 1,
+      "judgement": "A broadleaf generator; no palm species preset."
+    },
+    {
+      "id": "D",
+      "kind": "cc0-model",
+      "name": "Poly Haven island_tree_01",
+      "url": "https://polyhaven.com/a/island_tree_01",
+      "licence": "CC0",
+      "paid": false,
+      "score": 1,
+      "judgement": "A broadleaf island tree, not a palm."
+    },
+    {
+      "id": "E",
+      "kind": "paid",
+      "name": "SpeedTree date palm / Fab palm models",
+      "url": "https://www.fab.com/",
+      "licence": "paid",
+      "paid": true,
+      "score": null,
+      "judgement": "Not downloaded or scored (paid; flag for the coordinator).",
+      "flag": "coordinator"
+    }
+  ],
+  "pick": {
+    "candidate": "A",
+    "why": "Closest to the target and keeps our own CC BY 4.0 model and its draw budget; no licence-clean date palm model scored higher.",
+    "build": {
+      "base": "3DPLAT Blender palm GLB (palm_lod0, palm_lod1, card) with baked AO and leaf maps",
+      "r187": [
+        "webgpu_loader_gltf",
+        "webgpu_materials_alphahash",
+        "webgpu_instance_uniform",
+        "webgpu_custom_fog_scattering"
+      ],
+      "tsl_layers": [
+        "rooted sway + per-frond bend with its own phase + leaflet flutter",
+        "leaf colour (glaucous, old fronds yellowed)",
+        "light through the leaflets: forward scatter + wrapped back term, thickness-weighted",
+        "hashed alpha under TRAA (High), alpha test with mip boost elsewhere",
+        "bark: fibre + boot-ring height, derivative normal, sky rim sheen",
+        "AO: baked x crown inner shading",
+        "sheen on High near LOD"
+      ]
+    },
+    "score": 7,
+    "meetsBar": false,
+    "gap": "Best free candidate 7/10 (A). Below the bar: trunk lacks the target's strong diamond leaf-boot relief and warm colour; crown density lower. To try: a boot-pattern height field (diamond lattice) driving the derivative normal and AO, warmer bark, denser frond GLB from our Blender script."
+  }
+}

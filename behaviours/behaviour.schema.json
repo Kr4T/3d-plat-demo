@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "uew-behaviour@1",
+  "description": "A behaviour's registry entry (behaviours/<type>/behaviour.json): a reusable game feature a creator adds to a piece in the builder (Kereem, 12 Nov 2026: the builder is the platform). Its runtime is lib/behaviours/<type>.mjs, attach(ctx, item, params).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["format", "type", "name", "summary", "targets", "params"],
+  "properties": {
+    "format": { "const": "uew-behaviour@1" },
+    "type": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+    "name": { "$ref": "uew-component@1#/definitions/label" },
+    "summary": { "$ref": "uew-component@1#/definitions/label" },
+    "targets": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "enum": ["character", "animal", "piece", "world"] } },
+    "params": { "type": "array", "items": { "$ref": "uew-component@1#/definitions/param" } }
+  }
+}

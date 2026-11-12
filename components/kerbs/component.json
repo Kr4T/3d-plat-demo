@@ -1,0 +1,160 @@
+{
+  "format": "uew-component@1",
+  "id": "kerbs",
+  "version": "1.0.0",
+  "name": {
+    "en": "Kerbs",
+    "ar": "حواف الرصيف"
+  },
+  "summary": {
+    "en": "Boulevard City's precast concrete kerbstone, 15 cm high and 30 cm wide with a rounded road-side arris, laid along any path in 1 m stones.",
+    "ar": "حجر الرصيف الخرساني مسبق الصب في بوليفارد سيتي، بارتفاع 15 سم وعرض 30 سم وحافة مستديرة نحو الطريق، يمتد على أي مسار بأحجار طولها متر."
+  },
+  "tags": {
+    "en": [
+      "kerb",
+      "curb",
+      "edge",
+      "kerbstone",
+      "concrete"
+    ],
+    "ar": [
+      "حافة",
+      "رصيف",
+      "حد",
+      "حجر الرصيف",
+      "خرسانة"
+    ]
+  },
+  "kind": "generator",
+  "area": true,
+  "category": "edge",
+  "source": {
+    "repo": "Kr4T/3DPLAT",
+    "branch": "round2/boulevard",
+    "commit": "3352816",
+    "path": "apps/boulevard-city-3d/kerbs.js",
+    "symbol": "KERB, kerbGeometry, kerbMaterial, buildKerbs",
+    "example": "webgpu_generator_city",
+    "defaults": {
+      "path": [
+        [-12, -8],
+        [12, -8],
+        [12, 8]
+      ],
+      "height": 0.15,
+      "colour": "#b9b4a8",
+      "reveal": 0.15,
+      "width": 0.3,
+      "arris": 0.035,
+      "stone": 1,
+      "light": "#b9b4a8",
+      "dark": "#9c978b",
+      "castShadow": false,
+      "note": "kerbs.js KERB = { reveal: 0.15, width: 0.3, arris: 0.035, stone: 1.0 }; kerbMaterial mix(color(0x9c978b), color(0xb9b4a8), tone), road face x 0.72, joints every 1 m, roughness 0.82 + 0.08 x tone; buildKerbs: one InstancedMesh of 1 m kerbs stretched per run [x, z, angle, length, side], receiveShadow, no castShadow; Phone: kerbGeometry('phone'), 4 triangles a kerb. Here one swept piece along a path; the path follows the default paving's south and east edges (road outside)."
+    }
+  },
+  "made_by": "3DPLAT (Boulevard City kerbs, after the r187 SidewalkGenerator; sculpt module)",
+  "licence": "Apache-2.0",
+  "files": {
+    "module": "../../builder/sculpt/kerbs.js"
+  },
+  "materials": [
+    {
+      "slot": "stone",
+      "preset": "kerb-concrete",
+      "overrides": {}
+    }
+  ],
+  "draw": {
+    "phone": {
+      "lods": [
+        "module"
+      ],
+      "shadow": []
+    },
+    "high": {
+      "lods": [
+        "module"
+      ],
+      "shadow": []
+    }
+  },
+  "params": [
+    {
+      "name": "path",
+      "type": "polyline",
+      "default": [
+        [-12, -8],
+        [12, -8],
+        [12, 8]
+      ],
+      "label": {
+        "en": "Path",
+        "ar": "المسار"
+      },
+      "affects": "module"
+    },
+    {
+      "name": "height",
+      "type": "number",
+      "default": 0.15,
+      "min": 0.08,
+      "max": 0.3,
+      "step": 0.01,
+      "label": {
+        "en": "Height (m)",
+        "ar": "الارتفاع (م)"
+      },
+      "affects": "module"
+    },
+    {
+      "name": "colour",
+      "type": "colour",
+      "default": "#b9b4a8",
+      "label": {
+        "en": "Stone colour",
+        "ar": "لون الحجر"
+      },
+      "affects": "material"
+    }
+  ],
+  "sockets": [
+    {
+      "id": "run-0",
+      "type": "kerb-run",
+      "pos": [0, 0, -8],
+      "dir": [0, 0, 1],
+      "accepts": [
+        "paving-edge",
+        "lamp-base"
+      ],
+      "snap": 0.5
+    },
+    {
+      "id": "run-1",
+      "type": "kerb-run",
+      "pos": [12, 0, 0],
+      "dir": [-1, 0, 0],
+      "accepts": [
+        "paving-edge",
+        "lamp-base"
+      ],
+      "snap": 0.5
+    }
+  ],
+  "placement": {
+    "on": [
+      "ground"
+    ],
+    "along": [
+      "paving-edge"
+    ]
+  },
+  "budgets": {"measured_by":"tools/quality-gate/component/check.mjs","at":"2026-11-10","phone":{"tris":8,"draws":1,"lods":[{"lod":"module","tris":8,"draws":1}]},"high":{"tris":284,"draws":1,"lods":[{"lod":"module","tris":284,"draws":1}]}},
+  "thumb": "thumb.jpg",
+  "slots": {
+    "rig": null,
+    "drive": null
+  }
+}

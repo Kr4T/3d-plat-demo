@@ -1,0 +1,592 @@
+{
+ "format": "uew-registry-index@1",
+ "note": "Game-only build (tools/build-site.mjs): the components and behaviours the game uses.",
+ "sockets": "sockets.json",
+ "components": [
+  {
+   "id": "bench",
+   "version": "1.0.0",
+   "kind": "generator",
+   "category": "seating",
+   "name": {
+    "en": "Bench",
+    "ar": "مقعد"
+   },
+   "tags": {
+    "en": [
+     "bench",
+     "seat",
+     "seating",
+     "furniture",
+     "park"
+    ],
+    "ar": [
+     "مقعد",
+     "جلوس",
+     "مقاعد",
+     "أثاث",
+     "حديقة"
+    ]
+   },
+   "thumb": "bench/thumb.jpg"
+  },
+  {
+   "id": "concert-stage",
+   "version": "1.0.0",
+   "kind": "mesh",
+   "category": "landmark",
+   "name": {
+    "en": "Concert stage",
+    "ar": "مسرح الحفل"
+   },
+   "tags": {
+    "en": [
+     "stage",
+     "concert",
+     "festival",
+     "led wall",
+     "screen",
+     "venue",
+     "show",
+     "landmark"
+    ],
+    "ar": [
+     "مسرح",
+     "حفل",
+     "مهرجان",
+     "شاشة",
+     "جدار ضوئي",
+     "عرض",
+     "معلم"
+    ]
+   },
+   "thumb": null,
+   "internal_only": true
+  },
+  {
+   "id": "date-palm",
+   "version": "1.0.0",
+   "kind": "mesh",
+   "category": "vegetation",
+   "name": {
+    "en": "Date palm",
+    "ar": "نخلة"
+   },
+   "tags": {
+    "en": [
+     "palm",
+     "date palm",
+     "tree",
+     "riyadh",
+     "vegetation",
+     "shade"
+    ],
+    "ar": [
+     "نخلة",
+     "نخيل",
+     "شجرة",
+     "الرياض",
+     "نباتات",
+     "ظل"
+    ]
+   },
+   "thumb": "date-palm/thumb.jpg"
+  },
+  {
+   "id": "desert-sand",
+   "version": "2.0.0",
+   "kind": "generator",
+   "category": "ground",
+   "name": {
+    "en": "Desert sand",
+    "ar": "رمل صحراوي"
+   },
+   "tags": {
+    "en": [
+     "sand",
+     "desert",
+     "ground",
+     "dunes",
+     "najd",
+     "riyadh",
+     "terrain",
+     "barchan"
+    ],
+    "ar": [
+     "رمل",
+     "صحراء",
+     "أرض",
+     "كثبان",
+     "نجد",
+     "الرياض",
+     "تضاريس",
+     "هلالية"
+    ]
+   },
+   "thumb": "desert-sand/thumb.jpg"
+  },
+  {
+   "id": "djinn",
+   "version": "1.0.0",
+   "kind": "mesh",
+   "category": "character",
+   "name": {
+    "en": "Sand djinn",
+    "ar": "جني الرمال"
+   },
+   "tags": {
+    "en": [
+     "character",
+     "djinn",
+     "spirit",
+     "creature",
+     "desert"
+    ],
+    "ar": [
+     "شخصية",
+     "جني",
+     "روح",
+     "مخلوق",
+     "صحراء"
+    ]
+   },
+   "thumb": "djinn/thumb.jpg",
+   "internal_only": true
+  },
+  {
+   "id": "fountain",
+   "version": "1.0.0",
+   "kind": "generator",
+   "category": "effect",
+   "name": {
+    "en": "Fountain",
+    "ar": "نافورة"
+   },
+   "tags": {
+    "en": [
+     "fountain",
+     "water show",
+     "jets",
+     "spray",
+     "night",
+     "plaza"
+    ],
+    "ar": [
+     "نافورة",
+     "عرض مائي",
+     "نفاثات",
+     "رذاذ",
+     "ليل",
+     "ساحة"
+    ]
+   },
+   "thumb": "fountain/thumb.jpg"
+  },
+  {
+   "id": "hero",
+   "version": "1.0.0",
+   "kind": "mesh",
+   "category": "character",
+   "name": {
+    "en": "Hero",
+    "ar": "البطل"
+   },
+   "tags": {
+    "en": [
+     "character",
+     "hero",
+     "person",
+     "thobe",
+     "shemagh",
+     "saudi"
+    ],
+    "ar": [
+     "شخصية",
+     "بطل",
+     "رجل",
+     "ثوب",
+     "شماغ"
+    ]
+   },
+   "thumb": "hero/thumb.jpg",
+   "internal_only": true
+  },
+  {
+   "id": "horse",
+   "version": "1.0.0",
+   "kind": "mesh",
+   "category": "character",
+   "name": {
+    "en": "Arabian horse",
+    "ar": "حصان عربي"
+   },
+   "tags": {
+    "en": [
+     "character",
+     "horse",
+     "animal",
+     "mount",
+     "arabian"
+    ],
+    "ar": [
+     "شخصية",
+     "حصان",
+     "حيوان",
+     "مطية",
+     "عربي"
+    ]
+   },
+   "thumb": "horse/thumb.jpg",
+   "internal_only": true
+  },
+  {
+   "id": "kerbs",
+   "version": "1.0.0",
+   "kind": "generator",
+   "category": "edge",
+   "name": {
+    "en": "Kerbs",
+    "ar": "حواف الرصيف"
+   },
+   "tags": {
+    "en": [
+     "kerb",
+     "curb",
+     "edge",
+     "kerbstone",
+     "concrete"
+    ],
+    "ar": [
+     "حافة",
+     "رصيف",
+     "حد",
+     "حجر الرصيف",
+     "خرسانة"
+    ]
+   },
+   "thumb": "kerbs/thumb.jpg"
+  },
+  {
+   "id": "kingdom-arena",
+   "version": "1.0.0",
+   "kind": "mesh",
+   "category": "building",
+   "name": {
+    "en": "Arena",
+    "ar": "الصالة"
+   },
+   "tags": {
+    "en": [
+     "arena",
+     "stadium",
+     "venue",
+     "building",
+     "landmark",
+     "riyadh",
+     "concert"
+    ],
+    "ar": [
+     "صالة",
+     "ملعب",
+     "أرينا",
+     "مبنى",
+     "معلم",
+     "الرياض",
+     "حفل"
+    ]
+   },
+   "thumb": null
+  },
+  {
+   "id": "lake-water",
+   "version": "2.0.0",
+   "kind": "generator",
+   "category": "water",
+   "name": {
+    "en": "Lake water",
+    "ar": "ماء البحيرة"
+   },
+   "tags": {
+    "en": [
+     "water",
+     "lake",
+     "pool",
+     "basin",
+     "coping",
+     "reflection",
+     "ripples"
+    ],
+    "ar": [
+     "ماء",
+     "بحيرة",
+     "حوض",
+     "حافة",
+     "انعكاس",
+     "تموجات",
+     "بركة"
+    ]
+   },
+   "thumb": "lake-water/thumb.jpg"
+  },
+  {
+   "id": "nemesis",
+   "version": "1.0.0",
+   "kind": "mesh",
+   "category": "character",
+   "name": {
+    "en": "Nemesis",
+    "ar": "الخصم"
+   },
+   "tags": {
+    "en": [
+     "character",
+     "nemesis",
+     "villain",
+     "person",
+     "cloak",
+     "bisht"
+    ],
+    "ar": [
+     "شخصية",
+     "خصم",
+     "شرير",
+     "رجل",
+     "بشت"
+    ]
+   },
+   "thumb": "nemesis/thumb.jpg",
+   "internal_only": true
+  },
+  {
+   "id": "scimitar",
+   "version": "1.0.0",
+   "kind": "mesh",
+   "category": "decor",
+   "name": {
+    "en": "Scimitar",
+    "ar": "سيف"
+   },
+   "tags": {
+    "en": [
+     "prop",
+     "scimitar",
+     "sword",
+     "weapon"
+    ],
+    "ar": [
+     "سيف",
+     "سلاح",
+     "أداة"
+    ]
+   },
+   "thumb": "scimitar/thumb.jpg",
+   "internal_only": true
+  },
+  {
+   "id": "searchlights",
+   "version": "1.0.0",
+   "kind": "generator",
+   "category": "effect",
+   "name": {
+    "en": "Searchlights",
+    "ar": "كشافات ضوئية"
+   },
+   "tags": {
+    "en": [
+     "searchlight",
+     "beam",
+     "sky light",
+     "night",
+     "show"
+    ],
+    "ar": [
+     "كشاف",
+     "حزمة ضوء",
+     "ضوء السماء",
+     "ليل",
+     "عرض"
+    ]
+   },
+   "thumb": "searchlights/thumb.jpg"
+  },
+  {
+   "id": "street-lamp",
+   "version": "1.0.0",
+   "kind": "generator",
+   "category": "lighting",
+   "name": {
+    "en": "Street lamp",
+    "ar": "عمود إنارة"
+   },
+   "tags": {
+    "en": [
+     "lamp",
+     "street light",
+     "lighting",
+     "night",
+     "pole"
+    ],
+    "ar": [
+     "مصباح",
+     "إنارة الشارع",
+     "إضاءة",
+     "ليل",
+     "عمود"
+    ]
+   },
+   "thumb": "street-lamp/thumb.jpg"
+  },
+  {
+   "id": "wet-paving",
+   "version": "1.0.0",
+   "kind": "generator",
+   "category": "paving",
+   "name": {
+    "en": "Wet paving",
+    "ar": "رصف مبلل"
+   },
+   "tags": {
+    "en": [
+     "paving",
+     "ground",
+     "plaza",
+     "stone",
+     "wet",
+     "footway"
+    ],
+    "ar": [
+     "رصف",
+     "أرض",
+     "ساحة",
+     "حجر",
+     "مبلل",
+     "رصيف المشاة"
+    ]
+   },
+   "thumb": "wet-paving/thumb.jpg"
+  }
+ ],
+ "behaviours": [
+  {
+   "type": "ai_director",
+   "path": "../behaviours/ai_director/behaviour.json",
+   "name": {
+    "en": "AI Director",
+    "ar": "المخرج الذكي"
+   },
+   "targets": [
+    "character",
+    "world"
+   ]
+  },
+  {
+   "type": "burst_on_hit",
+   "path": "../behaviours/burst_on_hit/behaviour.json",
+   "name": {
+    "en": "Sand burst on hit",
+    "ar": "انفجار رملي عند الاصطدام"
+   },
+   "targets": [
+    "character",
+    "piece",
+    "animal"
+   ]
+  },
+  {
+   "type": "combo_attack",
+   "path": "../behaviours/combo_attack/behaviour.json",
+   "name": {
+    "en": "Combo attack",
+    "ar": "هجوم متتابع"
+   },
+   "targets": [
+    "character"
+   ]
+  },
+  {
+   "type": "equippable",
+   "path": "../behaviours/equippable/behaviour.json",
+   "name": {
+    "en": "Equippable",
+    "ar": "قابل للتجهيز"
+   },
+   "targets": [
+    "character"
+   ]
+  },
+  {
+   "type": "health",
+   "path": "../behaviours/health/behaviour.json",
+   "name": {
+    "en": "Health",
+    "ar": "الصحة"
+   },
+   "targets": [
+    "character",
+    "animal",
+    "piece"
+   ]
+  },
+  {
+   "type": "hit_reaction",
+   "path": "../behaviours/hit_reaction/behaviour.json",
+   "name": {
+    "en": "Hit reaction",
+    "ar": "رد فعل الضربة"
+   },
+   "targets": [
+    "character",
+    "animal",
+    "piece"
+   ]
+  },
+  {
+   "type": "player",
+   "path": "../behaviours/player/behaviour.json",
+   "name": {
+    "en": "Player",
+    "ar": "اللاعب"
+   },
+   "targets": [
+    "character"
+   ]
+  },
+  {
+   "type": "solid",
+   "path": "../behaviours/solid/behaviour.json",
+   "name": {
+    "en": "Solid",
+    "ar": "صلب"
+   },
+   "targets": [
+    "piece",
+    "character",
+    "animal"
+   ]
+  },
+  {
+   "type": "trail",
+   "path": "../behaviours/trail/behaviour.json",
+   "name": {
+    "en": "Sand trail",
+    "ar": "أثر رملي"
+   },
+   "targets": [
+    "character",
+    "piece",
+    "animal"
+   ]
+  },
+  {
+   "type": "waves",
+   "path": "../behaviours/waves/behaviour.json",
+   "name": {
+    "en": "Waves",
+    "ar": "الموجات"
+   },
+   "targets": [
+    "world"
+   ]
+  }
+ ]
+}

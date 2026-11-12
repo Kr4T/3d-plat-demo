@@ -1,0 +1,610 @@
+{
+ "generated": "2026-11-05",
+ "tool": "tools/threejs-feature-checklist/build.py",
+ "sources": {
+  "release_notes": {
+   "r186": "https://github.com/mrdoob/three.js/releases/tag/r186",
+   "r187": "https://github.com/mrdoob/three.js/releases/tag/r187"
+  },
+  "examples": "https://github.com/mrdoob/three.js/blob/r187/examples/files.json"
+ },
+ "webgpu_examples_total": 243,
+ "items": [
+  {
+   "id": "ssgi",
+   "name": "Screen-space global illumination (SSGI)",
+   "scene_key": "ssgi",
+   "examples": [
+    {
+     "name": "webgpu_postprocessing_ssgi",
+     "link": "https://threejs.org/examples/#webgpu_postprocessing_ssgi"
+    },
+    {
+     "name": "webgpu_postprocessing_ssgi_ballpool",
+     "link": "https://threejs.org/examples/#webgpu_postprocessing_ssgi_ballpool"
+    }
+   ],
+   "in_release_notes": {
+    "r187": [
+     "SSGINode"
+    ]
+   }
+  },
+  {
+   "id": "ssr",
+   "name": "Screen-space reflections (SSR)",
+   "scene_key": "ssr",
+   "examples": [
+    {
+     "name": "webgpu_postprocessing_ssr",
+     "link": "https://threejs.org/examples/#webgpu_postprocessing_ssr"
+    }
+   ],
+   "in_release_notes": {
+    "r186": [
+     "SSRNode"
+    ],
+    "r187": [
+     "SSRNode"
+    ]
+   }
+  },
+  {
+   "id": "gtao",
+   "name": "Ground-truth ambient occlusion (GTAO)",
+   "scene_key": "gtao",
+   "examples": [
+    {
+     "name": "webgpu_postprocessing_ao",
+     "link": "https://threejs.org/examples/#webgpu_postprocessing_ao"
+    }
+   ],
+   "in_release_notes": {
+    "r186": [
+     "GTAONode",
+     "webgpu_postprocessing_ao"
+    ],
+    "r187": [
+     "GTAONode",
+     "GTAOPass"
+    ]
+   }
+  },
+  {
+   "id": "ssao",
+   "name": "SSAO",
+   "scene_key": "ssao",
+   "examples": [],
+   "in_release_notes": {
+    "r186": [
+     "SSAONode"
+    ]
+   }
+  },
+  {
+   "id": "traa",
+   "name": "Temporal reprojection anti-aliasing (TRAA)",
+   "scene_key": "traa",
+   "examples": [
+    {
+     "name": "webgpu_postprocessing_traa",
+     "link": "https://threejs.org/examples/#webgpu_postprocessing_traa"
+    },
+    {
+     "name": "webgpu_volume_lighting_traa",
+     "link": "https://threejs.org/examples/#webgpu_volume_lighting_traa"
+    }
+   ],
+   "in_release_notes": {
+    "r187": [
+     "TRAANode"
+    ]
+   }
+  },
+  {
+   "id": "taau",
+   "name": "Temporal upscaling (TAAU)",
+   "scene_key": "taau",
+   "examples": [
+    {
+     "name": "webgpu_upscaling_taau",
+     "link": "https://threejs.org/examples/#webgpu_upscaling_taau"
+    }
+   ],
+   "in_release_notes": {
+    "r187": [
+     "TAAUNode"
+    ]
+   }
+  },
+  {
+   "id": "csm",
+   "name": "Cascaded shadow maps (CSM)",
+   "scene_key": "csm",
+   "examples": [
+    {
+     "name": "webgpu_shadowmap_csm",
+     "link": "https://threejs.org/examples/#webgpu_shadowmap_csm"
+    }
+   ],
+   "in_release_notes": {
+    "r186": [
+     "CSMShadowNode"
+    ],
+    "r187": [
+     "CSMShader"
+    ]
+   }
+  },
+  {
+   "id": "shadow_soft",
+   "name": "Shadow filtering (PCF/VSM)",
+   "scene_key": "shadow_soft",
+   "examples": [
+    {
+     "name": "webgpu_shadowmap",
+     "link": "https://threejs.org/examples/#webgpu_shadowmap"
+    },
+    {
+     "name": "webgpu_shadowmap_array",
+     "link": "https://threejs.org/examples/#webgpu_shadowmap_array"
+    },
+    {
+     "name": "webgpu_shadowmap_csm",
+     "link": "https://threejs.org/examples/#webgpu_shadowmap_csm"
+    },
+    {
+     "name": "webgpu_shadowmap_opacity",
+     "link": "https://threejs.org/examples/#webgpu_shadowmap_opacity"
+    },
+    {
+     "name": "webgpu_shadowmap_pointlight",
+     "link": "https://threejs.org/examples/#webgpu_shadowmap_pointlight"
+    },
+    {
+     "name": "webgpu_shadowmap_progressive",
+     "link": "https://threejs.org/examples/#webgpu_shadowmap_progressive"
+    },
+    {
+     "name": "webgpu_shadowmap_vsm",
+     "link": "https://threejs.org/examples/#webgpu_shadowmap_vsm"
+    }
+   ],
+   "in_release_notes": {
+    "r186": [
+     "ShadowNode"
+    ],
+    "r187": [
+     "ShadowNode"
+    ]
+   }
+  },
+  {
+   "id": "bloom",
+   "name": "Bloom",
+   "scene_key": "bloom",
+   "examples": [
+    {
+     "name": "webgpu_postprocessing_bloom",
+     "link": "https://threejs.org/examples/#webgpu_postprocessing_bloom"
+    },
+    {
+     "name": "webgpu_postprocessing_bloom_emissive",
+     "link": "https://threejs.org/examples/#webgpu_postprocessing_bloom_emissive"
+    },
+    {
+     "name": "webgpu_postprocessing_bloom_selective",
+     "link": "https://threejs.org/examples/#webgpu_postprocessing_bloom_selective"
+    }
+   ],
+   "in_release_notes": {
+    "r186": [
+     "BloomNode"
+    ]
+   }
+  },
+  {
+   "id": "dof",
+   "name": "Depth of field",
+   "scene_key": "dof",
+   "examples": [
+    {
+     "name": "webgpu_postprocessing_dof",
+     "link": "https://threejs.org/examples/#webgpu_postprocessing_dof"
+    },
+    {
+     "name": "webgpu_postprocessing_dof_basic",
+     "link": "https://threejs.org/examples/#webgpu_postprocessing_dof_basic"
+    }
+   ],
+   "in_release_notes": {
+    "r186": [
+     "DepthOfFieldNode"
+    ]
+   }
+  },
+  {
+   "id": "motion_blur",
+   "name": "Motion blur",
+   "scene_key": "motion_blur",
+   "examples": [
+    {
+     "name": "webgpu_postprocessing_motion_blur",
+     "link": "https://threejs.org/examples/#webgpu_postprocessing_motion_blur"
+    }
+   ],
+   "in_release_notes": {}
+  },
+  {
+   "id": "godrays",
+   "name": "God rays",
+   "scene_key": "godrays",
+   "examples": [
+    {
+     "name": "webgpu_postprocessing_godrays",
+     "link": "https://threejs.org/examples/#webgpu_postprocessing_godrays"
+    }
+   ],
+   "in_release_notes": {}
+  },
+  {
+   "id": "lensflare",
+   "name": "Lens flares",
+   "scene_key": "lensflare",
+   "examples": [
+    {
+     "name": "webgpu_lensflares",
+     "link": "https://threejs.org/examples/#webgpu_lensflares"
+    },
+    {
+     "name": "webgpu_postprocessing_lensflare",
+     "link": "https://threejs.org/examples/#webgpu_postprocessing_lensflare"
+    }
+   ],
+   "in_release_notes": {}
+  },
+  {
+   "id": "height_fog",
+   "name": "Height / range fog",
+   "scene_key": "height_fog",
+   "examples": [
+    {
+     "name": "webgpu_custom_fog",
+     "link": "https://threejs.org/examples/#webgpu_custom_fog"
+    },
+    {
+     "name": "webgpu_custom_fog_background",
+     "link": "https://threejs.org/examples/#webgpu_custom_fog_background"
+    },
+    {
+     "name": "webgpu_custom_fog_scattering",
+     "link": "https://threejs.org/examples/#webgpu_custom_fog_scattering"
+    },
+    {
+     "name": "webgpu_fog_height",
+     "link": "https://threejs.org/examples/#webgpu_fog_height"
+    },
+    {
+     "name": "webgpu_postprocessing_fog",
+     "link": "https://threejs.org/examples/#webgpu_postprocessing_fog"
+    }
+   ],
+   "in_release_notes": {}
+  },
+  {
+   "id": "volumetric_fog",
+   "name": "Volumetric lighting / fog",
+   "scene_key": "volumetric_fog",
+   "examples": [
+    {
+     "name": "webgpu_volume_lighting",
+     "link": "https://threejs.org/examples/#webgpu_volume_lighting"
+    },
+    {
+     "name": "webgpu_volume_lighting_rectarea",
+     "link": "https://threejs.org/examples/#webgpu_volume_lighting_rectarea"
+    },
+    {
+     "name": "webgpu_volume_lighting_traa",
+     "link": "https://threejs.org/examples/#webgpu_volume_lighting_traa"
+    }
+   ],
+   "in_release_notes": {
+    "r186": [
+     "VolumeSlice"
+    ]
+   }
+  },
+  {
+   "id": "volumetric_cloud",
+   "name": "Volumetric clouds",
+   "scene_key": "volumetric_cloud",
+   "examples": [
+    {
+     "name": "webgpu_volume_cloud",
+     "link": "https://threejs.org/examples/#webgpu_volume_cloud"
+    }
+   ],
+   "in_release_notes": {}
+  },
+  {
+   "id": "sky",
+   "name": "Physically based sky (SkyMesh)",
+   "scene_key": "sky",
+   "examples": [
+    {
+     "name": "webgpu_sky",
+     "link": "https://threejs.org/examples/#webgpu_sky"
+    }
+   ],
+   "in_release_notes": {}
+  },
+  {
+   "id": "ocean",
+   "name": "Ocean / WaterMesh",
+   "scene_key": "ocean",
+   "examples": [
+    {
+     "name": "webgpu_backdrop_water",
+     "link": "https://threejs.org/examples/#webgpu_backdrop_water"
+    },
+    {
+     "name": "webgpu_compute_water",
+     "link": "https://threejs.org/examples/#webgpu_compute_water"
+    },
+    {
+     "name": "webgpu_ocean",
+     "link": "https://threejs.org/examples/#webgpu_ocean"
+    },
+    {
+     "name": "webgpu_water",
+     "link": "https://threejs.org/examples/#webgpu_water"
+    }
+   ],
+   "in_release_notes": {}
+  },
+  {
+   "id": "caustics",
+   "name": "Caustics",
+   "scene_key": "caustics",
+   "examples": [
+    {
+     "name": "webgpu_caustics",
+     "link": "https://threejs.org/examples/#webgpu_caustics"
+    },
+    {
+     "name": "webgpu_volume_caustics",
+     "link": "https://threejs.org/examples/#webgpu_volume_caustics"
+    }
+   ],
+   "in_release_notes": {}
+  },
+  {
+   "id": "clustered_lights",
+   "name": "Clustered / tiled lighting",
+   "scene_key": "clustered_lights",
+   "examples": [
+    {
+     "name": "webgpu_lights_clustered",
+     "link": "https://threejs.org/examples/#webgpu_lights_clustered"
+    },
+    {
+     "name": "webgpu_lights_clustered_city",
+     "link": "https://threejs.org/examples/#webgpu_lights_clustered_city"
+    }
+   ],
+   "in_release_notes": {
+    "r186": [
+     "ClusteredLightsNode"
+    ],
+    "r187": [
+     "ClusteredLighting",
+     "ClusteredLightsNode"
+    ]
+   }
+  },
+  {
+   "id": "light_probes",
+   "name": "Light probe grid",
+   "scene_key": "light_probes",
+   "examples": [
+    {
+     "name": "webgpu_lightprobe",
+     "link": "https://threejs.org/examples/#webgpu_lightprobe"
+    },
+    {
+     "name": "webgpu_lightprobe_cubecamera",
+     "link": "https://threejs.org/examples/#webgpu_lightprobe_cubecamera"
+    },
+    {
+     "name": "webgpu_lightprobes",
+     "link": "https://threejs.org/examples/#webgpu_lightprobes"
+    },
+    {
+     "name": "webgpu_lightprobes_complex",
+     "link": "https://threejs.org/examples/#webgpu_lightprobes_complex"
+    },
+    {
+     "name": "webgpu_lightprobes_sponza",
+     "link": "https://threejs.org/examples/#webgpu_lightprobes_sponza"
+    }
+   ],
+   "in_release_notes": {
+    "r186": [
+     "LightProbeGrid",
+     "LightProbeGridWebGL"
+    ],
+    "r187": [
+     "LightProbe",
+     "LightProbeGrid",
+     "LightProbeGridWebGL",
+     "LightProbeNode"
+    ]
+   }
+  },
+  {
+   "id": "vxgi",
+   "name": "Voxel global illumination (VXGI)",
+   "scene_key": "vxgi",
+   "examples": [
+    {
+     "name": "webgpu_vxgi",
+     "link": "https://threejs.org/examples/#webgpu_vxgi"
+    },
+    {
+     "name": "webgpu_vxgi_sponza",
+     "link": "https://threejs.org/examples/#webgpu_vxgi_sponza"
+    }
+   ],
+   "in_release_notes": {
+    "r186": [
+     "VXGINode"
+    ],
+    "r187": [
+     "VXGI",
+     "VXGIVolume"
+    ]
+   }
+  },
+  {
+   "id": "gaussian_splat",
+   "name": "Gaussian splats",
+   "scene_key": "gaussian_splat",
+   "examples": [
+    {
+     "name": "webgpu_gaussian_splat",
+     "link": "https://threejs.org/examples/#webgpu_gaussian_splat"
+    }
+   ],
+   "in_release_notes": {
+    "r186": [
+     "GLTFGaussianSplatLoaderExtension",
+     "GaussianSplatMesh",
+     "GaussianSplatPLYLoader",
+     "GaussianSplatUtils",
+     "PLYGaussianSplatLoader"
+    ]
+   }
+  },
+  {
+   "id": "path_tracer",
+   "name": "Path tracer (three-gpu-pathtracer)",
+   "scene_key": "path_tracer",
+   "examples": [
+    {
+     "name": "webgpu_renderer_pathtracer",
+     "link": "https://threejs.org/examples/#webgpu_renderer_pathtracer"
+    }
+   ],
+   "in_release_notes": {
+    "r187": [
+     "webgpu_renderer_pathtracer"
+    ]
+   }
+  },
+  {
+   "id": "pmrem_env",
+   "name": "PMREM environment from the scene",
+   "scene_key": "pmrem_env",
+   "examples": [
+    {
+     "name": "webgpu_pmrem_cubemap",
+     "link": "https://threejs.org/examples/#webgpu_pmrem_cubemap"
+    },
+    {
+     "name": "webgpu_pmrem_equirectangular",
+     "link": "https://threejs.org/examples/#webgpu_pmrem_equirectangular"
+    },
+    {
+     "name": "webgpu_pmrem_scene",
+     "link": "https://threejs.org/examples/#webgpu_pmrem_scene"
+    },
+    {
+     "name": "webgpu_pmrem_test",
+     "link": "https://threejs.org/examples/#webgpu_pmrem_test"
+    }
+   ],
+   "in_release_notes": {
+    "r186": [
+     "PMREMGenerator",
+     "PMREMNode"
+    ],
+    "r187": [
+     "PMREM",
+     "PMREMGenerator"
+    ]
+   }
+  },
+  {
+   "id": "compute_particles",
+   "name": "Compute particles",
+   "scene_key": "compute_particles",
+   "examples": [
+    {
+     "name": "webgpu_compute_particles",
+     "link": "https://threejs.org/examples/#webgpu_compute_particles"
+    },
+    {
+     "name": "webgpu_compute_particles_fluid",
+     "link": "https://threejs.org/examples/#webgpu_compute_particles_fluid"
+    },
+    {
+     "name": "webgpu_compute_particles_rain",
+     "link": "https://threejs.org/examples/#webgpu_compute_particles_rain"
+    },
+    {
+     "name": "webgpu_compute_particles_snow",
+     "link": "https://threejs.org/examples/#webgpu_compute_particles_snow"
+    }
+   ],
+   "in_release_notes": {}
+  },
+  {
+   "id": "instancing",
+   "name": "Instanced / batched meshes",
+   "scene_key": "instancing",
+   "examples": [
+    {
+     "name": "webgpu_instance_mesh",
+     "link": "https://threejs.org/examples/#webgpu_instance_mesh"
+    },
+    {
+     "name": "webgpu_instance_path",
+     "link": "https://threejs.org/examples/#webgpu_instance_path"
+    },
+    {
+     "name": "webgpu_instance_points",
+     "link": "https://threejs.org/examples/#webgpu_instance_points"
+    },
+    {
+     "name": "webgpu_instance_sprites",
+     "link": "https://threejs.org/examples/#webgpu_instance_sprites"
+    },
+    {
+     "name": "webgpu_instance_uniform",
+     "link": "https://threejs.org/examples/#webgpu_instance_uniform"
+    },
+    {
+     "name": "webgpu_materials_node_instance",
+     "link": "https://threejs.org/examples/#webgpu_materials_node_instance"
+    },
+    {
+     "name": "webgpu_mesh_batch",
+     "link": "https://threejs.org/examples/#webgpu_mesh_batch"
+    },
+    {
+     "name": "webgpu_meshlets_instanced",
+     "link": "https://threejs.org/examples/#webgpu_meshlets_instanced"
+    }
+   ],
+   "in_release_notes": {
+    "r186": [
+     "BatchedMesh"
+    ],
+    "r187": [
+     "BatchedMesh"
+    ]
+   }
+  }
+ ]
+}

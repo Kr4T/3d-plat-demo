@@ -1,0 +1,148 @@
+{
+  "format": "uew-behaviour@1",
+  "type": "waves",
+  "name": {
+    "en": "Waves",
+    "ar": "الموجات"
+  },
+  "summary": {
+    "en": "A waves game in Play: sand ghosts (the djinn at a man's height, sand-coloured, trailing sand) come at the player in waves (three by default), a break between them; win after the last wave, lose when the player's health runs out, and one key or tap starts again at once. The score is the seconds fought plus 5 for each hit taken (lower is better); the best run is kept on this device. At most 10 enemies at once on a desktop and 6 on a phone, none appears within 6 m of the player, and under a quarter health no new one comes while one is alive. With the AI Director in the scene, it decides between waves how many more come, from which side and with which tactic. Needs a character with Player in the scene; give him Equippable and Combo attack to fight. Spawn zones: pieces whose uid starts with spawn- (spawn-dunes, spawn-lake_shore…) are where the enemies come from, and their names are the director's zones; with none, they come from the four sides.",
+    "ar": "لعبة موجات في وضع اللعب: يأتي الأعداء إلى اللاعب في موجات (ثلاث افتراضيًا) وبينها استراحة؛ تفوز بعد الموجة الأخيرة وتخسر إذا نفدت صحة اللاعب، وبضغطة مفتاح أو لمسة تبدأ من جديد فورًا. النتيجة هي ثواني القتال مضافًا إليها 5 لكل ضربة تتلقاها (الأقل أفضل)، ويُحفظ أفضل شوط على هذا الجهاز. لا يزيد الأعداء معًا على 10 في الحاسوب و6 في الهاتف، ولا يظهر أحد على أقل من 6 أمتار من اللاعب، وتحت ربع الصحة لا يأتي عدو جديد ما دام أحدهم حيًّا. مع المخرج الذكي في المشهد يقرر بين الموجات كم يأتي أكثر ومن أي جهة وبأي أسلوب. يحتاج شخصية تحمل اللاعب في المشهد؛ أعطها قابل للتجهيز وهجوم متتابع لتقاتل. مناطق الظهور: القطع التي يبدأ معرّفها بـ spawn- (مثل spawn-dunes) هي من حيث يأتي الأعداء وأسماؤها هي مناطق المخرج؛ وإن لم توجد فمن الجهات الأربع."
+  },
+  "targets": [
+    "world"
+  ],
+  "params": [
+    {
+      "name": "enemy",
+      "type": "enum",
+      "default": "djinn",
+      "label": {
+        "en": "Enemy",
+        "ar": "العدو"
+      },
+      "affects": "module",
+      "options": [
+        "djinn",
+        "nemesis"
+      ]
+    },
+    {
+      "name": "waves",
+      "type": "number",
+      "default": 3,
+      "label": {
+        "en": "Waves",
+        "ar": "الموجات"
+      },
+      "affects": "module",
+      "min": 1,
+      "max": 5,
+      "step": 1
+    },
+    {
+      "name": "first",
+      "type": "number",
+      "default": 3,
+      "label": {
+        "en": "Enemies in the first wave",
+        "ar": "أعداء الموجة الأولى"
+      },
+      "affects": "module",
+      "min": 1,
+      "max": 6,
+      "step": 1
+    },
+    {
+      "name": "more",
+      "type": "number",
+      "default": 2,
+      "label": {
+        "en": "More each wave",
+        "ar": "زيادة كل موجة"
+      },
+      "affects": "module",
+      "min": 0,
+      "max": 3,
+      "step": 1
+    },
+    {
+      "name": "rest",
+      "type": "number",
+      "default": 5,
+      "label": {
+        "en": "Rest between waves, at most (s)",
+        "ar": "الاستراحة بين الموجات، على الأكثر (ث)"
+      },
+      "affects": "module",
+      "min": 2,
+      "max": 15,
+      "step": 1
+    },
+    {
+      "name": "countdown",
+      "type": "number",
+      "default": 3,
+      "label": {
+        "en": "Countdown before wave 1 (s)",
+        "ar": "العدّ قبل الموجة الأولى (ث)"
+      },
+      "affects": "module",
+      "min": 0,
+      "max": 5,
+      "step": 1
+    },
+    {
+      "name": "enemyHealth",
+      "type": "number",
+      "default": 30,
+      "label": {
+        "en": "Enemy health",
+        "ar": "صحة العدو"
+      },
+      "affects": "module",
+      "min": 5,
+      "max": 300,
+      "step": 5
+    },
+    {
+      "name": "enemyDamage",
+      "type": "number",
+      "default": 8,
+      "label": {
+        "en": "Enemy damage",
+        "ar": "ضرر العدو"
+      },
+      "affects": "module",
+      "min": 1,
+      "max": 50,
+      "step": 1
+    },
+    {
+      "name": "enemySpeed",
+      "type": "number",
+      "default": 1.8,
+      "label": {
+        "en": "Enemy speed (m/s)",
+        "ar": "سرعة العدو (م/ث)"
+      },
+      "affects": "module",
+      "min": 0.5,
+      "max": 5,
+      "step": 0.1
+    },
+    {
+      "name": "playerHealth",
+      "type": "number",
+      "default": 100,
+      "label": {
+        "en": "Player health (when he carries no Health)",
+        "ar": "صحة اللاعب (إن لم يحمل الصحة)"
+      },
+      "affects": "module",
+      "min": 10,
+      "max": 1000,
+      "step": 10
+    }
+  ]
+}

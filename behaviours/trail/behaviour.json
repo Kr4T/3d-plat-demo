@@ -1,0 +1,55 @@
+{
+  "format": "uew-behaviour@1",
+  "type": "trail",
+  "name": {
+    "en": "Sand trail",
+    "ar": "أثر رملي"
+  },
+  "summary": {
+    "en": "Streams sand from the base of whatever carries it: a trickle at rest, more as it moves, along the way it moved. Follows the piece when it is moved in the builder and when it is animated. Drawn on the graphics card (compute particles); on WebGL with half the grains.",
+    "ar": "يُطلق رملًا من قاعدة ما يحمله: قليلًا وهو ساكن وأكثر وهو يتحرك، على طول مساره. يتبع القطعة عند تحريكها في المنشئ وعند تحريكها بالرسوم المتحركة. يُرسم على بطاقة الرسوميات، وعلى WebGL بنصف الحبيبات."
+  },
+  "targets": [
+    "character",
+    "piece",
+    "animal"
+  ],
+  "params": [
+    {
+      "name": "rate",
+      "type": "number",
+      "default": 1,
+      "min": 0,
+      "max": 4,
+      "step": 0.05,
+      "label": {
+        "en": "Amount",
+        "ar": "الكمية"
+      },
+      "affects": "effect"
+    },
+    {
+      "name": "colour",
+      "type": "colour",
+      "default": "#ffffff",
+      "label": {
+        "en": "Tint",
+        "ar": "الصبغة"
+      },
+      "affects": "effect"
+    },
+    {
+      "name": "size",
+      "type": "number",
+      "default": 1,
+      "min": 0.25,
+      "max": 4,
+      "step": 0.05,
+      "label": {
+        "en": "Grain size",
+        "ar": "حجم الحبيبات"
+      },
+      "affects": "effect"
+    }
+  ]
+}

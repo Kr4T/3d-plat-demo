@@ -1,0 +1,11 @@
+{
+  "format": "uew-material@1",
+  "id": "stage-kit",
+  "name": { "en": "Concert stage (LED wall, cubes, trays, deck)", "ar": "مسرح الحفل (جدار LED ومكعبات ومنصة)" },
+  "source": { "example": "webgpu_loader_gltf", "repo": "Kr4T/3DPLAT", "branch": "claude/music-video-scenes", "commit": "75b3604", "path": "apps/music-video/models/big-beast-stage/materials.js, apps/music-video/scenes/stage.js, apps/music-video/scenes/led.js", "symbol": "bigBeastMaterials; loadStage (led_cube, led_wall); ledShow mode 0, ledGrid, hsv", "note": "The Big Beast stage's eleven looks as one material, chosen per vertex by the part index tools/glb-join.mjs writes into the vertex colour alpha, so the stage is one draw. The music uniforms of the music-video app are replaced by the builder's: a slow pulse from the TSL clock, the screens' level from `show`, the LED wall showing led.js's slow colour field (mode 0) on its pixel grid (no IMAG feed, no rendered galaxy). Above show 1 the lights are turned up: a warm wash on the deck and skirt and warm-lit panes among the cubes (our addition; at 1 the look is the source's). The skirt's sheen and the cubes' clearcoat are left out on Phone." },
+  "params": [
+    { "name": "accent", "type": "colour", "default": "#1ad9ff" },
+    { "name": "show", "type": "number", "default": 1, "min": 0, "max": 2 }
+  ],
+  "images": []
+}

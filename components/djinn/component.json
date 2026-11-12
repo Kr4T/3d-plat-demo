@@ -1,0 +1,361 @@
+{
+  "format": "uew-component@1",
+  "id": "djinn",
+  "version": "1.0.0",
+  "name": {
+    "en": "Sand djinn",
+    "ar": "جني الرمال"
+  },
+  "summary": {
+    "en": "A sand djinn: a hooded desert spirit wrapped in sand-coloured cloth, with clawed hands and a twisting smoke tail instead of legs. 2.2 m tall by default, tail tip on the ground.",
+    "ar": "جني الرمال: روح صحراوية بقلنسوة ملفوفة بقماش بلون الرمل، بأيدٍ ذات مخالب وذيل دخاني ملتوٍ بدل الساقين. ارتفاعه 2.2 م افتراضياً."
+  },
+  "tags": {
+    "en": [
+      "character",
+      "djinn",
+      "spirit",
+      "creature",
+      "desert"
+    ],
+    "ar": [
+      "شخصية",
+      "جني",
+      "روح",
+      "مخلوق",
+      "صحراء"
+    ]
+  },
+  "kind": "mesh",
+  "category": "character",
+  "source": {
+    "repo": "Kr4T/3dplat-builder",
+    "branch": "release:Characters",
+    "path": "1d3a86f1eb94283b8ae1c7cebea307df.glb (release asset #737709594)",
+    "commit": "c9c73bda4a03e27a26e14d8e185f65536f0d4def56db17e916fed6bb72203f2b",
+    "symbol": "tools/import-model.mjs",
+    "example": "webgpu_loader_gltf_compressed",
+    "defaults": {
+      "height": 2.2,
+      "note": "Imported by tools/import-model.mjs: the original (sha256 c9c73bda4a03…, kept out of git under assets-src/) turned, centred on its base and scaled to 2.2 m; lod0 and lod1 decimated from it (import.variants). r187 examples: webgpu_loader_gltf_compressed (meshopt), webgpu_loader_gltf, webgpu_materials_sss and webgpu_loader_gltf_sheen (the auto-r187 recipe)."
+    }
+  },
+  "made_by": "Kereem, generated on Tencent HY 3D V3.1 (release Characters-2026-11-12)",
+  "licence": "Tencent HY 3D Global output, terms pending review",
+  "internal_only": true,
+  "files": {
+    "lod0": "model_lod0.glb",
+    "lod1": "model_lod1.glb"
+  },
+  "materials": [
+    {
+      "slot": "material-001",
+      "preset": "auto-r187",
+      "overrides": {}
+    }
+  ],
+  "draw": {
+    "phone": {
+      "lods": [
+        "lod1"
+      ],
+      "shadow": []
+    },
+    "high": {
+      "lods": [
+        "lod0",
+        "lod1"
+      ],
+      "distances": [
+        30
+      ],
+      "shadow": [],
+      "shadowFrom": "lod1"
+    }
+  },
+  "params": [
+    {
+      "name": "height",
+      "type": "number",
+      "default": 2.2,
+      "min": 0.55,
+      "max": 8.8,
+      "step": 0.01,
+      "label": {
+        "en": "Height (m)",
+        "ar": "الارتفاع (م)"
+      },
+      "affects": "scale"
+    },
+    {
+      "name": "tint",
+      "type": "colour",
+      "default": "#ffffff",
+      "label": {
+        "en": "Tint",
+        "ar": "الصبغة"
+      },
+      "affects": "material"
+    },
+    {
+      "name": "glow",
+      "type": "number",
+      "default": 0,
+      "min": 0,
+      "max": 1,
+      "step": 0.05,
+      "label": {
+        "en": "Glow",
+        "ar": "التوهّج"
+      },
+      "affects": "material"
+    }
+  ],
+  "behaviours": [
+    {
+      "type": "trail",
+      "params": {}
+    }
+  ],
+  "sockets": [],
+  "footprint": {
+    "outline": [
+      [
+        -0.535,
+        -0.225
+      ],
+      [
+        0.535,
+        -0.225
+      ],
+      [
+        0.535,
+        0.225
+      ],
+      [
+        -0.535,
+        0.225
+      ]
+    ],
+    "height": [
+      0,
+      2.2
+    ]
+  },
+  "clearance": 0.3,
+  "placement": {
+    "on": [
+      "paving",
+      "lawn",
+      "ground"
+    ]
+  },
+  "collider": [
+    {
+      "type": "box",
+      "pos": [
+        0,
+        1.1,
+        0
+      ],
+      "half": [
+        0.535,
+        1.1,
+        0.225
+      ]
+    }
+  ],
+  "budgets": {
+    "measured_by": "tools/quality-gate/component/check.mjs",
+    "at": "2026-11-12",
+    "phone": {
+      "tris": 30000,
+      "draws": 1,
+      "lods": [
+        {
+          "lod": "lod1",
+          "tris": 30000,
+          "draws": 1
+        }
+      ]
+    },
+    "high": {
+      "tris": 200000,
+      "draws": 1,
+      "lods": [
+        {
+          "lod": "lod0",
+          "tris": 200000,
+          "draws": 1
+        },
+        {
+          "lod": "lod1",
+          "tris": 30000,
+          "draws": 1
+        }
+      ]
+    }
+  },
+  "thumb": "thumb.jpg",
+  "slots": {
+    "rig": null,
+    "drive": null
+  },
+  "import": {
+    "tool": "tools/import-model.mjs",
+    "command": "node tools/import-model.mjs --from 'release:Kr4T/3dplat-builder@Characters/#737709594' --sha256 c9c73bda4a03e27a26e14d8e185f65536f0d4def56db17e916fed6bb72203f2b --id djinn --height 2.2 --category character --name-en 'Sand djinn' --name-ar 'جني الرمال' --licence 'Tencent HY 3D Global output, terms pending review' --made-by 'Kereem, generated on Tencent HY 3D V3.1 (release Characters-2026-11-12)' --summary-en 'A sand djinn: a hooded desert spirit wrapped in sand-coloured cloth, with clawed hands and a twisting smoke tail instead of legs. 2.2 m tall by default, tail tip on the ground.' --summary-ar 'جني الرمال: روح صحراوية بقلنسوة ملفوفة بقماش بلون الرمل، بأيدٍ ذات مخالب وذيل دخاني ملتوٍ بدل الساقين. ارتفاعه 2.2 م افتراضياً.' --tags-en 'character,djinn,spirit,creature,desert' --tags-ar 'شخصية,جني,روح,مخلوق,صحراء' --note 'Release asset 1d3a86f1eb94283b8ae1c7cebea307df.glb: one figure. Identified by rendering it.'",
+    "original": {
+      "kind": "release",
+      "sha256": "c9c73bda4a03e27a26e14d8e185f65536f0d4def56db17e916fed6bb72203f2b",
+      "size": 83164972,
+      "faces": 1500000,
+      "fetched": "2026-11-12",
+      "stored": "assets-src/models/c9c73bda4a03e27a26e14d8e185f65536f0d4def56db17e916fed6bb72203f2b.glb",
+      "url": "https://api.github.com/repos/Kr4T/3dplat-builder/releases/assets/737709594",
+      "release": {
+        "repo": "Kr4T/3dplat-builder",
+        "tag": "Characters",
+        "name": "Characters-2026-11-12",
+        "asset": "1d3a86f1eb94283b8ae1c7cebea307df.glb",
+        "id": 737709594
+      }
+    },
+    "notes": "Release asset 1d3a86f1eb94283b8ae1c7cebea307df.glb: one figure. Identified by rendering it.",
+    "normalise": {
+      "yaw": 0,
+      "scale": 1.8338237,
+      "before": {
+        "min": [
+          -0.2926,
+          0,
+          -0.1201
+        ],
+        "max": [
+          0.2912,
+          1.1997,
+          0.125
+        ]
+      }
+    },
+    "bounds": {
+      "min": [
+        -0.5353,
+        0,
+        -0.2248
+      ],
+      "max": [
+        0.5353,
+        2.2,
+        0.2248
+      ]
+    },
+    "textures": "webp",
+    "presets": {
+      "desktop": {
+        "lod": "lod0",
+        "tris": 200000,
+        "band": [
+          180000,
+          200000
+        ],
+        "texture": 2048
+      },
+      "phone": {
+        "lod": "lod1",
+        "tris": 30000,
+        "band": [
+          27000,
+          30000
+        ],
+        "texture": 1024
+      }
+    },
+    "variants": {
+      "lod0": {
+        "preset": "desktop",
+        "file": "model_lod0.glb",
+        "tris": 200000,
+        "simplifier": "meshopt",
+        "bytes": 3282096,
+        "sha256": "d3c7096271abf72bde09dae605895c57a82c488130d327bcef14f00f76393094",
+        "textures": [
+          {
+            "mime": "image/webp",
+            "size": [
+              2048,
+              2048
+            ]
+          },
+          {
+            "mime": "image/webp",
+            "size": [
+              2048,
+              2048
+            ]
+          },
+          {
+            "mime": "image/webp",
+            "size": [
+              2048,
+              2048
+            ]
+          }
+        ]
+      },
+      "lod1": {
+        "preset": "phone",
+        "file": "model_lod1.glb",
+        "tris": 30000,
+        "simplifier": "meshopt",
+        "bytes": 818624,
+        "sha256": "6d75ab98b4e7ddefb8499e4a34ae2452962271649cb261325cfe1a4442c9d77e",
+        "textures": [
+          {
+            "mime": "image/webp",
+            "size": [
+              1024,
+              1024
+            ]
+          },
+          {
+            "mime": "image/webp",
+            "size": [
+              1024,
+              1024
+            ]
+          },
+          {
+            "mime": "image/webp",
+            "size": [
+              1024,
+              1024
+            ]
+          }
+        ]
+      }
+    },
+    "recipes": {
+      "material-001": {
+        "name": "skin-sss",
+        "sss": true,
+        "sheen": 0,
+        "metalSpecAA": false,
+        "hair": false,
+        "share": {
+          "skin": 0.96,
+          "cloth": 0.017,
+          "metal": 0.014,
+          "other": 0.005,
+          "hair": 0.004
+        },
+        "trust": {
+          "metal": true,
+          "rough": true,
+          "why": []
+        },
+        "material": "Material.001"
+      }
+    },
+    "licence_note": "internal prototype only until reviewed"
+  }
+}

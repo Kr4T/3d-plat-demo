@@ -1,0 +1,228 @@
+{
+  "element": "desert sand",
+  "kind": "ground",
+  "hero": true,
+  "hero_why": "Kereem judged the sand (11 Nov).",
+  "date": "2026-11-11",
+  "bar": 8,
+  "bar_source": "Kereem, 11 Nov 2026, relayed by the coordinator: \"we are not paying but I need above 8 as a look\"",
+  "recipe_rule": "L27 (Kr4T/3DPLAT docs/process/pipeline.md, run-checklist.md \"Source selection\")",
+  "target": {
+    "image": "docs/gate/scene-quality/sources/targets-v2/desert-sand-unsplash-pedro-kummel-Ekfr1mRpo1w.jpg",
+    "what": "real photo: close-up of fine wind-shaped desert sand ripples under warm low raking light (low sun, not night: no licence-clean photo of rippled sand under warm artificial light was found); crests lit warm, troughs in soft brown shadow",
+    "source": "https://unsplash.com/photos/ripples-of-sand-dunes-in-the-desert-Ekfr1mRpo1w",
+    "licence": "Unsplash License (https://unsplash.com/license): free to use, no attribution required; credited anyway. Reference only, never shipped in the scene.",
+    "author": "Pedro Kümmel (@pedrokummel)",
+    "checked": "2026-11-11"
+  },
+  "target_old": {
+    "image": "docs/gate/scene-quality/sources/targets/2026-11-05-boulevard-city-3d-v20-night-street.jpg",
+    "what": "pale warm desert sand at night under warm plaza lamps: fine diagonal wind ripples, soft mottle, dim brown in shadow",
+    "crop": [
+      0,
+      360,
+      520,
+      600
+    ],
+    "licence": "CC BY 4.0 (3DPLAT; the frame carries the ODbL map attribution: © OpenStreetMap contributors, Overture Maps)",
+    "source": "Kr4T/3DPLAT main e0d91a2, docs/devlog/media/",
+    "note": "our own earlier render: no longer a valid target (coordinator, 11 Nov)"
+  },
+  "target_runner_up": {
+    "source": "https://unsplash.com/photos/shooting-star-over-desert-dunes-MljwsnGwdOY",
+    "licence": "Unsplash License",
+    "author": "Massimiliano Morosinotto",
+    "checked": "2026-11-11",
+    "note": "dusk dune with fine ripples under a starry sky; the sky may be edited (shooting star), and the ripples are farther away"
+  },
+  "scoring": {
+    "method": "Builder's own side-by-side scores (Claude, sources worker, 11 Nov 2026), not a judge: a crop of the target next to each candidate's preview (asset thumbnail, flat colour map, r187 example screenshot) or our earlier SwiftShader render (provisional, L4). Shape, surface and light, 1-10, against the target. A preview under studio or no light scores low on light by construction. Own and r187 candidates carried over from the 11 Nov single score are split into the three axes with the same mean. A separate judge re-scores on real-GPU shots.",
+    "sheets": [
+      "docs/gate/scene-quality/sources/desert-sand.jpg",
+      "docs/gate/scene-quality/sources/desert-sand-hunt.jpg"
+    ],
+    "provisional": true
+  },
+  "candidates": [
+    {
+      "id": "own-boulevard-ground",
+      "tier": "own",
+      "link": "shared/materials/boulevard-ground.js",
+      "licence": "Apache-2.0 (code, derived from Boulevard groundMaterial); maps CC0 (ambientCG Ground097)",
+      "scores": {
+        "shape": 6,
+        "surface": 6,
+        "light": 6
+      },
+      "author": "3DPLAT",
+      "checked": "2026-11-11",
+      "note": "Sand round (11 Nov 2026, after Kereem's 3/10 and the real-GPU judges' notes): Ground097 ripple height, normal and colour in world space along the wind (2.2 m tile, two rotated lookups blended by noise, a 12.1 m meso lookup), pale warm cream albedo with soft mottle, mip-averaged specular AA, authored transverse dunes (8 m, at most 15 degrees), grain glints as sparse low-roughness facets lit by every light, lamp-map glints on WebGL; with the stage fixes (17:00 is day, the night fill colour restored, a warm night haze). Builder's own provisional score from SwiftShader before/after renders; the judge re-scores on real-GPU shots. Earlier version (aerial_sand scan, procedural bands): Kereem 3/10, builder 7 on the old target."
+    },
+    {
+      "id": "own-boulevard-gc-sand",
+      "tier": "own",
+      "link": "tools/quality-gate/component/reference/desert-sand.js",
+      "licence": "Apache-2.0 (code); texture CC0",
+      "scores": {
+        "shape": 4,
+        "surface": 5,
+        "light": 3
+      },
+      "author": "3DPLAT",
+      "checked": "2026-11-11",
+      "note": "Boulevard's sand class: right colour family, one flat scan, no ripples, tiling visible (11 Nov sheet, B, 4)."
+    },
+    {
+      "id": "r187-webgpu_tsl_procedural_terrain",
+      "tier": "r187",
+      "link": "https://github.com/mrdoob/three.js/blob/r187/examples/webgpu_tsl_procedural_terrain.html",
+      "licence": "MIT",
+      "scores": {
+        "shape": 2,
+        "surface": 1,
+        "light": 1
+      },
+      "author": "three.js authors",
+      "checked": "2026-11-11",
+      "note": "A recipe, not a look: green and blue bands; its fBm heightfield is used for the dunes (11 Nov sheet, C, 1)."
+    },
+    {
+      "id": "acg-Ground097",
+      "tier": "scan",
+      "link": "https://ambientcg.com/a/Ground097",
+      "licence": "CC0",
+      "scores": {
+        "shape": 6,
+        "surface": 6,
+        "light": 3
+      },
+      "author": "ambientCG (Lennart Demes)",
+      "checked": "2026-11-11",
+      "note": "New. Height-field photogrammetry, warm ochre, clear wind ripples in colour and height. Ripples larger and more regular than the target's fine diagonal ones; much brighter and pinker than the night target; flat map, no light. Best new sand base."
+    },
+    {
+      "id": "acg-Ground098",
+      "tier": "scan",
+      "link": "https://ambientcg.com/a/Ground098",
+      "licence": "CC0",
+      "scores": {
+        "shape": 6,
+        "surface": 6,
+        "light": 3
+      },
+      "author": "ambientCG (Lennart Demes)",
+      "checked": "2026-11-11",
+      "note": "New. Same family as Ground097, slightly darker and more even ripples."
+    },
+    {
+      "id": "acg-Ground092A",
+      "tier": "scan",
+      "link": "https://ambientcg.com/a/Ground092A",
+      "licence": "CC0",
+      "scores": {
+        "shape": 5,
+        "surface": 5,
+        "light": 3
+      },
+      "author": "ambientCG (Lennart Demes)",
+      "checked": "2026-11-11",
+      "note": "New. Pale cream, fine shallow ripples; close to the target's brightness in lit areas, too clean and cold elsewhere."
+    },
+    {
+      "id": "ph-aerial_beach_01",
+      "tier": "scan",
+      "link": "https://polyhaven.com/a/aerial_beach_01",
+      "licence": "CC0",
+      "scores": {
+        "shape": 6,
+        "surface": 5,
+        "light": 3
+      },
+      "author": "Rob Tuytel (Poly Haven)",
+      "checked": "2026-11-11",
+      "note": "New. Dense wind-sculpted ripples (30 m scan); grey beach colour, would need the Najd tint; studio sphere preview."
+    },
+    {
+      "id": "ph-aerial_sand",
+      "tier": "scan",
+      "link": "https://polyhaven.com/a/aerial_sand",
+      "licence": "CC0",
+      "scores": {
+        "shape": 4,
+        "surface": 5,
+        "light": 3
+      },
+      "author": "Rob Tuytel (Poly Haven)",
+      "checked": "2026-11-11",
+      "note": "The scan our own ground already uses, alone: trampled, no ripples."
+    },
+    {
+      "id": "ph-sand_02",
+      "tier": "scan",
+      "link": "https://polyhaven.com/a/sand_02",
+      "licence": "CC0",
+      "scores": {
+        "shape": 4,
+        "surface": 4,
+        "light": 4
+      },
+      "author": "Charlotte Baglioni (Poly Haven)",
+      "checked": "2026-11-11",
+      "note": "Grey-brown beach grain; used for grain normals and parallax height only (11 Nov sheet, D, 4)."
+    },
+    {
+      "id": "ph-red_sand",
+      "tier": "scan",
+      "link": "https://polyhaven.com/a/red_sand",
+      "licence": "CC0",
+      "scores": {
+        "shape": 3,
+        "surface": 3,
+        "light": 3
+      },
+      "author": "Rohit Seervi (Poly Haven)",
+      "checked": "2026-11-11",
+      "note": "Too red and saturated; no wind ripples (11 Nov sheet, E, 3)."
+    }
+  ],
+  "paid_not_scored": [
+    {
+      "name": "Quixel Megascans desert sand surfaces",
+      "link": "https://www.fab.com/",
+      "licence": "Fab Standard/Professional licence",
+      "price": "not quoted (per-asset Fab price; not checked, never bought)"
+    }
+  ],
+  "pick": {
+    "id": "own-boulevard-ground",
+    "why": "Highest builder mean: the only candidate that combines a real wind-ripple scan (Ground097) with the scene's light (lamp pools, glints, golden hour); Ground097 alone scores 5.0 as a flat preview.",
+    "recipe": {
+      "base": "ambientCG Ground097 (CC0, height-field photogrammetry of wind ripples): height, OpenGL normal and colour, 1k (High) and 512 (Phone), in world space at a 2.2 m tile",
+      "r187": [
+        "webgpu_tsl_procedural_terrain",
+        "webgpu_parallax_uv",
+        "webgpu_generator_city",
+        "webgpu_lights_clustered_city",
+        "webgpu_postprocessing_ssr",
+        "webgpu_postprocessing_bloom"
+      ],
+      "tsl_layers": [
+        "authored transverse dune geometry (duneHeight: asymmetric stoss/lee, rounded crests, noise-bent crest lines, 8 m, <= 15 degrees, smooth normals)",
+        "low swells round the plaza (noise gradient)",
+        "Ground097 ripple normal and height along the wind, two rotated lookups blended by a noise field against repeats, slow crest warp",
+        "Ground097 at 12.1 m for the middle distance (meso bedforms)",
+        "specular AA from the mip-averaged normal length (Toksvig), anisotropy 16",
+        "world-space parallax march on the Ground097 height (16 steps within 20 m, High)",
+        "albedo: pale warm cream, soft 3-50 m mottle, scan luminance as detail, darker troughs",
+        "wet band from shoreDist and rain patches, SSR weight",
+        "grain glints: sparse world-anchored facets (1.5 px cells, per-cell level choice) with low roughness, real specular from lamps, moon and sun; lamp-map glints on WebGL"
+      ]
+    },
+    "presets": [
+      "phone",
+      "high"
+    ]
+  },
+  "gap": "Provisional (SwiftShader only): judge on the real GPU (r4 batch). Expected remaining gaps against Journey and Sable: no volumetric in-scatter round the lamps (the haze is a height-fog colour), glints from the WebGL lamp map assume light from above, and the dune field is noise-placed, not composed per view as Journey's are.",
+  "rejected": []
+}

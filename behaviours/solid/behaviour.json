@@ -1,0 +1,43 @@
+{
+  "format": "uew-behaviour@1",
+  "type": "solid",
+  "name": {
+    "en": "Solid",
+    "ar": "صلب"
+  },
+  "summary": {
+    "en": "Nobody walks through it: its collision shape is made for it from the piece (its collider, else its footprint). Every piece is solid unless this is switched off.",
+    "ar": "لا يمرّ أحد خلاله: يُصنع شكل تصادمه من القطعة نفسها (مُصادِمها، وإلا بصمتها). كل قطعة صلبة ما لم يُطفأ هذا."
+  },
+  "targets": [
+    "piece",
+    "character",
+    "animal"
+  ],
+  "params": [
+    {
+      "name": "enabled",
+      "type": "bool",
+      "default": true,
+      "label": {
+        "en": "Solid",
+        "ar": "صلب"
+      },
+      "affects": "module"
+    },
+    {
+      "name": "shape",
+      "type": "enum",
+      "default": "auto",
+      "options": [
+        "auto",
+        "footprint"
+      ],
+      "label": {
+        "en": "Shape",
+        "ar": "الشكل"
+      },
+      "affects": "module"
+    }
+  ]
+}

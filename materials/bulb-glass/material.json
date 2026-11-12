@@ -1,0 +1,14 @@
+{
+  "format": "uew-material@1",
+  "id": "bulb-glass",
+  "name": { "en": "Lamp lens", "ar": "عدسة المصباح" },
+  "source": { "example": "webgpu_lights_physical", "repo": "mrdoob/three.js", "branch": "r187", "path": "examples/jsm/generators/city/StreetlightGenerator.js", "symbol": "createStreetlightMaterial (LENS)", "note": "The r187 generator's lit lens, its glow scaled by the light's lumens (refLumens gives the generator's own x 60) and dimmed by day as Boulevard City's main.js does (uNight x 0.97 + 0.03)." },
+  "params": [
+    { "name": "lens", "type": "colour", "default": "#fff0cc" },
+    { "name": "glow", "type": "colour", "default": "#ffe2a6" },
+    { "name": "glowStrength", "type": "number", "default": 60, "min": 0, "max": 400 },
+    { "name": "lumens", "type": "number", "default": 754, "min": 0, "max": 250000 },
+    { "name": "refLumens", "type": "number", "default": 754, "min": 1, "max": 250000 }
+  ],
+  "images": []
+}

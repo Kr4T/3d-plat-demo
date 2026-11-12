@@ -1,0 +1,55 @@
+{
+  "format": "uew-component@1",
+  "id": "bench",
+  "version": "1.0.0",
+  "name": {"en": "Bench", "ar": "مقعد"},
+  "summary": {"en": "Boulevard City's park bench: weathered timber slats on two cast-iron end frames that curl into armrests, with a reclined slatted back.", "ar": "مقعد حديقة بوليفارد سيتي: ألواح خشب معتّق على إطارين من الحديد الزهر ينتهيان بمساند للذراعين، وظهر مائل من الألواح."},
+  "tags": {"en": ["bench", "seat", "seating", "furniture", "park"], "ar": ["مقعد", "جلوس", "مقاعد", "أثاث", "حديقة"]},
+  "kind": "generator",
+  "category": "seating",
+  "source": {
+    "repo": "Kr4T/3DPLAT",
+    "branch": "round2/boulevard",
+    "commit": "3352816",
+    "path": "apps/boulevard-city-3d/main.js",
+    "symbol": "benches = new BenchGenerator().build(benchM)",
+    "example": "webgpu_generator_city",
+    "defaults": {
+      "length": 1.8,
+      "woodTone": "#ffffff",
+      "depth": 0.55,
+      "seatHeight": 0.45,
+      "backHeight": 0.85,
+      "castShadow": false,
+      "note": "main.js calls new BenchGenerator() with no parameters, so the r187 defaults are Boulevard's: length 1.8, depth 0.55, seat 0.45, back 0.85. woodTone white leaves the generator's timber as it is. Boulevard sets a bench every fourth stop half-way between lamps, 1.9 m off the walk, +Z facing the walk, castShadow off."
+    }
+  },
+  "made_by": "three.js authors (r187 BenchGenerator); 3DPLAT (Boulevard City placement)",
+  "licence": "MIT",
+  "files": {"module": "build.js"},
+  "materials": [
+    {"slot": "wood", "preset": "bench-wood", "overrides": {}},
+    {"slot": "iron", "preset": "bench-metal", "overrides": {}}
+  ],
+  "draw": {
+    "phone": {"lods": ["module"], "shadow": []},
+    "high": {"lods": ["module"], "shadow": []}
+  },
+  "params": [
+    {"name": "length", "type": "number", "default": 1.8, "min": 1, "max": 3, "step": 0.05, "label": {"en": "Length (m)", "ar": "الطول (م)"}, "affects": "module"},
+    {"name": "woodTone", "type": "colour", "default": "#ffffff", "label": {"en": "Wood tone", "ar": "لون الخشب"}, "affects": "material"}
+  ],
+  "sockets": [
+    {"id": "front", "type": "seat-faces-edge", "pos": [0, 0, 0.28], "dir": [0, 0, 1], "accepts": ["paving-edge", "water-edge"], "snap": 0.5}
+  ],
+  "footprint": {"outline": [[-0.86, -0.27], [0.86, -0.27], [0.86, 0.34], [-0.86, 0.34]], "height": [0, 0.9]},
+  "clearance": 0.8,
+  "placement": {"on": ["paving"], "along": ["paving-edge", "water-edge"], "face": "edge"},
+  "collider": [
+    {"type": "cuboid", "pos": [0, 0.225, 0], "half": [0.86, 0.225, 0.275]},
+    {"type": "cuboid", "pos": [0, 0.65, -0.225], "half": [0.86, 0.2, 0.05]}
+  ],
+  "budgets": {"measured_by":"tools/quality-gate/component/check.mjs","at":"2026-11-10","phone":{"tris":240,"draws":2,"lods":[{"lod":"module","tris":240,"draws":2}]},"high":{"tris":240,"draws":2,"lods":[{"lod":"module","tris":240,"draws":2}]}},
+  "thumb": "thumb.jpg",
+  "slots": {"rig": null, "drive": null}
+}

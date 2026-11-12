@@ -1,0 +1,100 @@
+{
+  "format": "uew-sources@1",
+  "component": "wet-paving",
+  "date": "2026-11-11",
+  "bar": 8,
+  "barSource": "Kereem, 11 Nov 2026, relayed by the coordinator: \"we are not paying but I need above 8 as a look\"",
+  "recipe": "L27 (Kereem, 11 Nov 2026: \"make that the standard recipe for everything ... they need to look and assess which is closest\")",
+  "target": {
+    "image": "docs/gate/scene-quality/sources/targets/2026-11-05-boulevard-city-3d-v20-night-street.jpg",
+    "what": "Boulevard City v20 night street (devlog 5 Nov 2026)",
+    "source": "Kr4T/3DPLAT main e0d91a2, docs/devlog/media/",
+    "licence": "CC BY 4.0 (3DPLAT; the frame carries the ODbL map attribution: © OpenStreetMap contributors, Overture Maps)",
+    "author": "3DPLAT",
+    "crop": [
+      520,
+      180,
+      820,
+      560
+    ]
+  },
+  "scoring": {
+    "method": "Side by side: a crop of the target next to one image per candidate (our builder render, a bench render, the official r187 example screenshot, or the CC0 asset's thumbnail), in docs/gate/scene-quality/sources/<id>.jpg. The score (0-10) is the scene-quality worker's visual judgement of closeness to the target in colour, surface detail, light response and shape, written down with a short reason; not a metric. Our renders are SwiftShader (provisional, L4). Paid candidates are listed and flagged, not downloaded and not scored.",
+    "by": "scene-quality worker (Claude), 11 Nov 2026",
+    "comparison": "docs/gate/scene-quality/sources/wet-paving.jpg",
+    "provisional": true
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "kind": "own-library",
+      "name": "materials/wet-paving (Boulevard groundMaterial + puddles + Fresnel SSR weight, smoother SSR roughness)",
+      "url": "materials/wet-paving/material.js",
+      "licence": "Apache 2.0 (code); textures CC0",
+      "paid": false,
+      "score": 7,
+      "judgement": "Lamp streak and bench mirrored as in the target's wet path; target pavers warmer and lit by more lamps."
+    },
+    {
+      "id": "B",
+      "kind": "own-library",
+      "name": "Boulevard City groundMaterial (pavers)",
+      "url": "components/wet-paving/thumb.jpg",
+      "licence": "Apache 2.0 (code); textures CC0",
+      "paid": false,
+      "score": 4,
+      "judgement": "The original: right pavers, weak reflections at night."
+    },
+    {
+      "id": "C",
+      "kind": "r187-example",
+      "name": "webgpu_postprocessing_ssr",
+      "url": "https://threejs.org/examples/#webgpu_postprocessing_ssr",
+      "licence": "MIT",
+      "paid": false,
+      "score": 2,
+      "judgement": "The SSR recipe on a white floor; not a paving look."
+    },
+    {
+      "id": "D",
+      "kind": "cc0-scan",
+      "name": "Poly Haven concrete_pavers_03",
+      "url": "https://polyhaven.com/a/concrete_pavers_03",
+      "licence": "CC0",
+      "paid": false,
+      "score": 3,
+      "judgement": "The scan we already use; alone it is dry and unlit."
+    },
+    {
+      "id": "E",
+      "kind": "paid",
+      "name": "Megascans wet paving surfaces (Fab)",
+      "url": "https://www.fab.com/",
+      "licence": "paid",
+      "paid": true,
+      "score": null,
+      "judgement": "Not downloaded or scored (paid; flag for the coordinator).",
+      "flag": "coordinator"
+    }
+  ],
+  "pick": {
+    "candidate": "A",
+    "why": "Boulevard's own paving with the reflection layers added scored closest; B is its base.",
+    "build": {
+      "base": "Poly Haven concrete_pavers_03 / large_sandstone_blocks_01 (CC0), world space, two scales (Boulevard)",
+      "r187": [
+        "webgpu_postprocessing_ssr",
+        "webgpu_generator_city"
+      ],
+      "tsl_layers": [
+        "macro and micro variation (Boulevard)",
+        "night gloss and metalness (Boulevard)",
+        "puddles from rain wetness: darker, mirror-smooth, relief drowned",
+        "SSR weight 0.45 + 0.5 F (wet film) and SSR roughness x 0.55 via mrtNode (High)"
+      ]
+    },
+    "score": 7,
+    "meetsBar": false,
+    "gap": "Best free candidate 7/10 (A). Below the bar: target pavers read warmer and brighter under denser lamps; puddles read as dark stains from far away. To try: lamp spacing like Boulevard's promenade, puddle edges with a wet darkening ring, warmer paver tint at night."
+  }
+}

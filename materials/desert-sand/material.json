@@ -1,0 +1,90 @@
+{
+  "format": "uew-material@1",
+  "id": "desert-sand",
+  "name": {
+    "en": "Desert sand",
+    "ar": "رمل صحراوي"
+  },
+  "source": {
+    "example": "webgpu_tsl_procedural_terrain",
+    "repo": "Kr4T/3DPLAT",
+    "branch": "round2/boulevard",
+    "commit": "3352816",
+    "path": "apps/boulevard-city-3d/main.js",
+    "symbol": "groundMaterial (GC.SAND: aerial_sand, 9 m, roughness 0.95)",
+    "note": "Boulevard's sand (aerial_sand at 9 m, Poly Haven CC0) replaced in the sand round (11 Nov 2026, Kereem's 3/10) by ambientCG Ground097 (CC0 height-field photogrammetry of wind ripples): its height, normal and colour in world space along the wind (2.2 m tile, two rotated lookups blended by noise against repeats, a third at 12.1 m for the middle distance), under TSL layers: pale warm cream albedo with soft mottle and darker troughs, specular AA from the mip-averaged normal (Toksvig), a world-space parallax march on High within 20 m, grain glints as sparse low-roughness tilted facets (real specular from every light; from the lamp map on WebGL), wet and darker within wetWidth of the water with an SSR weight on High. Code: shared/materials/boulevard-ground.js."
+  },
+  "params": [
+    {
+      "name": "tint",
+      "type": "colour",
+      "default": "#ffffff"
+    },
+    {
+      "name": "windAngle",
+      "type": "number",
+      "default": 35,
+      "min": 0,
+      "max": 360
+    },
+    {
+      "name": "ripples",
+      "type": "number",
+      "default": 1,
+      "min": 0,
+      "max": 2
+    },
+    {
+      "name": "sparkle",
+      "type": "number",
+      "default": 1,
+      "min": 0,
+      "max": 2
+    },
+    {
+      "name": "wetWidth",
+      "type": "number",
+      "default": 3,
+      "min": 0,
+      "max": 12
+    }
+  ],
+  "images": [
+    {
+      "file": "../../shared/materials/tex/512/Ground097_col.jpg",
+      "asset": "Ground097",
+      "url": "https://ambientcg.com/a/Ground097",
+      "licence": "CC0"
+    },
+    {
+      "file": "../../shared/materials/tex/512/Ground097_nor.jpg",
+      "asset": "Ground097",
+      "url": "https://ambientcg.com/a/Ground097",
+      "licence": "CC0"
+    },
+    {
+      "file": "../../shared/materials/tex/512/Ground097_disp.jpg",
+      "asset": "Ground097",
+      "url": "https://ambientcg.com/a/Ground097",
+      "licence": "CC0"
+    },
+    {
+      "file": "../../shared/materials/tex/1k/Ground097_col.jpg",
+      "asset": "Ground097",
+      "url": "https://ambientcg.com/a/Ground097",
+      "licence": "CC0"
+    },
+    {
+      "file": "../../shared/materials/tex/1k/Ground097_nor.jpg",
+      "asset": "Ground097",
+      "url": "https://ambientcg.com/a/Ground097",
+      "licence": "CC0"
+    },
+    {
+      "file": "../../shared/materials/tex/1k/Ground097_disp.jpg",
+      "asset": "Ground097",
+      "url": "https://ambientcg.com/a/Ground097",
+      "licence": "CC0"
+    }
+  ]
+}

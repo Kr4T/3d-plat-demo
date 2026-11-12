@@ -1,0 +1,12 @@
+{
+  "format": "uew-sockets@1",
+  "note": "Two sockets snap when each type accepts the other. New types are added by PR.",
+  "types": {
+    "paving-edge":     { "accepts": ["kerb-run", "water-edge", "lamp-base", "seat-faces-edge", "palm-pit"] },
+    "water-edge":      { "accepts": ["paving-edge", "seat-faces-edge", "palm-pit"] },
+    "kerb-run":        { "accepts": ["paving-edge", "lamp-base"] },
+    "lamp-base":       { "accepts": ["paving-edge", "kerb-run"] },
+    "seat-faces-edge": { "accepts": ["paving-edge", "water-edge"] },
+    "palm-pit":        { "accepts": ["paving-edge", "water-edge"] }
+  }
+}

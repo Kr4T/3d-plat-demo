@@ -1,0 +1,10 @@
+{
+  "format": "uew-material@1",
+  "id": "bench-wood",
+  "name": { "en": "Bench timber", "ar": "خشب المقعد" },
+  "source": { "example": "webgpu_generator_city", "repo": "mrdoob/three.js", "branch": "r187", "path": "examples/jsm/generators/city/BenchGenerator.js", "symbol": "createBenchMaterial (WOOD)", "note": "The r187 generator's weathered stained timber in TSL, as Boulevard City draws its benches (main.js benches); woodTone tints it." },
+  "params": [
+    { "name": "woodTone", "type": "colour", "default": "#ffffff" }
+  ],
+  "images": []
+}

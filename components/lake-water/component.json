@@ -1,0 +1,468 @@
+{
+  "format": "uew-component@1",
+  "id": "lake-water",
+  "version": "2.0.0",
+  "name": {
+    "en": "Lake water",
+    "ar": "ماء البحيرة"
+  },
+  "summary": {
+    "en": "A lake in a closed stone basin built from any outline: a coping all the way round its edge, a wall or a sloped stone bank down to the floor, and dark, glossy water below the promenade whose ripples move by themselves and which reflects the lamps and the night sky.",
+    "ar": "بحيرة داخل حوض حجري مغلق يُبنى من أي مخطط: حافة حجرية تحيط بها من كل جانب، وجدار أو ضفة حجرية مائلة تنزل إلى القاع، وماء داكن لامع تحت مستوى الممشى تتحرك تموجاته من تلقاء نفسها ويعكس المصابيح وسماء الليل."
+  },
+  "tags": {
+    "en": [
+      "water",
+      "lake",
+      "pool",
+      "basin",
+      "coping",
+      "reflection",
+      "ripples"
+    ],
+    "ar": [
+      "ماء",
+      "بحيرة",
+      "حوض",
+      "حافة",
+      "انعكاس",
+      "تموجات",
+      "بركة"
+    ]
+  },
+  "kind": "generator",
+  "area": true,
+  "category": "water",
+  "source": {
+    "repo": "Kr4T/3DPLAT",
+    "branch": "round2/boulevard",
+    "commit": "3352816",
+    "path": "apps/boulevard-city-3d/main.js",
+    "symbol": "buildWater (default path: waterSimple on waterGeo, ShapeGeometry of DATA.water) for the water; the basin is ours",
+    "example": "webgpu_water",
+    "defaults": {
+      "outline": [
+        [
+          -14,
+          -6
+        ],
+        [
+          -4,
+          -10
+        ],
+        [
+          10,
+          -9
+        ],
+        [
+          16,
+          -2
+        ],
+        [
+          12,
+          7
+        ],
+        [
+          0,
+          10
+        ],
+        [
+          -12,
+          6
+        ]
+      ],
+      "waves": 1,
+      "colour": "#224b52",
+      "reflection": 0.6,
+      "y": 0.06,
+      "baseColour": [
+        0.016,
+        0.07,
+        0.085
+      ],
+      "roughness": 0.04,
+      "clearcoat": 1,
+      "clearcoatRoughness": 0.03,
+      "normalScale": 0.35,
+      "tiles": [
+        9,
+        23
+      ],
+      "scroll": [
+        [
+          0.012,
+          0.007
+        ],
+        [
+          -0.006,
+          0.009
+        ]
+      ],
+      "metalness": 0.6,
+      "note": "2.0.0 (12 Nov 2026, Kereem: \"Fix the LAKE\"): Boulevard's water look unchanged (the `water` preset, shared/materials/water-ssr.js) in a closed basin of our own built from the outline (builder/sculpt/lake-basin.js): the outline is the coping's outer edge; the coping (kerb-concrete or wet-paving) runs inward by copingWidth, mitred at every corner by an exact polygon inset (builder/sculpt/clip.js, polyclip inside Turf 7.4.0), with rounded arrises, a drip edge and a 5 cm overhang; a vertical wall or a sloped bank (bankSlope) down to the floor `depth` below the water; the water `freeboard` below the coping top, so below the promenade (y = 0). r187 webgpu_water for the surface and webgpu_generator_city (SidewalkGenerator curbGeometry: a profile carried round an outline) for the coping. Boulevard's water was a flat sheet 0.06 m above the ground (1.0.0, reference/lake-water.js): the no-loss pixel rule against it is expected to fail for the changed look. main.js waterSimple: MeshPhysicalNodeMaterial({ color: 0x0b2830, roughness: 0.04, metalness: 0, clearcoat: 1, clearcoatRoughness: 0.03 }), normals texture(waterNormals, xz / 9 + t x (0.012, 0.007)) and (xz / 23 - t x (0.006, -0.009)), normalMap(scale 0.35), colorNode vec3(0.016, 0.07, 0.085) (colour #224b52 is its nearest sRGB byte), metalnessNode 0.6; buildWater: water.position.y = 0.06. ?watermesh=1 (the r187 WaterMesh) is not Boulevard's default and is not used. The outline is a 30 x 20 m lake.",
+      "copingWidth": 0.5,
+      "copingHeight": 0.2,
+      "freeboard": 0.6,
+      "depth": 0.8,
+      "wallStyle": "wall",
+      "bankSlope": 30,
+      "coping": "kerb-concrete"
+    }
+  },
+  "made_by": "3DPLAT (lake basin sculpt module builder/sculpt/lake-basin.js and builder/sculpt/clip.js; Boulevard City water, shared/materials/water-ssr.js); water normals three.js authors (MIT)",
+  "licence": "Apache-2.0",
+  "files": {
+    "module": "../../builder/sculpt/lake-basin.js"
+  },
+  "materials": [
+    {
+      "slot": "surface",
+      "preset": "water",
+      "overrides": {}
+    },
+    {
+      "slot": "coping",
+      "preset": "kerb-concrete",
+      "overrides": {
+        "colour": "#b9b4a8"
+      }
+    }
+  ],
+  "animated": true,
+  "draw": {
+    "phone": {
+      "lods": [
+        "module"
+      ],
+      "shadow": []
+    },
+    "high": {
+      "lods": [
+        "module"
+      ],
+      "shadow": []
+    }
+  },
+  "params": [
+    {
+      "name": "outline",
+      "type": "outline",
+      "default": [
+        [
+          -14,
+          -6
+        ],
+        [
+          -4,
+          -10
+        ],
+        [
+          10,
+          -9
+        ],
+        [
+          16,
+          -2
+        ],
+        [
+          12,
+          7
+        ],
+        [
+          0,
+          10
+        ],
+        [
+          -12,
+          6
+        ]
+      ],
+      "label": {
+        "en": "Outline",
+        "ar": "المخطط"
+      },
+      "affects": "module"
+    },
+    {
+      "name": "waves",
+      "type": "number",
+      "default": 1,
+      "min": 0,
+      "max": 3,
+      "step": 0.05,
+      "label": {
+        "en": "Waves",
+        "ar": "الأمواج"
+      },
+      "affects": "material"
+    },
+    {
+      "name": "colour",
+      "type": "colour",
+      "default": "#224b52",
+      "label": {
+        "en": "Water colour",
+        "ar": "لون الماء"
+      },
+      "affects": "material"
+    },
+    {
+      "name": "reflection",
+      "type": "number",
+      "default": 0.6,
+      "min": 0,
+      "max": 1,
+      "step": 0.05,
+      "label": {
+        "en": "Reflection",
+        "ar": "الانعكاس"
+      },
+      "affects": "material"
+    },
+    {
+      "name": "copingWidth",
+      "type": "number",
+      "default": 0.5,
+      "min": 0.25,
+      "max": 1.5,
+      "step": 0.05,
+      "label": {
+        "en": "Coping width",
+        "ar": "عرض الحافة"
+      },
+      "affects": "module"
+    },
+    {
+      "name": "copingHeight",
+      "type": "number",
+      "default": 0.2,
+      "min": 0,
+      "max": 0.25,
+      "step": 0.01,
+      "label": {
+        "en": "Coping height above the promenade",
+        "ar": "ارتفاع الحافة فوق الممشى"
+      },
+      "affects": "module"
+    },
+    {
+      "name": "freeboard",
+      "type": "number",
+      "default": 0.6,
+      "min": 0.35,
+      "max": 1.2,
+      "step": 0.05,
+      "label": {
+        "en": "Water below the coping",
+        "ar": "عمق الماء تحت الحافة"
+      },
+      "affects": "module"
+    },
+    {
+      "name": "depth",
+      "type": "number",
+      "default": 0.8,
+      "min": 0.3,
+      "max": 2,
+      "step": 0.05,
+      "label": {
+        "en": "Water depth",
+        "ar": "عمق الماء"
+      },
+      "affects": "module"
+    },
+    {
+      "name": "wallStyle",
+      "type": "enum",
+      "default": "wall",
+      "options": [
+        "wall",
+        "bank"
+      ],
+      "label": {
+        "en": "Basin side (wall or sloped bank)",
+        "ar": "جانب الحوض (جدار أو ضفة مائلة)"
+      },
+      "affects": "module"
+    },
+    {
+      "name": "bankSlope",
+      "type": "number",
+      "default": 30,
+      "min": 15,
+      "max": 60,
+      "step": 1,
+      "label": {
+        "en": "Bank slope (degrees)",
+        "ar": "ميل الضفة (درجات)"
+      },
+      "affects": "module"
+    },
+    {
+      "name": "coping",
+      "type": "enum",
+      "default": "kerb-concrete",
+      "options": [
+        "kerb-concrete",
+        "wet-paving"
+      ],
+      "label": {
+        "en": "Coping stone",
+        "ar": "حجر الحافة"
+      },
+      "affects": "module"
+    }
+  ],
+  "sockets": [
+    {
+      "id": "edge-0",
+      "type": "water-edge",
+      "pos": [
+        -9.0,
+        0,
+        -8.0
+      ],
+      "dir": [
+        -0.37139067635410367,
+        0,
+        -0.9284766908852592
+      ],
+      "accepts": [
+        "paving-edge",
+        "seat-faces-edge",
+        "palm-pit"
+      ],
+      "snap": 0.5
+    },
+    {
+      "id": "edge-1",
+      "type": "water-edge",
+      "pos": [
+        3.0,
+        0,
+        -9.5
+      ],
+      "dir": [
+        0.07124704998790964,
+        0,
+        -0.9974586998307349
+      ],
+      "accepts": [
+        "paving-edge",
+        "seat-faces-edge",
+        "palm-pit"
+      ],
+      "snap": 0.5
+    },
+    {
+      "id": "edge-2",
+      "type": "water-edge",
+      "pos": [
+        13.0,
+        0,
+        -5.5
+      ],
+      "dir": [
+        0.7592566023652966,
+        0,
+        -0.6507913734559685
+      ],
+      "accepts": [
+        "paving-edge",
+        "seat-faces-edge",
+        "palm-pit"
+      ],
+      "snap": 0.5
+    },
+    {
+      "id": "edge-3",
+      "type": "water-edge",
+      "pos": [
+        14.0,
+        0,
+        2.5
+      ],
+      "dir": [
+        0.9138115486202573,
+        0,
+        0.40613846605344767
+      ],
+      "accepts": [
+        "paving-edge",
+        "seat-faces-edge",
+        "palm-pit"
+      ],
+      "snap": 0.5
+    },
+    {
+      "id": "edge-4",
+      "type": "water-edge",
+      "pos": [
+        6.0,
+        0,
+        8.5
+      ],
+      "dir": [
+        0.242535625036333,
+        0,
+        0.970142500145332
+      ],
+      "accepts": [
+        "paving-edge",
+        "seat-faces-edge",
+        "palm-pit"
+      ],
+      "snap": 0.5
+    },
+    {
+      "id": "edge-5",
+      "type": "water-edge",
+      "pos": [
+        -6.0,
+        0,
+        8.0
+      ],
+      "dir": [
+        -0.31622776601683794,
+        0,
+        0.9486832980505138
+      ],
+      "accepts": [
+        "paving-edge",
+        "seat-faces-edge",
+        "palm-pit"
+      ],
+      "snap": 0.5
+    },
+    {
+      "id": "edge-6",
+      "type": "water-edge",
+      "pos": [
+        -13.0,
+        0,
+        0.0
+      ],
+      "dir": [
+        -0.986393923832144,
+        0,
+        0.16439898730535732
+      ],
+      "accepts": [
+        "paving-edge",
+        "seat-faces-edge",
+        "palm-pit"
+      ],
+      "snap": 0.5
+    }
+  ],
+  "placement": {
+    "on": [
+      "ground"
+    ]
+  },
+  "thumb": "thumb.jpg",
+  "slots": {
+    "rig": null,
+    "drive": null
+  }
+}

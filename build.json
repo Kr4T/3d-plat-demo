@@ -1,0 +1,65 @@
+{
+ "built": "game-only",
+ "scene": "scenes/encore.json",
+ "playable": true,
+ "publishInternal": true,
+ "internal": {
+  "kept": [
+   "concert-stage@1.0.0",
+   "djinn@1.0.0",
+   "hero@1.0.0",
+   "horse@1.0.0",
+   "nemesis@1.0.0",
+   "scimitar@1.0.0"
+  ]
+ },
+ "components": [
+  "bench@1.0.0",
+  "concert-stage@1.0.0",
+  "date-palm@1.0.0",
+  "desert-sand@2.0.0",
+  "djinn@1.0.0",
+  "fountain@1.0.0",
+  "hero@1.0.0",
+  "horse@1.0.0",
+  "kerbs@1.0.0",
+  "kingdom-arena@1.0.0",
+  "lake-water@2.0.0",
+  "nemesis@1.0.0",
+  "scimitar@1.0.0",
+  "searchlights@1.0.0",
+  "street-lamp@1.0.0",
+  "wet-paving@1.0.0"
+ ],
+ "behaviours": [
+  "ai_director",
+  "burst_on_hit",
+  "combo_attack",
+  "equippable",
+  "health",
+  "hit_reaction",
+  "player",
+  "solid",
+  "trail",
+  "waves"
+ ],
+ "materials": [
+  "arena-shell",
+  "auto-r187",
+  "bench-metal",
+  "bench-wood",
+  "bulb-glass",
+  "desert-sand",
+  "kerb-concrete",
+  "lamp-metal",
+  "palm-bark",
+  "palm-frond",
+  "stage-kit",
+  "water",
+  "wet-paving"
+ ],
+ "scripts": 151,
+ "notFound": [],
+ "files": 262,
+ "bytes": 52148386
+}

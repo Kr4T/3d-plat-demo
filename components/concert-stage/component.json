@@ -1,0 +1,51 @@
+{
+  "format": "uew-component@1",
+  "id": "concert-stage",
+  "version": "1.0.0",
+  "name": {"en": "Concert stage", "ar": "مسرح الحفل"},
+  "summary": {"en": "A festival main stage: a wide LED wall with a moving colour field, a stack of dark glass cubes with lit frames above a low black deck, light trays, line arrays and a cyan LED line. 43.6 m tall and 160 m wide at full size; the height scales the whole stage.", "ar": "مسرح مهرجان رئيسي: جدار LED عريض بألوان متحركة، وفوق منصة سوداء منخفضة هرم مقلوب من مكعبات زجاجية داكنة بإطارات مضيئة، مع صواني إضاءة وسماعات معلقة وخط LED سماوي. ارتفاعه 43.6 م وعرضه 160 م بالحجم الكامل، والارتفاع يغيّر حجم المسرح كله."},
+  "tags": {"en": ["stage", "concert", "festival", "led wall", "screen", "venue", "show", "landmark"], "ar": ["مسرح", "حفل", "مهرجان", "شاشة", "جدار ضوئي", "عرض", "معلم"]},
+  "kind": "mesh",
+  "category": "landmark",
+  "body": "object",
+  "source": {
+    "repo": "Kr4T/3DPLAT",
+    "branch": "claude/music-video-scenes",
+    "commit": "75b3604",
+    "path": "apps/music-video/models/big-beast-stage/big-beast-stage.glb, apps/music-video/models/big-beast-stage/materials.js, apps/music-video/scenes/stage.js, apps/music-video/scenes/led.js",
+    "symbol": "bigBeastMaterials, loadStage, ledShow",
+    "example": "webgpu_loader_gltf",
+    "defaults": {
+      "height": 43.6,
+      "accent": "#1ad9ff",
+      "show": 1,
+      "note": "height: the file's box, 160.4 x 43.6 x 37 m (a 160 x 34 m LED wall, the cube stack's crown above it). The runtime scales each instance by height / 43.6, and the collider with it. accent: materials.js's cyan (0.1, 0.85, 1.0). show stands in for the song's `screens` uniform (1: the screens on). Draws: loadStage draws one mesh per material (11); here stage.glb is models/big-beast-stage.glb with its eleven meshes joined by tools/glb-join.mjs (vertex data unchanged, node transforms baked, the material index written to the vertex colour alpha) and one preset branching on it, so 1 draw per preset. lod1 is the same file as lod0 (no lighter version is made: 19,060 triangles is inside the Phone budget). Not carried over: the 26 light markers (MH, ST, BL empties: moving heads, strobes, blinders), the IMAG feed and the rendered r187 galaxy / tornado on the wall (they need the music-video app's second camera and song clock), the haze. The wall shows led.js's slow colour field."
+    }
+  },
+  "made_by": "3DPLAT (Blender by script, models/big-beast-stage/src/stage.py in Kr4T/3DPLAT, shaped after press photos of the Soundstorm 2024 Big Beast stage; look in TSL, materials.js)",
+  "licence": "Apache-2.0 (3DPLAT, as its sources.json records it); internal prototype only until the likeness to the real stage design is reviewed",
+  "internal_only": true,
+  "files": {"lod0": "stage.glb", "lod1": "stage.glb"},
+  "materials": [
+    {"slot": "stage-kit", "preset": "stage-kit", "overrides": {}}
+  ],
+  "animated": true,
+  "draw": {
+    "phone": {"lods": ["lod1"], "shadow": []},
+    "high": {"lods": ["lod0"], "shadow": ["lod0"]}
+  },
+  "params": [
+    {"name": "height", "type": "number", "default": 43.6, "min": 8, "max": 60, "step": 0.1, "label": {"en": "Height (m)", "ar": "الارتفاع (م)"}, "affects": "scale"},
+    {"name": "accent", "type": "colour", "default": "#1ad9ff", "label": {"en": "Light colour", "ar": "لون الإضاءة"}, "affects": "material"},
+    {"name": "show", "type": "number", "default": 1, "min": 0, "max": 2, "step": 0.05, "label": {"en": "Screens and lights", "ar": "الشاشات والأضواء"}, "affects": "material"}
+  ],
+  "sockets": [],
+  "footprint": {"outline": [[-80.2, -13.9], [80.2, -13.9], [80.2, 23.1], [-80.2, 23.1]], "height": [0, 43.6]},
+  "clearance": 2,
+  "placement": {"on": ["paving", "ground"], "keep_out": ["water"]},
+  "collider": [
+    {"type": "box", "pos": [0, 1.4, 1.4], "half": [20, 1.4, 13.4]},
+    {"type": "box", "pos": [0, 17, -12.9], "half": [80.2, 17, 1]}
+  ],
+  "slots": {"rig": null, "drive": null}
+}

@@ -1,0 +1,65 @@
+{
+  "format": "uew-component@1",
+  "id": "street-lamp",
+  "version": "1.0.0",
+  "name": {"en": "Street lamp", "ar": "عمود إنارة"},
+  "summary": {"en": "Boulevard City's street lamp: a tapered mast with a curved arm and a cobra-head luminaire whose lens glows with the lamp, and one warm point light in physical units.", "ar": "عمود إنارة بوليفارد سيتي: سارية مستدقة بذراع منحنية ورأس إنارة تتوهج عدسته مع المصباح، وضوء نقطي دافئ بوحدات فيزيائية."},
+  "tags": {"en": ["lamp", "street light", "lighting", "night", "pole"], "ar": ["مصباح", "إنارة الشارع", "إضاءة", "ليل", "عمود"]},
+  "kind": "generator",
+  "category": "lighting",
+  "source": {
+    "repo": "Kr4T/3DPLAT",
+    "branch": "round2/boulevard",
+    "commit": "3352816",
+    "path": "apps/boulevard-city-3d/main.js, apps/boulevard-city-3d/lamps.js",
+    "symbol": "lampGen = new StreetlightGenerator({ height: SL_H, reach: SL_REACH, radius: 0.08 }); lampLights (PointLight 0xffc98a, 60 x (1 - day), distance 24, decay 2)",
+    "example": "webgpu_generator_city",
+    "defaults": {
+      "height": 7,
+      "reach": 1.4,
+      "radius": 0.08,
+      "kelvin": 3520,
+      "lumens": 754,
+      "rays": false,
+      "candela": 60,
+      "colour": "#ffc98a",
+      "range": 24,
+      "decay": 2,
+      "note": "main.js: SL_H = 7, SL_REACH = 1.4, radius 0.08; each lamp a PointLight(0xffc98a) at SL_H - 0.1, SL_REACH along the arm, intensity 60 cd at night (60 x (1 - day)), distance 24, decay 2. lumens = 60 cd x 4 pi = 754 lm (three.js PointLight.power, webgpu_lights_physical). kelvin: the black-body fit nearest 0xffc98a (lib/runtime/lights.mjs kelvinToColor, 10 K steps). The lens glows 0xffe2a6 x 60 (r187 generator) x (night x 0.97 + 0.03). Boulevard spaces lamps 18 m apart, 1.6 m off the walk, the arm over the walk; the light rig sets the light's range from its candela (15.5 m at 60 cd)."
+    }
+  },
+  "made_by": "three.js authors (r187 StreetlightGenerator); 3DPLAT (Boulevard City lamp and light)",
+  "licence": "MIT",
+  "files": {"module": "build.js"},
+  "materials": [
+    {"slot": "metal", "preset": "lamp-metal", "overrides": {}},
+    {"slot": "bulb", "preset": "bulb-glass", "overrides": {"refLumens": 754}}
+  ],
+  "lights": [
+    {"id": "head", "type": "point", "pos": [0, 6.9, 1.4], "kelvin": 3520, "lumens": 754, "shadow": "off", "rays": false, "bulb": "bulb", "range": 24}
+  ],
+  "draw": {
+    "phone": {"lods": ["module"], "shadow": []},
+    "high": {"lods": ["module"], "shadow": ["module"]}
+  },
+  "params": [
+    {"name": "height", "type": "number", "default": 7, "min": 3, "max": 12, "step": 0.1, "label": {"en": "Height (m)", "ar": "الارتفاع (م)"}, "affects": "module"},
+    {"name": "reach", "type": "number", "default": 1.4, "min": 0.5, "max": 4, "step": 0.1, "label": {"en": "Arm reach (m)", "ar": "طول الذراع (م)"}, "affects": "module"},
+    {"name": "kelvin", "type": "number", "default": 3520, "min": 2000, "max": 6500, "step": 10, "label": {"en": "Colour temperature (K)", "ar": "حرارة اللون (كلفن)"}, "affects": "light"},
+    {"name": "lumens", "type": "number", "default": 754, "min": 100, "max": 20000, "step": 1, "label": {"en": "Brightness (lumens)", "ar": "السطوع (لومن)"}, "affects": "light"},
+    {"name": "rays", "type": "bool", "default": false, "label": {"en": "Light rays", "ar": "أشعة الضوء"}, "affects": "light"},
+    {"name": "radius", "type": "number", "default": 0.08, "min": 0.04, "max": 0.2, "step": 0.01, "label": {"en": "Mast radius (m)", "ar": "نصف قطر السارية (م)"}, "affects": "module"}
+  ],
+  "sockets": [
+    {"id": "base", "type": "lamp-base", "pos": [0, 0, 0], "dir": [0, 1, 0], "accepts": ["paving-edge", "kerb-run"], "snap": 0.5}
+  ],
+  "footprint": {"outline": [[-0.25, -0.25], [0.25, -0.25], [0.25, 1.95], [-0.25, 1.95]], "height": [0, 7.56]},
+  "clearance": 0.5,
+  "placement": {"on": ["paving"], "along": ["paving-edge", "kerb-run"], "spacing": [12, 30], "face": "edge"},
+  "collider": [
+    {"type": "cylinder", "pos": [0, 3.5, 0], "radius": 0.22, "halfHeight": 3.5}
+  ],
+  "budgets": {"measured_by":"tools/quality-gate/component/check.mjs","at":"2026-11-10","phone":{"tris":136,"draws":2,"lods":[{"lod":"module","tris":136,"draws":2}]},"high":{"tris":136,"draws":2,"lods":[{"lod":"module","tris":136,"draws":2}]}},
+  "thumb": "thumb.jpg",
+  "slots": {"rig": null, "drive": null}
+}

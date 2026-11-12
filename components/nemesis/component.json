@@ -1,0 +1,358 @@
+{
+  "format": "uew-component@1",
+  "id": "nemesis",
+  "version": "1.0.0",
+  "name": {
+    "en": "Nemesis",
+    "ar": "الخصم"
+  },
+  "summary": {
+    "en": "The nemesis: a bearded man in a black hooded cloak with gold trim and black gloves, standing in an A pose. 1.85 m tall by default.",
+    "ar": "الخصم: رجل ملتحٍ بعباءة سوداء ذات قلنسوة وحواف ذهبية وقفازات سوداء، واقف بوضعية A. ارتفاعه 1.85 م افتراضياً."
+  },
+  "tags": {
+    "en": [
+      "character",
+      "nemesis",
+      "villain",
+      "person",
+      "cloak",
+      "bisht"
+    ],
+    "ar": [
+      "شخصية",
+      "خصم",
+      "شرير",
+      "رجل",
+      "بشت"
+    ]
+  },
+  "kind": "mesh",
+  "category": "character",
+  "source": {
+    "repo": "Kr4T/3dplat-builder",
+    "branch": "release:Characters",
+    "path": "0c26d68c2cf6aff4ffaad6f7e42f26e1.glb (release asset #737716648)",
+    "commit": "f6949b4484c493ac5c1e762118d00c2cde3114a8c47490e5dc4a0b7a15de1d64",
+    "symbol": "tools/import-model.mjs",
+    "example": "webgpu_loader_gltf_compressed",
+    "defaults": {
+      "height": 1.85,
+      "note": "Imported by tools/import-model.mjs: the original (sha256 f6949b4484c4…, kept out of git under assets-src/) turned, centred on its base and scaled to 1.85 m; the file held 3 figures side by side along x, figure 0 kept (numbered from left to right seen from the front); lod0 and lod1 decimated from it (import.variants). r187 examples: webgpu_loader_gltf_compressed (meshopt), webgpu_loader_gltf, webgpu_materials_sss and webgpu_loader_gltf_sheen (the auto-r187 recipe)."
+    }
+  },
+  "made_by": "Kereem, generated on Tencent HY 3D V3.1 (release Characters-2026-11-12)",
+  "licence": "Tencent HY 3D Global output, terms pending review",
+  "internal_only": true,
+  "files": {
+    "lod0": "model_lod0.glb",
+    "lod1": "model_lod1.glb"
+  },
+  "materials": [
+    {
+      "slot": "material-001",
+      "preset": "auto-r187",
+      "overrides": {}
+    }
+  ],
+  "draw": {
+    "phone": {
+      "lods": [
+        "lod1"
+      ],
+      "shadow": []
+    },
+    "high": {
+      "lods": [
+        "lod0",
+        "lod1"
+      ],
+      "distances": [
+        30
+      ],
+      "shadow": [],
+      "shadowFrom": "lod1"
+    }
+  },
+  "params": [
+    {
+      "name": "height",
+      "type": "number",
+      "default": 1.85,
+      "min": 0.46,
+      "max": 7.4,
+      "step": 0.01,
+      "label": {
+        "en": "Height (m)",
+        "ar": "الارتفاع (م)"
+      },
+      "affects": "scale"
+    },
+    {
+      "name": "tint",
+      "type": "colour",
+      "default": "#ffffff",
+      "label": {
+        "en": "Tint",
+        "ar": "الصبغة"
+      },
+      "affects": "material"
+    }
+  ],
+  "sockets": [],
+  "footprint": {
+    "outline": [
+      [
+        -0.534,
+        -0.306
+      ],
+      [
+        0.534,
+        -0.306
+      ],
+      [
+        0.534,
+        0.306
+      ],
+      [
+        -0.534,
+        0.306
+      ]
+    ],
+    "height": [
+      0,
+      1.85
+    ]
+  },
+  "clearance": 0.3,
+  "placement": {
+    "on": [
+      "paving",
+      "lawn",
+      "ground"
+    ]
+  },
+  "collider": [
+    {
+      "type": "box",
+      "pos": [
+        0,
+        0.925,
+        0
+      ],
+      "half": [
+        0.534,
+        0.925,
+        0.306
+      ]
+    }
+  ],
+  "budgets": {"measured_by":"tools/quality-gate/component/check.mjs","at":"2026-11-12","phone":{"tris":30000,"draws":1,"lods":[{"lod":"lod1","tris":30000,"draws":1}]},"high":{"tris":200000,"draws":1,"lods":[{"lod":"lod0","tris":200000,"draws":1},{"lod":"lod1","tris":30000,"draws":1}]}},
+  "thumb": "thumb.jpg",
+  "slots": {
+    "rig": null,
+    "drive": null
+  },
+  "import": {
+    "tool": "tools/import-model.mjs",
+    "command": "node tools/import-model.mjs --from 'release:Kr4T/3dplat-builder@Characters/#737716648' --sha256 f6949b4484c493ac5c1e762118d00c2cde3114a8c47490e5dc4a0b7a15de1d64 --id nemesis --height 1.85 --split --keep 0 --category character --name-en 'Nemesis' --name-ar 'الخصم' --licence 'Tencent HY 3D Global output, terms pending review' --made-by 'Kereem, generated on Tencent HY 3D V3.1 (release Characters-2026-11-12)' --summary-en 'The nemesis: a bearded man in a black hooded cloak with gold trim and black gloves, standing in an A pose. 1.85 m tall by default.' --summary-ar 'الخصم: رجل ملتحٍ بعباءة سوداء ذات قلنسوة وحواف ذهبية وقفازات سوداء، واقف بوضعية A. ارتفاعه 1.85 م افتراضياً.' --tags-en 'character,nemesis,villain,person,cloak,bisht' --tags-ar 'شخصية,خصم,شرير,رجل,بشت' --note 'Release asset 0c26d68c2cf6aff4ffaad6f7e42f26e1.glb: three figures side by side (a 3-view sheet); figure 0, the front-facing one, kept. Identified by rendering it.'",
+    "original": {
+      "kind": "release",
+      "sha256": "f6949b4484c493ac5c1e762118d00c2cde3114a8c47490e5dc4a0b7a15de1d64",
+      "size": 73202560,
+      "faces": 1499908,
+      "fetched": "2026-11-12",
+      "stored": "assets-src/models/f6949b4484c493ac5c1e762118d00c2cde3114a8c47490e5dc4a0b7a15de1d64.glb",
+      "url": "https://api.github.com/repos/Kr4T/3dplat-builder/releases/assets/737716648",
+      "release": {
+        "repo": "Kr4T/3dplat-builder",
+        "tag": "Characters",
+        "name": "Characters-2026-11-12",
+        "asset": "0c26d68c2cf6aff4ffaad6f7e42f26e1.glb",
+        "id": 737716648
+      }
+    },
+    "notes": "Release asset 0c26d68c2cf6aff4ffaad6f7e42f26e1.glb: three figures side by side (a 3-view sheet); figure 0, the front-facing one, kept. Identified by rendering it.",
+    "split": {
+      "axis": "x",
+      "clusters": [
+        {
+          "tris": 494526,
+          "min": [
+            -0.5713,
+            0.0009,
+            -0.1149
+          ],
+          "max": [
+            -0.2191,
+            0.6108,
+            0.087
+          ]
+        },
+        {
+          "tris": 500146,
+          "min": [
+            -0.1661,
+            0.0008,
+            -0.1133
+          ],
+          "max": [
+            0.1778,
+            0.6115,
+            0.1018
+          ]
+        },
+        {
+          "tris": 505236,
+          "min": [
+            0.2063,
+            0,
+            -0.1166
+          ],
+          "max": [
+            0.5749,
+            0.6111,
+            0.1301
+          ]
+        }
+      ],
+      "kept": 0
+    },
+    "normalise": {
+      "yaw": 0,
+      "scale": 3.0332888,
+      "before": {
+        "min": [
+          -0.5713,
+          0.0009,
+          -0.1149
+        ],
+        "max": [
+          -0.2191,
+          0.6108,
+          0.087
+        ]
+      }
+    },
+    "bounds": {
+      "min": [
+        -0.5341,
+        0,
+        -0.3063
+      ],
+      "max": [
+        0.5341,
+        1.85,
+        0.3063
+      ]
+    },
+    "textures": "webp",
+    "presets": {
+      "desktop": {
+        "lod": "lod0",
+        "tris": 200000,
+        "band": [
+          180000,
+          200000
+        ],
+        "texture": 2048
+      },
+      "phone": {
+        "lod": "lod1",
+        "tris": 30000,
+        "band": [
+          27000,
+          30000
+        ],
+        "texture": 1024
+      }
+    },
+    "variants": {
+      "lod0": {
+        "preset": "desktop",
+        "file": "model_lod0.glb",
+        "tris": 200000,
+        "simplifier": "meshopt",
+        "bytes": 2804588,
+        "sha256": "a0f8a6f4192c17ed96095b135be813c54ea594ac78161ed7c9877698955e1690",
+        "textures": [
+          {
+            "mime": "image/webp",
+            "size": [
+              2048,
+              2048
+            ]
+          },
+          {
+            "mime": "image/webp",
+            "size": [
+              2048,
+              2048
+            ]
+          },
+          {
+            "mime": "image/webp",
+            "size": [
+              2048,
+              2048
+            ]
+          }
+        ]
+      },
+      "lod1": {
+        "preset": "phone",
+        "file": "model_lod1.glb",
+        "tris": 30000,
+        "simplifier": "meshopt",
+        "bytes": 737024,
+        "sha256": "d5280c8e74a82d687f0c21f618de2ff57a2d536d550899ed99b90da990a8f6f3",
+        "textures": [
+          {
+            "mime": "image/webp",
+            "size": [
+              1024,
+              1024
+            ]
+          },
+          {
+            "mime": "image/webp",
+            "size": [
+              1024,
+              1024
+            ]
+          },
+          {
+            "mime": "image/webp",
+            "size": [
+              1024,
+              1024
+            ]
+          }
+        ]
+      }
+    },
+    "recipes": {
+      "material-001": {
+        "name": "skin-sss+cloth-sheen+hair",
+        "sss": true,
+        "sheen": 0.35,
+        "metalSpecAA": false,
+        "hair": true,
+        "share": {
+          "skin": 0.25,
+          "cloth": 0.108,
+          "metal": 0,
+          "other": 0.009,
+          "hair": 0.634
+        },
+        "trust": {
+          "metal": true,
+          "rough": true,
+          "why": []
+        },
+        "material": "Material.001"
+      }
+    },
+    "licence_note": "internal prototype only until reviewed"
+  }
+}

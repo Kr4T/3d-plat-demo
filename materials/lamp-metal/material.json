@@ -1,0 +1,12 @@
+{
+  "format": "uew-material@1",
+  "id": "lamp-metal",
+  "name": { "en": "Lamp metal", "ar": "معدن عمود الإنارة" },
+  "source": { "example": "webgpu_generator_city", "repo": "mrdoob/three.js", "branch": "r187", "path": "examples/jsm/generators/city/StreetlightGenerator.js", "symbol": "createStreetlightMaterial (METAL)", "note": "The r187 generator's metal branch, as Boulevard City draws its street lamps (main.js lampHead)." },
+  "params": [
+    { "name": "colour", "type": "colour", "default": "#40433d" },
+    { "name": "roughness", "type": "number", "default": 0.5, "min": 0, "max": 1 },
+    { "name": "metalness", "type": "number", "default": 0.7, "min": 0, "max": 1 }
+  ],
+  "images": []
+}

@@ -1,0 +1,13 @@
+{
+  "format": "uew-material@1",
+  "id": "palm-bark",
+  "name": { "en": "Date palm bark", "ar": "لحاء النخلة" },
+  "source": { "example": "webgpu_loader_gltf", "repo": "Kr4T/3DPLAT", "branch": "round2/boulevard", "commit": "3352816", "path": "apps/boulevard-city-3d/palm.js", "symbol": "palmMaterials (bark branch)", "note": "Fibrous grey-brown bark darkened by the baked AO in the crevices between the leaf-base boots; the rooted wind and lean move the trunk with the fronds (the height scales the instance). Look code: components/date-palm/look.js." },
+  "params": [
+    { "name": "lean", "type": "number", "default": 0, "min": -15, "max": 15 },
+    { "name": "wind", "type": "number", "default": 1, "min": 0, "max": 3 }
+  ],
+  "images": [
+    { "file": "../../components/date-palm/models/palm/frond_normal.png", "asset": "date-palm", "licence": "CC-BY-4.0" }
+  ]
+}

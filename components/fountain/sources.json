@@ -1,0 +1,91 @@
+{
+  "format": "uew-sources@1",
+  "component": "fountain",
+  "date": "2026-11-11",
+  "bar": 8,
+  "barSource": "Kereem, 11 Nov 2026, relayed by the coordinator: \"we are not paying but I need above 8 as a look\"",
+  "recipe": "L27 (Kereem, 11 Nov 2026: \"make that the standard recipe for everything ... they need to look and assess which is closest\")",
+  "target": {
+    "image": "docs/gate/scene-quality/sources/targets/2026-11-05-boulevard-city-3d-v21-fountain-show.jpg",
+    "what": "Boulevard City v21 fountain show (devlog 5 Nov 2026)",
+    "source": "Kr4T/3DPLAT main e0d91a2, docs/devlog/media/",
+    "licence": "CC BY 4.0 (3DPLAT; the frame carries the ODbL map attribution: © OpenStreetMap contributors, Overture Maps)",
+    "author": "3DPLAT",
+    "crop": [
+      150,
+      0,
+      550,
+      420
+    ]
+  },
+  "scoring": {
+    "method": "Side by side: a crop of the target next to one image per candidate (our builder render, a bench render, the official r187 example screenshot, or the CC0 asset's thumbnail), in docs/gate/scene-quality/sources/<id>.jpg. The score (0-10) is the scene-quality worker's visual judgement of closeness to the target in colour, surface detail, light response and shape, written down with a short reason; not a metric. Our renders are SwiftShader (provisional, L4). Paid candidates are listed and flagged, not downloaded and not scored.",
+    "by": "scene-quality worker (Claude), 11 Nov 2026",
+    "comparison": "docs/gate/scene-quality/sources/fountain.jpg",
+    "provisional": true
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "kind": "own-library",
+      "name": "components/fountain (Boulevard spray, fire and smoke; basin from builder/sculpt/basin.js; water from water-ssr.js)",
+      "url": "components/fountain/component.json",
+      "licence": "Apache 2.0 (code)",
+      "paid": false,
+      "score": 7,
+      "judgement": "Same spray show family as the target; the target's mist column is denser and bluer; image from the Task 9 bench (before the water change)."
+    },
+    {
+      "id": "B",
+      "kind": "r187-example",
+      "name": "webgpu_compute_particles",
+      "url": "https://threejs.org/examples/#webgpu_compute_particles",
+      "licence": "MIT",
+      "paid": false,
+      "score": 2,
+      "judgement": "The compute recipe the spray uses; a flat particle field, not a fountain."
+    },
+    {
+      "id": "C",
+      "kind": "r187-example",
+      "name": "webgpu_compute_water",
+      "url": "https://threejs.org/examples/#webgpu_compute_water",
+      "licence": "MIT",
+      "paid": false,
+      "score": 2,
+      "judgement": "Interactive basin water; no spray."
+    },
+    {
+      "id": "D",
+      "kind": "paid",
+      "name": "Asset-store fountain VFX packs",
+      "url": "https://www.fab.com/",
+      "licence": "paid",
+      "paid": true,
+      "score": null,
+      "judgement": "Not downloaded or scored (paid; flag for the coordinator).",
+      "flag": "coordinator"
+    }
+  ],
+  "pick": {
+    "candidate": "A",
+    "why": "Boulevard's own show is the closest and already one draw per component; only its water changed in this pass.",
+    "build": {
+      "base": "Boulevard spray, fire and smoke (main.js), our basin sculpt module",
+      "r187": [
+        "webgpu_compute_particles",
+        "webgpu_water",
+        "webgpu_postprocessing_bloom"
+      ],
+      "tsl_layers": [
+        "compute drops (one pass for all fountains)",
+        "additive spray sprites in the effects layer",
+        "water: water-ssr.js",
+        "bloom on the emissive show"
+      ]
+    },
+    "score": 7,
+    "meetsBar": false,
+    "gap": "Best free candidate 7/10 (A, image from the Task 9 bench). Below the bar: the target mist column is denser and bluer, with the show reflected in the water. To try: denser spray LOD on High, the new water under it judged in a fresh render."
+  }
+}

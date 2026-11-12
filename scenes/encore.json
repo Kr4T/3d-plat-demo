@@ -1,0 +1,1136 @@
+{
+ "format": "uew-scene@1",
+ "environment": {
+  "hour": 18.5,
+  "date": "2026-04-30",
+  "keyLight": 1.5,
+  "moon": true,
+  "clouds": 0.25,
+  "fog": 0.3,
+  "wetness": 0.6,
+  "waterLevel": 0
+ },
+ "areas": [
+  {
+   "uid": "sand",
+   "component": "desert-sand@2.0.0",
+   "transform": {
+    "p": [
+     0,
+     0,
+     0
+    ],
+    "yaw": 0,
+    "s": 1
+   },
+   "params": {
+    "outline": [
+     [
+      -400,
+      -400
+     ],
+     [
+      400,
+      -400
+     ],
+     [
+      400,
+      400
+     ],
+     [
+      -400,
+      400
+     ]
+    ]
+   },
+   "links": []
+  },
+  {
+   "uid": "plaza",
+   "component": "wet-paving@1.0.0",
+   "transform": {
+    "p": [
+     0,
+     0,
+     0
+    ],
+    "yaw": 0,
+    "s": 1
+   },
+   "params": {
+    "outline": [
+     [
+      -40,
+      -24
+     ],
+     [
+      40,
+      -24
+     ],
+     [
+      40,
+      36
+     ],
+     [
+      -40,
+      36
+     ]
+    ],
+    "stoneSet": "sandstone",
+    "wetness": 0.55
+   },
+   "links": []
+  },
+  {
+   "uid": "lake",
+   "component": "lake-water@2.0.0",
+   "transform": {
+    "p": [
+     0,
+     0,
+     0
+    ],
+    "yaw": 0,
+    "s": 1
+   },
+   "params": {
+    "outline": [
+     [
+      40,
+      -18
+     ],
+     [
+      58,
+      -26
+     ],
+     [
+      80,
+      -18
+     ],
+     [
+      90,
+      2
+     ],
+     [
+      84,
+      24
+     ],
+     [
+      64,
+      34
+     ],
+     [
+      40,
+      30
+     ]
+    ]
+   },
+   "links": []
+  },
+  {
+   "uid": "kerb-south",
+   "component": "kerbs@1.0.0",
+   "transform": {
+    "p": [
+     0,
+     0,
+     0
+    ],
+    "yaw": 0,
+    "s": 1
+   },
+   "params": {
+    "path": [
+     [
+      -40,
+      -24
+     ],
+     [
+      40,
+      -24
+     ]
+    ],
+    "height": 0.25,
+    "colour": "#d8d2c4"
+   },
+   "links": [
+    {
+     "socket": "run-0",
+     "to": "plaza.edge-0"
+    }
+   ]
+  },
+  {
+   "uid": "kerb-north",
+   "component": "kerbs@1.0.0",
+   "transform": {
+    "p": [
+     0,
+     0,
+     0
+    ],
+    "yaw": 0,
+    "s": 1
+   },
+   "params": {
+    "path": [
+     [
+      40,
+      36
+     ],
+     [
+      -40,
+      36
+     ]
+    ],
+    "height": 0.25,
+    "colour": "#d8d2c4"
+   },
+   "links": [
+    {
+     "socket": "run-0",
+     "to": "plaza.edge-2"
+    }
+   ]
+  },
+  {
+   "uid": "kerb-west",
+   "component": "kerbs@1.0.0",
+   "transform": {
+    "p": [
+     0,
+     0,
+     0
+    ],
+    "yaw": 0,
+    "s": 1
+   },
+   "params": {
+    "path": [
+     [
+      -40,
+      36
+     ],
+     [
+      -40,
+      -24
+     ]
+    ],
+    "height": 0.25,
+    "colour": "#d8d2c4"
+   },
+   "links": [
+    {
+     "socket": "run-0",
+     "to": "plaza.edge-3"
+    }
+   ]
+  }
+ ],
+ "instances": [
+  {
+   "uid": "stage",
+   "component": "concert-stage@1.0.0",
+   "transform": {
+    "p": [
+     0,
+     0,
+     27
+    ],
+    "yaw": 3.141592653589793,
+    "s": 0.413
+   },
+   "params": {
+    "show": 1.5
+   },
+   "links": []
+  },
+  {
+   "uid": "arena",
+   "component": "kingdom-arena@1.0.0",
+   "transform": {
+    "p": [
+     -150,
+     -3.4,
+     175
+    ],
+    "yaw": 0.5,
+    "s": 0.64
+   },
+   "params": {
+    "glow": 3,
+    "cladding": "#b89a6e"
+   },
+   "links": []
+  },
+  {
+   "uid": "searchlights-west",
+   "component": "searchlights@1.0.0",
+   "transform": {
+    "p": [
+     -21,
+     0,
+     13
+    ],
+    "yaw": 0,
+    "s": 1
+   },
+   "params": {
+    "count": 5
+   },
+   "links": []
+  },
+  {
+   "uid": "searchlights-east",
+   "component": "searchlights@1.0.0",
+   "transform": {
+    "p": [
+     21,
+     0,
+     13
+    ],
+    "yaw": 0,
+    "s": 1
+   },
+   "params": {
+    "count": 5
+   },
+   "links": []
+  },
+  {
+   "uid": "fountain",
+   "component": "fountain@1.0.0",
+   "transform": {
+    "p": [
+     23,
+     0,
+     -9
+    ],
+    "yaw": 0,
+    "s": 0.5
+   },
+   "params": {
+    "jetHeight": 9,
+    "show": 0,
+    "timing": 12
+   },
+   "links": []
+  },
+  {
+   "uid": "lamp-south-1",
+   "component": "street-lamp@1.0.0",
+   "transform": {
+    "p": [
+     -40,
+     0,
+     -24
+    ],
+    "yaw": 3.141592653589793,
+    "s": 1
+   },
+   "params": {
+    "lumens": 2400
+   },
+   "links": [
+    {
+     "socket": "base",
+     "to": "plaza.edge-0"
+    }
+   ]
+  },
+  {
+   "uid": "lamp-south-2",
+   "component": "street-lamp@1.0.0",
+   "transform": {
+    "p": [
+     -20,
+     0,
+     -24
+    ],
+    "yaw": 3.141592653589793,
+    "s": 1
+   },
+   "params": {
+    "lumens": 2400
+   },
+   "links": [
+    {
+     "socket": "base",
+     "to": "plaza.edge-0"
+    }
+   ]
+  },
+  {
+   "uid": "lamp-south-3",
+   "component": "street-lamp@1.0.0",
+   "transform": {
+    "p": [
+     0,
+     0,
+     -24
+    ],
+    "yaw": 3.141592653589793,
+    "s": 1
+   },
+   "params": {
+    "lumens": 2400
+   },
+   "links": [
+    {
+     "socket": "base",
+     "to": "plaza.edge-0"
+    }
+   ]
+  },
+  {
+   "uid": "lamp-south-4",
+   "component": "street-lamp@1.0.0",
+   "transform": {
+    "p": [
+     20,
+     0,
+     -24
+    ],
+    "yaw": 3.141592653589793,
+    "s": 1
+   },
+   "params": {
+    "lumens": 2400
+   },
+   "links": [
+    {
+     "socket": "base",
+     "to": "plaza.edge-0"
+    }
+   ]
+  },
+  {
+   "uid": "lamp-south-5",
+   "component": "street-lamp@1.0.0",
+   "transform": {
+    "p": [
+     40,
+     0,
+     -24
+    ],
+    "yaw": 3.141592653589793,
+    "s": 1
+   },
+   "params": {
+    "lumens": 2400
+   },
+   "links": [
+    {
+     "socket": "base",
+     "to": "plaza.edge-0"
+    }
+   ]
+  },
+  {
+   "uid": "lamp-west-1",
+   "component": "street-lamp@1.0.0",
+   "transform": {
+    "p": [
+     -40,
+     0,
+     -6
+    ],
+    "yaw": -1.5707963267948966,
+    "s": 1
+   },
+   "params": {
+    "lumens": 2400
+   },
+   "links": [
+    {
+     "socket": "base",
+     "to": "plaza.edge-3"
+    }
+   ]
+  },
+  {
+   "uid": "lamp-west-2",
+   "component": "street-lamp@1.0.0",
+   "transform": {
+    "p": [
+     -40,
+     0,
+     22
+    ],
+    "yaw": -1.5707963267948966,
+    "s": 1
+   },
+   "params": {
+    "lumens": 2400
+   },
+   "links": [
+    {
+     "socket": "base",
+     "to": "plaza.edge-3"
+    }
+   ]
+  },
+  {
+   "uid": "lamp-quay-1",
+   "component": "street-lamp@1.0.0",
+   "transform": {
+    "p": [
+     40,
+     0,
+     -6
+    ],
+    "yaw": 1.5707963267948966,
+    "s": 1
+   },
+   "params": {
+    "lumens": 2400
+   },
+   "links": [
+    {
+     "socket": "base",
+     "to": "plaza.edge-1"
+    }
+   ]
+  },
+  {
+   "uid": "lamp-quay-2",
+   "component": "street-lamp@1.0.0",
+   "transform": {
+    "p": [
+     40,
+     0,
+     22
+    ],
+    "yaw": 1.5707963267948966,
+    "s": 1
+   },
+   "params": {
+    "lumens": 2400
+   },
+   "links": [
+    {
+     "socket": "base",
+     "to": "plaza.edge-1"
+    }
+   ]
+  },
+  {
+   "uid": "palm-quay-1",
+   "component": "date-palm@1.0.0",
+   "transform": {
+    "p": [
+     40,
+     0,
+     -8
+    ],
+    "yaw": 0,
+    "s": 1
+   },
+   "params": {
+    "height": 11.2
+   },
+   "links": [
+    {
+     "socket": "pit",
+     "to": "plaza.edge-1"
+    }
+   ]
+  },
+  {
+   "uid": "palm-quay-2",
+   "component": "date-palm@1.0.0",
+   "transform": {
+    "p": [
+     40,
+     0,
+     6
+    ],
+    "yaw": 0,
+    "s": 1
+   },
+   "params": {
+    "height": 9.6
+   },
+   "links": [
+    {
+     "socket": "pit",
+     "to": "plaza.edge-1"
+    }
+   ]
+  },
+  {
+   "uid": "palm-quay-3",
+   "component": "date-palm@1.0.0",
+   "transform": {
+    "p": [
+     40,
+     0,
+     20
+    ],
+    "yaw": 0,
+    "s": 1
+   },
+   "params": {
+    "height": 10.47
+   },
+   "links": [
+    {
+     "socket": "pit",
+     "to": "plaza.edge-1"
+    }
+   ]
+  },
+  {
+   "uid": "palm-west-1",
+   "component": "date-palm@1.0.0",
+   "transform": {
+    "p": [
+     -40,
+     0,
+     -8
+    ],
+    "yaw": 0,
+    "s": 1
+   },
+   "params": {
+    "height": 10.47
+   },
+   "links": [
+    {
+     "socket": "pit",
+     "to": "plaza.edge-3"
+    }
+   ]
+  },
+  {
+   "uid": "palm-west-2",
+   "component": "date-palm@1.0.0",
+   "transform": {
+    "p": [
+     -40,
+     0,
+     6
+    ],
+    "yaw": 0,
+    "s": 1
+   },
+   "params": {
+    "height": 11.6
+   },
+   "links": [
+    {
+     "socket": "pit",
+     "to": "plaza.edge-3"
+    }
+   ]
+  },
+  {
+   "uid": "palm-west-3",
+   "component": "date-palm@1.0.0",
+   "transform": {
+    "p": [
+     -40,
+     0,
+     20
+    ],
+    "yaw": 0,
+    "s": 1
+   },
+   "params": {
+    "height": 9.8
+   },
+   "links": [
+    {
+     "socket": "pit",
+     "to": "plaza.edge-3"
+    }
+   ]
+  },
+  {
+   "uid": "palm-shore-1",
+   "component": "date-palm@1.0.0",
+   "transform": {
+    "p": [
+     69,
+     0,
+     -22
+    ],
+    "yaw": 0,
+    "s": 1
+   },
+   "params": {
+    "height": 9.2,
+    "lean": 3
+   },
+   "links": [
+    {
+     "socket": "pit",
+     "to": "lake.edge-1"
+    }
+   ]
+  },
+  {
+   "uid": "palm-shore-2",
+   "component": "date-palm@1.0.0",
+   "transform": {
+    "p": [
+     85,
+     0,
+     -8
+    ],
+    "yaw": 0,
+    "s": 1
+   },
+   "params": {
+    "height": 12,
+    "lean": -2
+   },
+   "links": [
+    {
+     "socket": "pit",
+     "to": "lake.edge-2"
+    }
+   ]
+  },
+  {
+   "uid": "palm-shore-3",
+   "component": "date-palm@1.0.0",
+   "transform": {
+    "p": [
+     87,
+     0,
+     13
+    ],
+    "yaw": 0,
+    "s": 1
+   },
+   "params": {
+    "height": 10.47,
+    "lean": 4
+   },
+   "links": [
+    {
+     "socket": "pit",
+     "to": "lake.edge-3"
+    }
+   ]
+  },
+  {
+   "uid": "palm-shore-4",
+   "component": "date-palm@1.0.0",
+   "transform": {
+    "p": [
+     74,
+     0,
+     29
+    ],
+    "yaw": 0,
+    "s": 1
+   },
+   "params": {
+    "height": 11,
+    "lean": 0
+   },
+   "links": [
+    {
+     "socket": "pit",
+     "to": "lake.edge-4"
+    }
+   ]
+  },
+  {
+   "uid": "palm-grove-1",
+   "component": "date-palm@1.0.0",
+   "transform": {
+    "p": [
+     -51,
+     0,
+     -14
+    ],
+    "yaw": 0,
+    "s": 1
+   },
+   "params": {
+    "height": 12.4,
+    "lean": -3
+   },
+   "links": []
+  },
+  {
+   "uid": "palm-grove-2",
+   "component": "date-palm@1.0.0",
+   "transform": {
+    "p": [
+     -56,
+     0,
+     2
+    ],
+    "yaw": 0,
+    "s": 1
+   },
+   "params": {
+    "height": 9.4,
+    "lean": 2
+   },
+   "links": []
+  },
+  {
+   "uid": "palm-grove-3",
+   "component": "date-palm@1.0.0",
+   "transform": {
+    "p": [
+     -50,
+     0,
+     20
+    ],
+    "yaw": 0,
+    "s": 1
+   },
+   "params": {
+    "height": 11,
+    "lean": 0
+   },
+   "links": []
+  },
+  {
+   "uid": "palm-grove-4",
+   "component": "date-palm@1.0.0",
+   "transform": {
+    "p": [
+     -62,
+     0,
+     -6
+    ],
+    "yaw": 0,
+    "s": 1
+   },
+   "params": {
+    "height": 8.6,
+    "lean": 5
+   },
+   "links": []
+  },
+  {
+   "uid": "bench-south-1",
+   "component": "bench@1.0.0",
+   "transform": {
+    "p": [
+     -10,
+     0,
+     -23.72
+    ],
+    "yaw": 3.141592653589793,
+    "s": 1
+   },
+   "params": {},
+   "links": [
+    {
+     "socket": "front",
+     "to": "plaza.edge-0"
+    }
+   ]
+  },
+  {
+   "uid": "bench-south-2",
+   "component": "bench@1.0.0",
+   "transform": {
+    "p": [
+     10,
+     0,
+     -23.72
+    ],
+    "yaw": 3.141592653589793,
+    "s": 1
+   },
+   "params": {},
+   "links": [
+    {
+     "socket": "front",
+     "to": "plaza.edge-0"
+    }
+   ]
+  },
+  {
+   "uid": "hero",
+   "component": "hero@1.0.0",
+   "transform": {
+    "p": [
+     -3,
+     0,
+     0
+    ],
+    "yaw": 0.7086262721276703,
+    "s": 1
+   },
+   "params": {},
+   "links": [],
+   "behaviours": [
+    {
+     "type": "player",
+     "params": {}
+    },
+    {
+     "type": "equippable",
+     "params": {
+      "item": "scimitar"
+     }
+    },
+    {
+     "type": "combo_attack",
+     "params": {}
+    }
+   ]
+  },
+  {
+   "uid": "horse",
+   "component": "horse@1.0.0",
+   "transform": {
+    "p": [
+     -4.45,
+     0,
+     3.2
+    ],
+    "yaw": 0.5086262721276702,
+    "s": 1
+   },
+   "params": {},
+   "links": []
+  },
+  {
+   "uid": "nemesis",
+   "component": "nemesis@1.0.0",
+   "transform": {
+    "p": [
+     3,
+     0,
+     7
+    ],
+    "yaw": -2.4329663814621227,
+    "s": 1
+   },
+   "params": {},
+   "links": []
+  },
+  {
+   "uid": "djinn",
+   "component": "djinn@1.0.0",
+   "transform": {
+    "p": [
+     5.6,
+     0.9,
+     10.6
+    ],
+    "yaw": -2.4599868306493877,
+    "s": 1
+   },
+   "params": {
+    "height": 4.4
+   },
+   "links": []
+  },
+  {
+   "uid": "lamp-key-west",
+   "component": "street-lamp@1.0.0",
+   "transform": {
+    "p": [
+     -8.5,
+     0,
+     2.5
+    ],
+    "yaw": 1.2847448850775784,
+    "s": 1
+   },
+   "params": {
+    "lumens": 4000,
+    "kelvin": 3300
+   },
+   "links": []
+  },
+  {
+   "uid": "lamp-key-east",
+   "component": "street-lamp@1.0.0",
+   "transform": {
+    "p": [
+     7.5,
+     0,
+     0.5
+    ],
+    "yaw": -0.8685393952858895,
+    "s": 1
+   },
+   "params": {
+    "lumens": 4000,
+    "kelvin": 3300
+   },
+   "links": []
+  },
+  {
+   "uid": "lamp-key-north",
+   "component": "street-lamp@1.0.0",
+   "transform": {
+    "p": [
+     -2.5,
+     0,
+     11
+    ],
+    "yaw": 2.6135182051634334,
+    "s": 1
+   },
+   "params": {
+    "lumens": 4000,
+    "kelvin": 3300
+   },
+   "links": []
+  },
+  {
+   "uid": "lamp-key-south",
+   "component": "street-lamp@1.0.0",
+   "transform": {
+    "p": [
+     2.5,
+     0,
+     -5.5
+    ],
+    "yaw": -0.25732371497108864,
+    "s": 1
+   },
+   "params": {
+    "lumens": 4000,
+    "kelvin": 3300
+   },
+   "links": []
+  },
+  {
+   "uid": "spawn-stage_front",
+   "component": "djinn@1.0.0",
+   "transform": {
+    "p": [
+     -9,
+     0,
+     14.711857854
+    ],
+    "yaw": 2.654693421778524,
+    "s": 1
+   },
+   "params": {
+    "height": 2.2
+   },
+   "links": [],
+   "behaviours": [
+    {
+     "type": "health",
+     "params": {
+      "hp": 60,
+      "max": 60
+     }
+    },
+    {
+     "type": "hit_reaction",
+     "params": {}
+    }
+   ]
+  },
+  {
+   "uid": "spawn-boulevard",
+   "component": "djinn@1.0.0",
+   "transform": {
+    "p": [
+     -34,
+     0,
+     9
+    ],
+    "yaw": 1.8295672187585943,
+    "s": 1
+   },
+   "params": {
+    "height": 2.2
+   },
+   "links": [],
+   "behaviours": [
+    {
+     "type": "health",
+     "params": {
+      "hp": 60,
+      "max": 60
+     }
+    },
+    {
+     "type": "hit_reaction",
+     "params": {}
+    }
+   ]
+  },
+  {
+   "uid": "spawn-lake_shore",
+   "component": "djinn@1.0.0",
+   "transform": {
+    "p": [
+     34,
+     0,
+     11
+    ],
+    "yaw": -1.8836975546752812,
+    "s": 1
+   },
+   "params": {
+    "height": 2.2
+   },
+   "links": [],
+   "behaviours": [
+    {
+     "type": "health",
+     "params": {
+      "hp": 60,
+      "max": 60
+     }
+    },
+    {
+     "type": "hit_reaction",
+     "params": {}
+    }
+   ]
+  }
+ ],
+ "meta": {
+  "name": "Encore",
+  "made_by": "3DPLAT builder (tools/make-encore-scene.mjs)",
+  "view": {
+   "p": [
+    -9,
+    3,
+    -18
+   ],
+   "target": [
+    0.4,
+    3,
+    12
+   ],
+   "portrait": {
+    "p": [
+     -10.65,
+     2.6,
+     -6.88
+    ],
+    "target": [
+     0.55,
+     0.49,
+     6.17
+    ]
+   }
+  }
+ },
+ "world": {
+  "behaviours": [
+   {
+    "type": "waves",
+    "params": {}
+   },
+   {
+    "type": "ai_director",
+    "params": {
+     "pace": "waves"
+    }
+   }
+  ]
+ }
+}

@@ -1,0 +1,303 @@
+{
+  "format": "uew-component@1",
+  "id": "desert-sand",
+  "version": "2.0.0",
+  "name": {
+    "en": "Desert sand",
+    "ar": "رمل صحراوي"
+  },
+  "summary": {
+    "en": "The builder's desert ground as an area: real dunes (transverse, barchan, star or linear) shaped by the wind, with long gentle windward slopes and steep slip faces, and flat sand kept clear round every piece placed on it, blending into the dunes. Wind ripples, glinting grains, and wet dark sand along every water area.",
+    "ar": "أرض الصحراء في المُنشئ كقطعة مساحة: كثبان حقيقية (عرضية أو هلالية أو نجمية أو طولية) تشكّلها الريح، بمنحدرات لطيفة في وجه الريح ووجوه انزلاق شديدة، ورمل مستوٍ حول كل قطعة توضع عليه يندمج في الكثبان. تموجات الريح وحبيبات لامعة ورمل داكن مبلل على حافة كل ماء."
+  },
+  "tags": {
+    "en": [
+      "sand",
+      "desert",
+      "ground",
+      "dunes",
+      "najd",
+      "riyadh",
+      "terrain",
+      "barchan"
+    ],
+    "ar": [
+      "رمل",
+      "صحراء",
+      "أرض",
+      "كثبان",
+      "نجد",
+      "الرياض",
+      "تضاريس",
+      "هلالية"
+    ]
+  },
+  "kind": "generator",
+  "area": true,
+  "category": "ground",
+  "source": {
+    "repo": "Kr4T/3DPLAT",
+    "branch": "round2/boulevard",
+    "commit": "3352816",
+    "path": "apps/boulevard-city-3d/main.js",
+    "symbol": "groundMaterial (GC.SAND) on ground (PlaneGeometry at y = 0)",
+    "example": "webgpu_tsl_procedural_terrain",
+    "defaults": {
+      "outline": [
+        [
+          -120,
+          -120
+        ],
+        [
+          120,
+          -120
+        ],
+        [
+          120,
+          120
+        ],
+        [
+          -120,
+          120
+        ]
+      ],
+      "y": -0.02,
+      "tileMetres": 9,
+      "roughness": 0.95,
+      "note": "2.0.0 (11 Nov 2026, dunes round): the frozen Boulevard-derived sand look (shared/materials/boulevard-ground.js, unchanged; see 1.0.0 for its history) on a generic desert terrain of our own (builder/sculpt/desert-terrain.js, dunes.js): r187 webgpu_tsl_procedural_terrain (noise height field, normals from neighbouring heights) and webgl_geometry_terrain (a height field written once into an indexed grid). Dune types transverse, barchan, star and linear from domain-warped aeolian profiles with the slip face at the slope cap; a flat clear zone round every placed piece from the scene layout (lib/scene/layout.mjs), replacing 1.0.0's fixed flatRadius round the origin; the wet band from every water area (1.0.0's `shore` param); a distance-graded grid (one draw); height-field normals. Boulevard's sand was one flat plane under the whole map (reference/desert-sand.js): the no-loss pixel rule against it is expected to fail for the changed look.",
+      "duneType": "transverse",
+      "duneHeight": 10,
+      "duneSpacing": 140,
+      "windAngle": 35,
+      "irregularity": 0.5,
+      "seed": 7,
+      "maxSlope": 15,
+      "clearMargin": 8,
+      "clearBlend": 40
+    }
+  },
+  "made_by": "3DPLAT (desert terrain sculpt module builder/sculpt/desert-terrain.js and dunes.js; TSL sand material shared/materials/boulevard-ground.js); ripple maps ambientCG Ground097 (Lennart Demes, CC0)",
+  "licence": "Apache-2.0",
+  "files": {
+    "module": "../../builder/sculpt/desert-terrain.js"
+  },
+  "materials": [
+    {
+      "slot": "surface",
+      "preset": "desert-sand",
+      "overrides": {}
+    }
+  ],
+  "draw": {
+    "phone": {
+      "lods": [
+        "module"
+      ],
+      "shadow": []
+    },
+    "high": {
+      "lods": [
+        "module"
+      ],
+      "shadow": []
+    }
+  },
+  "params": [
+    {
+      "name": "outline",
+      "type": "outline",
+      "default": [
+        [
+          -400,
+          -400
+        ],
+        [
+          400,
+          -400
+        ],
+        [
+          400,
+          400
+        ],
+        [
+          -400,
+          400
+        ]
+      ],
+      "label": {
+        "en": "Outline",
+        "ar": "المخطط"
+      },
+      "affects": "module"
+    },
+    {
+      "name": "duneType",
+      "type": "enum",
+      "default": "transverse",
+      "options": [
+        "transverse",
+        "barchan",
+        "star",
+        "linear"
+      ],
+      "label": {
+        "en": "Dune type",
+        "ar": "نوع الكثبان"
+      },
+      "affects": "module"
+    },
+    {
+      "name": "duneHeight",
+      "type": "number",
+      "default": 10,
+      "min": 0,
+      "max": 40,
+      "step": 0.5,
+      "label": {
+        "en": "Dune height (m)",
+        "ar": "ارتفاع الكثبان (م)"
+      },
+      "affects": "module"
+    },
+    {
+      "name": "duneSpacing",
+      "type": "number",
+      "default": 140,
+      "min": 40,
+      "max": 400,
+      "step": 5,
+      "label": {
+        "en": "Dune spacing (m)",
+        "ar": "المسافة بين الكثبان (م)"
+      },
+      "affects": "module"
+    },
+    {
+      "name": "windAngle",
+      "type": "number",
+      "default": 35,
+      "min": 0,
+      "max": 360,
+      "step": 1,
+      "label": {
+        "en": "Wind direction (degrees)",
+        "ar": "اتجاه الريح (درجة)"
+      },
+      "affects": "module"
+    },
+    {
+      "name": "irregularity",
+      "type": "number",
+      "default": 0.5,
+      "min": 0,
+      "max": 1,
+      "step": 0.05,
+      "label": {
+        "en": "Irregularity",
+        "ar": "عدم الانتظام"
+      },
+      "affects": "module"
+    },
+    {
+      "name": "seed",
+      "type": "number",
+      "default": 7,
+      "min": 0,
+      "max": 9999,
+      "step": 1,
+      "label": {
+        "en": "Variation (seed)",
+        "ar": "التنويع (البذرة)"
+      },
+      "affects": "module"
+    },
+    {
+      "name": "maxSlope",
+      "type": "number",
+      "default": 15,
+      "min": 5,
+      "max": 25,
+      "step": 0.5,
+      "label": {
+        "en": "Steepest slip face (degrees)",
+        "ar": "أشد انحدار لوجه الانزلاق (درجة)"
+      },
+      "affects": "module"
+    },
+    {
+      "name": "clearMargin",
+      "type": "number",
+      "default": 8,
+      "min": 0,
+      "max": 60,
+      "step": 0.5,
+      "label": {
+        "en": "Flat margin round pieces (m)",
+        "ar": "هامش مستوٍ حول القطع (م)"
+      },
+      "affects": "module"
+    },
+    {
+      "name": "clearBlend",
+      "type": "number",
+      "default": 40,
+      "min": 5,
+      "max": 200,
+      "step": 1,
+      "label": {
+        "en": "Blend into the dunes (m)",
+        "ar": "الاندماج في الكثبان (م)"
+      },
+      "affects": "module"
+    },
+    {
+      "name": "ripples",
+      "type": "number",
+      "default": 1,
+      "min": 0,
+      "max": 2,
+      "step": 0.05,
+      "label": {
+        "en": "Ripples",
+        "ar": "التموجات"
+      },
+      "affects": "material"
+    },
+    {
+      "name": "sparkle",
+      "type": "number",
+      "default": 1,
+      "min": 0,
+      "max": 2,
+      "step": 0.05,
+      "label": {
+        "en": "Grain sparkle",
+        "ar": "لمعان الحبيبات"
+      },
+      "affects": "material"
+    },
+    {
+      "name": "tint",
+      "type": "colour",
+      "default": "#ffffff",
+      "label": {
+        "en": "Sand tint",
+        "ar": "لون الرمل"
+      },
+      "affects": "material"
+    }
+  ],
+  "sockets": [],
+  "placement": {
+    "on": [
+      "ground"
+    ],
+    "keep_out": []
+  },
+  "budgets": {},
+  "thumb": "thumb.jpg",
+  "slots": {
+    "rig": null,
+    "drive": null
+  }
+}

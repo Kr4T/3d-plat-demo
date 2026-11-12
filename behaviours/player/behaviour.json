@@ -1,0 +1,199 @@
+{
+  "format": "uew-behaviour@1",
+  "type": "player",
+  "name": {
+    "en": "Player",
+    "ar": "اللاعب"
+  },
+  "summary": {
+    "en": "The one you play as: Walk mode drives this character with the keyboard, a touch stick or a gamepad. They run by default and sprint with Shift or a full push of the stick, with momentum, a turn speed, a jump and a dodge, and a follow camera that trails and swings behind them by itself and orbits on a drag. Rapier physics: gravity, steps, slopes, solid pieces and water. Works on any character.",
+    "ar": "الشخصية التي تلعب بها: وضع التجوّل يحرّكها بلوحة المفاتيح أو عصا اللمس أو يد التحكم. تجري افتراضياً وتنطلق بأقصى سرعة مع Shift أو بدفع العصا كاملةً، مع زخم وسرعة دوران وقفز ومراوغة، وكاميرا تتبعها وتعود خلفها تلقائياً وتدور بالسحب. فيزياء Rapier: الجاذبية والدرجات والمنحدرات والقطع الصلبة والماء. تعمل مع أي شخصية."
+  },
+  "targets": [
+    "character"
+  ],
+  "params": [
+    {
+      "name": "runSpeed",
+      "type": "number",
+      "default": 6.2,
+      "min": 3,
+      "max": 12,
+      "step": 0.1,
+      "label": {
+        "en": "Run speed (m/s)",
+        "ar": "سرعة الجري (م/ث)"
+      },
+      "affects": "module"
+    },
+    {
+      "name": "sprintSpeed",
+      "type": "number",
+      "default": 9,
+      "min": 3,
+      "max": 18,
+      "step": 0.1,
+      "label": {
+        "en": "Sprint speed (m/s)",
+        "ar": "سرعة الانطلاق (م/ث)"
+      },
+      "affects": "module"
+    },
+    {
+      "name": "acceleration",
+      "type": "number",
+      "default": 30,
+      "min": 5,
+      "max": 80,
+      "step": 1,
+      "label": {
+        "en": "Acceleration (m/s²)",
+        "ar": "التسارع (م/ث²)"
+      },
+      "affects": "module"
+    },
+    {
+      "name": "deceleration",
+      "type": "number",
+      "default": 36,
+      "min": 5,
+      "max": 80,
+      "step": 1,
+      "label": {
+        "en": "Braking (m/s²)",
+        "ar": "الكبح (م/ث²)"
+      },
+      "affects": "module"
+    },
+    {
+      "name": "turnSpeed",
+      "type": "number",
+      "default": 720,
+      "min": 90,
+      "max": 1440,
+      "step": 10,
+      "label": {
+        "en": "Turn speed (degrees/s)",
+        "ar": "سرعة الدوران (درجة/ث)"
+      },
+      "affects": "module"
+    },
+    {
+      "name": "airControl",
+      "type": "number",
+      "default": 0.35,
+      "min": 0,
+      "max": 1,
+      "step": 0.05,
+      "label": {
+        "en": "Control in the air (0 to 1)",
+        "ar": "التحكم في الهواء (0 إلى 1)"
+      },
+      "affects": "module"
+    },
+    {
+      "name": "jump",
+      "type": "number",
+      "default": 5.6,
+      "min": 0,
+      "max": 10,
+      "step": 0.1,
+      "label": {
+        "en": "Jump (m/s up)",
+        "ar": "القفز (م/ث للأعلى)"
+      },
+      "affects": "module"
+    },
+    {
+      "name": "dodgeSpeed",
+      "type": "number",
+      "default": 14,
+      "min": 0,
+      "max": 25,
+      "step": 0.5,
+      "label": {
+        "en": "Dodge speed (m/s, 0 = off)",
+        "ar": "سرعة المراوغة (م/ث، 0 = إيقاف)"
+      },
+      "affects": "module"
+    },
+    {
+      "name": "dodgeTime",
+      "type": "number",
+      "default": 0.22,
+      "min": 0.1,
+      "max": 0.6,
+      "step": 0.01,
+      "label": {
+        "en": "Dodge time (s)",
+        "ar": "مدة المراوغة (ث)"
+      },
+      "affects": "module"
+    },
+    {
+      "name": "dodgeCooldown",
+      "type": "number",
+      "default": 0.6,
+      "min": 0,
+      "max": 3,
+      "step": 0.05,
+      "label": {
+        "en": "Dodge cooldown (s)",
+        "ar": "مهلة المراوغة (ث)"
+      },
+      "affects": "module"
+    },
+    {
+      "name": "cameraDistance",
+      "type": "number",
+      "default": 4.6,
+      "min": 2.2,
+      "max": 9,
+      "step": 0.1,
+      "label": {
+        "en": "Camera distance (m)",
+        "ar": "بُعد الكاميرا (م)"
+      },
+      "affects": "module"
+    },
+    {
+      "name": "cameraLag",
+      "type": "number",
+      "default": 0.12,
+      "min": 0,
+      "max": 0.6,
+      "step": 0.01,
+      "label": {
+        "en": "Camera lag (s)",
+        "ar": "تأخّر الكاميرا (ث)"
+      },
+      "affects": "module"
+    },
+    {
+      "name": "cameraRecentre",
+      "type": "number",
+      "default": 0.7,
+      "min": 0,
+      "max": 4,
+      "step": 0.1,
+      "label": {
+        "en": "Camera swings behind (rad/s, 0 = off)",
+        "ar": "عودة الكاميرا خلف الشخصية (راديان/ث، 0 = إيقاف)"
+      },
+      "affects": "module"
+    },
+    {
+      "name": "lean",
+      "type": "number",
+      "default": 8,
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "label": {
+        "en": "Lean (degrees)",
+        "ar": "الميل (درجة)"
+      },
+      "affects": "module"
+    }
+  ]
+}

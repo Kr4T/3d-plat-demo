@@ -1,0 +1,45 @@
+{
+  "format": "uew-behaviour@1",
+  "type": "hit_reaction",
+  "name": {
+    "en": "Hit reaction",
+    "ar": "رد فعل الضربة"
+  },
+  "summary": {
+    "en": "Reacts to hits: a knock-back push through Rapier physics away from the attacker, and a flinch (the hit-react pose on a rigged character).",
+    "ar": "يتفاعل مع الضربات: دفعة إلى الخلف عبر فيزياء Rapier بعيدًا عن المهاجم، وارتداد (وضعية التأثر على شخصية مزوّدة بهيكل عظمي)."
+  },
+  "targets": [
+    "character",
+    "animal",
+    "piece"
+  ],
+  "params": [
+    {
+      "name": "knockback",
+      "type": "number",
+      "default": 3,
+      "label": {
+        "en": "Knock-back (m/s)",
+        "ar": "الدفع للخلف (م/ث)"
+      },
+      "affects": "module",
+      "min": 0,
+      "max": 12,
+      "step": 0.1
+    },
+    {
+      "name": "stagger",
+      "type": "number",
+      "default": 0.35,
+      "label": {
+        "en": "Flinch (s)",
+        "ar": "الارتداد (ث)"
+      },
+      "affects": "module",
+      "min": 0,
+      "max": 2,
+      "step": 0.05
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "format": "uew-material@1",
+  "id": "palm-frond",
+  "name": { "en": "Date palm fronds", "ar": "سعف النخلة" },
+  "source": { "example": "webgpu_loader_gltf", "repo": "Kr4T/3DPLAT", "branch": "round2/boulevard", "commit": "3352816", "path": "apps/boulevard-city-3d/palm.js", "symbol": "palmMaterials (leaf branch of full; card)", "note": "Glaucous grey-green pinnate leaflets with a waxy sheen on High, sunlight through the thin leaflets, pale rachis, yellowed old fronds; rooted wind and leaflet flutter; physical (sheen) on High's near LOD only, as Boulevard. part: frond (the near LODs) or card (the far impostor). Look code: components/date-palm/look.js." },
+  "params": [
+    { "name": "part", "type": "enum", "default": "frond", "options": ["frond", "card"] },
+    { "name": "lean", "type": "number", "default": 0, "min": -15, "max": 15 },
+    { "name": "wind", "type": "number", "default": 1, "min": 0, "max": 3 },
+    { "name": "frondTint", "type": "colour", "default": "#ffffff" }
+  ],
+  "images": [
+    { "file": "../../components/date-palm/models/palm/frond_maps.png", "asset": "date-palm", "licence": "CC-BY-4.0" },
+    { "file": "../../components/date-palm/models/palm/frond_normal.png", "asset": "date-palm", "licence": "CC-BY-4.0" },
+    { "file": "../../components/date-palm/models/palm/card_maps.png", "asset": "date-palm", "licence": "CC-BY-4.0" },
+    { "file": "../../components/date-palm/models/palm/card_normal.png", "asset": "date-palm", "licence": "CC-BY-4.0" }
+  ]
+}

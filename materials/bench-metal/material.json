@@ -1,0 +1,12 @@
+{
+  "format": "uew-material@1",
+  "id": "bench-metal",
+  "name": { "en": "Bench iron", "ar": "حديد المقعد" },
+  "source": { "example": "webgpu_generator_city", "repo": "mrdoob/three.js", "branch": "r187", "path": "examples/jsm/generators/city/BenchGenerator.js", "symbol": "createBenchMaterial (IRON)", "note": "The r187 generator's dark cast iron, as Boulevard City draws its benches." },
+  "params": [
+    { "name": "colour", "type": "colour", "default": "#232322" },
+    { "name": "roughness", "type": "number", "default": 0.5, "min": 0, "max": 1 },
+    { "name": "metalness", "type": "number", "default": 0.6, "min": 0, "max": 1 }
+  ],
+  "images": []
+}

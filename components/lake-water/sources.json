@@ -1,0 +1,103 @@
+{
+  "format": "uew-sources@1",
+  "component": "lake-water",
+  "date": "2026-11-11",
+  "bar": 8,
+  "barSource": "Kereem, 11 Nov 2026, relayed by the coordinator: \"we are not paying but I need above 8 as a look\"",
+  "recipe": "L27 (Kereem, 11 Nov 2026: \"make that the standard recipe for everything ... they need to look and assess which is closest\")",
+  "target": {
+    "image": "docs/gate/scene-quality/sources/targets/2026-11-05-boulevard-city-3d-v20-sky-dusk.jpg",
+    "what": "Boulevard City v20 dusk over the lake (devlog 5 Nov 2026)",
+    "source": "Kr4T/3DPLAT main e0d91a2, docs/devlog/media/",
+    "licence": "CC BY 4.0 (3DPLAT; the frame carries the ODbL map attribution: © OpenStreetMap contributors, Overture Maps)",
+    "author": "3DPLAT",
+    "crop": [
+      0,
+      200,
+      960,
+      600
+    ]
+  },
+  "scoring": {
+    "method": "Side by side: a crop of the target next to one image per candidate (our builder render, a bench render, the official r187 example screenshot, or the CC0 asset's thumbnail), in docs/gate/scene-quality/sources/<id>.jpg. The score (0-10) is the scene-quality worker's visual judgement of closeness to the target in colour, surface detail, light response and shape, written down with a short reason; not a metric. Our renders are SwiftShader (provisional, L4). Paid candidates are listed and flagged, not downloaded and not scored.",
+    "by": "scene-quality worker (Claude), 11 Nov 2026",
+    "comparison": "docs/gate/scene-quality/sources/lake-water.jpg",
+    "provisional": true
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "kind": "own-library",
+      "name": "shared/materials/water-ssr.js (dielectric, Fresnel PMREM + night-sky mirror, SSR weight, filtered ripples)",
+      "url": "shared/materials/water-ssr.js",
+      "licence": "Apache 2.0 (code); normal map MIT (three.js)",
+      "paid": false,
+      "score": 7,
+      "judgement": "Dark water with the palms and lamps mirrored and streaked like the target; the target has many more bright sources to reflect."
+    },
+    {
+      "id": "B",
+      "kind": "own-library",
+      "name": "Boulevard City waterSimple (metalness 0.6)",
+      "url": "components/lake-water/thumb.jpg",
+      "licence": "Apache 2.0 (code)",
+      "paid": false,
+      "score": 4,
+      "judgement": "Flat teal from the bench; reflections weak."
+    },
+    {
+      "id": "C",
+      "kind": "r187-example",
+      "name": "webgpu_water (Water2Mesh: planar reflection + refraction)",
+      "url": "https://threejs.org/examples/#webgpu_water",
+      "licence": "MIT",
+      "paid": false,
+      "score": 5,
+      "judgement": "Strong correct reflections, but a second scene render per frame (the phone budget) and a pool look."
+    },
+    {
+      "id": "D",
+      "kind": "r187-example",
+      "name": "webgpu_ocean (WaterMesh)",
+      "url": "https://threejs.org/examples/#webgpu_ocean",
+      "licence": "MIT",
+      "paid": false,
+      "score": 3,
+      "judgement": "Open-sea waves and sun glitter; wrong scale for a plaza lake."
+    },
+    {
+      "id": "E",
+      "kind": "paid",
+      "name": "Asset-store stylised water shaders",
+      "url": "https://www.fab.com/",
+      "licence": "paid",
+      "paid": true,
+      "score": null,
+      "judgement": "Not downloaded or scored (paid; flag for the coordinator).",
+      "flag": "coordinator"
+    }
+  ],
+  "pick": {
+    "candidate": "A",
+    "why": "Closest within the budget: reflections from SSR on High and the PMREM on phone, one draw; C is the fallback if a planar mirror is ever affordable.",
+    "build": {
+      "base": "three.js waternormals.jpg (MIT) at 9 m, 23 m and a filtered 3.1 m band",
+      "r187": [
+        "webgpu_water",
+        "webgpu_postprocessing_ssr",
+        "webgpu_postprocessing_bloom_selective"
+      ],
+      "tsl_layers": [
+        "scrolled normal bands, footprint-filtered",
+        "specular AA (roughness from unresolved slope)",
+        "dielectric ior 1.333 with PMREM at intensity 1",
+        "night-sky gradient mirrored by Fresnel",
+        "dim body colour (x 0.3)",
+        "SSR weight reflection/0.6 x (0.55 + 0.45 F) via mrtNode (High)"
+      ]
+    },
+    "score": 7,
+    "meetsBar": false,
+    "gap": "Best free candidate 7/10 (A). Below the bar: the target reflects a lit skyline, which the plaza does not have; ripple highlights are faint. To try: more lit pieces on the shore, a ripple-scaled glitter term from lamps, real-GPU check of SSR blur."
+  }
+}

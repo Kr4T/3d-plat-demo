@@ -1,0 +1,56 @@
+{
+  "format": "uew-component@1",
+  "id": "searchlights",
+  "version": "1.0.0",
+  "name": {"en": "Searchlights", "ar": "كشافات ضوئية"},
+  "summary": {"en": "Boulevard City's searchlight beams: soft shafts of light 900 m tall that sway slowly over the plaza at night, each on its own phase, in a row 4 m apart.", "ar": "حزم الكشافات الضوئية في بوليفارد سيتي: أعمدة ضوء ناعمة بارتفاع 900 م تتمايل ببطء فوق الساحة ليلًا، لكل منها إيقاعها، في صف بمسافة 4 م بينها."},
+  "tags": {"en": ["searchlight", "beam", "sky light", "night", "show"], "ar": ["كشاف", "حزمة ضوء", "ضوء السماء", "ليل", "عرض"]},
+  "kind": "generator",
+  "category": "effect",
+  "source": {
+    "repo": "Kr4T/3DPLAT",
+    "branch": "round2/boulevard",
+    "commit": "3352816",
+    "path": "apps/boulevard-city-3d/vfx/searchlights.js, apps/boulevard-city-3d/main.js",
+    "symbol": "makeSearchlights (vfx/searchlights.js); the sway in the frame loop (main.js 1579)",
+    "example": "webgpu_volume_lighting",
+    "defaults": {
+      "colour": "#e5edff",
+      "sweep": 0.35,
+      "count": 6,
+      "colourLinear": [0.78, 0.85, 1.0],
+      "coneRadius": 24,
+      "coneHeight": 900,
+      "radialSegments": 24,
+      "opacity": 0.07,
+      "lift": 1,
+      "phaseStep": 1.7,
+      "swayRates": [0.00021, 0.00017],
+      "note": "vfx/searchlights.js makeSearchlights: the six tallest screen buildings (bStyle 1) get one beam each, 1 m above the roof (bH + 1); one InstancedMesh of ConeGeometry(24, 900, 24, 1, true) flipped tip-down at the lamp; MeshBasicNodeMaterial additive, depthWrite false, DoubleSide, forceSinglePass, fog off, renderOrder 2; colour vec3(0.78, 0.85, 1.0) (linear: #e5edff is its nearest sRGB byte), opacity uNight x 0.07 x |normalView.z|^2 x (1 - y / 900)^1.6 x smoothstep(0, 0.02, y / 900). main.js 1579: rotation (sin(n x 0.00021 + ph) x 0.35, 0, cos(n x 0.00017 + ph x 1.3) x 0.35), n in ms, ph = k x 1.7. Here a row 4 m apart, k = 0, 1, 2, ..."
+    }
+  },
+  "made_by": "3DPLAT (Boulevard City searchlights, effect module)",
+  "licence": "Apache-2.0",
+  "files": {"module": "../../builder/vfx/searchlights.js"},
+  "materials": [],
+  "animated": true,
+  "draw": {
+    "phone": {"lods": ["module"], "shadow": []},
+    "high": {"lods": ["module"], "shadow": []}
+  },
+  "params": [
+    {"name": "colour", "type": "colour", "default": "#e5edff", "label": {"en": "Beam colour", "ar": "لون الحزمة"}, "affects": "effect"},
+    {"name": "sweep", "type": "number", "default": 0.35, "min": 0, "max": 0.8, "step": 0.01, "label": {"en": "Sweep (rad)", "ar": "مدى التمايل (راديان)"}, "affects": "effect"},
+    {"name": "count", "type": "number", "default": 6, "min": 1, "max": 12, "step": 1, "label": {"en": "Beams", "ar": "عدد الحزم"}, "affects": "module"}
+  ],
+  "sockets": [],
+  "footprint": {"outline": [[-10.5, -0.5], [10.5, -0.5], [10.5, 0.5], [-10.5, 0.5]], "height": [0, 1]},
+  "clearance": 0.5,
+  "placement": {"on": ["paving", "ground"], "keep_out": ["water"]},
+  "collider": [
+    {"type": "cuboid", "pos": [0, 0.5, 0], "half": [10.5, 0.5, 0.5], "sensor": true}
+  ],
+  "budgets": {"measured_by":"tools/quality-gate/component/check.mjs","at":"2026-11-10","phone":{"tris":144,"draws":1,"lods":[{"lod":"module","tris":144,"draws":1}]},"high":{"tris":144,"draws":1,"lods":[{"lod":"module","tris":144,"draws":1}]}},
+  "thumb": "thumb.jpg",
+  "slots": {"rig": null, "drive": null}
+}

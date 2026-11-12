@@ -1,0 +1,23 @@
+{
+  "format": "uew-behaviour@1",
+  "type": "ai_director",
+  "name": { "en": "AI Director", "ar": "المخرج الذكي" },
+  "summary": {
+    "en": "Makes this character the game's director. A small AI model in the player's browser reads how the fight is going and decides what happens next: how many enemies appear and where, their tactic, a sandstorm, and a spoken line. Code checks every decision against these settings; a rules director takes over on devices that cannot run the model.",
+    "ar": "يجعل هذه الشخصية مخرج اللعبة. نموذج ذكاء اصطناعي صغير في متصفح اللاعب يقرأ مجرى القتال ويقرر ما يحدث بعده: عدد الأعداء ومكان ظهورهم، وأسلوبهم، وعاصفة رملية، وجملة منطوقة. يتحقق البرنامج من كل قرار وفق هذه الإعدادات، ويتولى مخرج بالقواعد المهمة على الأجهزة التي لا تشغّل النموذج."
+  },
+  "targets": ["character", "world"],
+  "params": [
+    { "name": "aggression", "type": "number", "default": 0.5, "min": 0, "max": 1, "step": 0.05, "affects": "module", "label": { "en": "Aggression", "ar": "الشراسة" } },
+    { "name": "speakers", "type": "enum", "options": ["both", "nemesis", "djinn", "none"], "default": "both", "affects": "module", "label": { "en": "Who speaks", "ar": "من يتكلم" } },
+    { "name": "spawn", "type": "bool", "default": true, "affects": "module", "label": { "en": "May send enemies", "ar": "يرسل الأعداء" } },
+    { "name": "tactics", "type": "bool", "default": true, "affects": "module", "label": { "en": "May change the enemy tactic", "ar": "يغيّر أسلوب الأعداء" } },
+    { "name": "sandstorm", "type": "bool", "default": true, "affects": "module", "label": { "en": "May call a sandstorm", "ar": "يستدعي عاصفة رملية" } },
+    { "name": "pace", "type": "enum", "options": ["timer", "waves"], "default": "timer", "affects": "module", "label": { "en": "Decides (timer: every few seconds; waves: between waves)", "ar": "يقرر (timer: كل بضع ثوانٍ؛ waves: بين الموجات)" } },
+    { "name": "seconds", "type": "number", "default": 6, "min": 3, "max": 30, "step": 1, "affects": "module", "label": { "en": "Seconds between decisions (s)", "ar": "الثواني بين القرارات (ث)" } },
+    { "name": "model", "type": "enum", "options": ["auto", "rules", "small", "full"], "default": "auto", "affects": "module", "label": { "en": "AI model (auto: chosen for the device)", "ar": "نموذج الذكاء (auto: حسب الجهاز)" } },
+    { "name": "lines", "type": "enum", "options": ["written", "generated"], "default": "written", "affects": "module", "label": { "en": "Spoken lines (written: chosen from the written ones; generated: experimental)", "ar": "الجمل المنطوقة (written: من الجمل المكتوبة؛ generated: تجريبي)" } },
+    { "name": "seed", "type": "number", "default": 0, "min": 0, "max": 999999, "step": 1, "affects": "module", "label": { "en": "Seed (0: a new one each run)", "ar": "البذرة (0: جديدة في كل مرة)" } },
+    { "name": "panel", "type": "bool", "default": false, "affects": "module", "label": { "en": "Show the debug panel", "ar": "إظهار لوحة التتبّع" } }
+  ]
+}

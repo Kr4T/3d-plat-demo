@@ -1,0 +1,110 @@
+{
+  "format": "uew-behaviour@1",
+  "type": "combo_attack",
+  "name": {
+    "en": "Combo attack",
+    "ar": "هجوم متتابع"
+  },
+  "summary": {
+    "en": "Fight in Play: J or a click for a light chain of three slashes, K or shift-click for a heavy leap-slash (a short hop and a lunge); on a phone, the two buttons. Presses are buffered, so a press during a slash chains the next. Hits sweep the weapon (or the reach) through Rapier and damage what carries Health. Needs Player or Equippable.",
+    "ar": "قاتل في وضع اللعب: J أو نقرة لسلسلة خفيفة من ثلاث ضربات، وK أو Shift مع النقر لضربة ثقيلة بقفزة قصيرة واندفاع؛ وعلى الهاتف الزرّان. تُحفظ الضغطات، فضغطة أثناء ضربة تصل بالتالية. تمسح الضربات السلاح (أو المدى) عبر Rapier وتؤذي ما يحمل الصحة. يحتاج اللاعب أو قابل للتجهيز."
+  },
+  "targets": [
+    "character"
+  ],
+  "params": [
+    {
+      "name": "chain",
+      "type": "enum",
+      "default": "light3_heavy",
+      "label": {
+        "en": "Moves",
+        "ar": "الحركات"
+      },
+      "affects": "module",
+      "options": [
+        "light3_heavy",
+        "light3",
+        "heavy"
+      ]
+    },
+    {
+      "name": "damage",
+      "type": "number",
+      "default": 1,
+      "label": {
+        "en": "Damage (x the moves')",
+        "ar": "الضرر (× ضرر الحركات)"
+      },
+      "affects": "module",
+      "min": 0,
+      "max": 5,
+      "step": 0.1
+    },
+    {
+      "name": "reach",
+      "type": "number",
+      "default": 0,
+      "label": {
+        "en": "Extra reach (m)",
+        "ar": "مدى إضافي (م)"
+      },
+      "affects": "module",
+      "min": -0.5,
+      "max": 1.5,
+      "step": 0.05
+    },
+    {
+      "name": "speed",
+      "type": "number",
+      "default": 1,
+      "label": {
+        "en": "Speed",
+        "ar": "السرعة"
+      },
+      "affects": "module",
+      "min": 0.5,
+      "max": 2,
+      "step": 0.05
+    },
+    {
+      "name": "lunge",
+      "type": "number",
+      "default": 1,
+      "label": {
+        "en": "Lunge (x the moves')",
+        "ar": "الاندفاع (× اندفاع الحركات)"
+      },
+      "affects": "module",
+      "min": 0,
+      "max": 2,
+      "step": 0.05
+    },
+    {
+      "name": "hitStop",
+      "type": "number",
+      "default": 75,
+      "label": {
+        "en": "Hit-stop (ms)",
+        "ar": "توقف الضربة (مللي ثانية)"
+      },
+      "affects": "module",
+      "min": 0,
+      "max": 90,
+      "step": 5
+    },
+    {
+      "name": "shake",
+      "type": "number",
+      "default": 0.05,
+      "label": {
+        "en": "Camera shake (m)",
+        "ar": "اهتزاز الكاميرا (م)"
+      },
+      "affects": "module",
+      "min": 0,
+      "max": 0.2,
+      "step": 0.01
+    }
+  ]
+}

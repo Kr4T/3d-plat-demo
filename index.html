@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<title>Encore</title>
+<link rel="icon" href="data:,">
+<!-- Encore, the game only (play/main.js): the Encore world of the 3DPLAT builder in game mode, with none of the builder's
+     tools. Every path on this page is relative (it is served from a sub-folder: GitHub Pages), and it calls no server. -->
+<style>
+  :root { --ink: #08070c; --cream: #f6f1e7; --gold: #e7c26a; color-scheme: dark; }
+  html, body { margin: 0; height: 100%; background: var(--ink); color: var(--cream); font: 500 16px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; overflow: hidden; overscroll-behavior: none; -webkit-user-select: none; user-select: none; touch-action: none; }
+  #view { position: fixed; inset: 0; }
+  #view canvas { display: block; inline-size: 100%; block-size: 100%; }
+  #status { position: fixed; inset-inline: 0; inset-block-end: max(18px, env(safe-area-inset-bottom)); text-align: center; font-size: 13px; opacity: .8; z-index: 60; pointer-events: none; }
+  #status[hidden] { display: none; }
+  #title { position: fixed; inset: 0; z-index: 50; display: grid; place-content: center; justify-items: center; gap: 18px; padding: 24px; text-align: center; background: radial-gradient(ellipse at 50% 60%, rgba(8,7,12,.25), rgba(8,7,12,.78)); }
+  #title[hidden] { display: none; }
+  #title h1 { margin: 0; font: 800 clamp(44px, 13vw, 112px)/1 system-ui, sans-serif; letter-spacing: .12em; text-indent: .12em; text-shadow: 0 4px 30px rgba(0,0,0,.6); }
+  #title p { margin: 0; max-inline-size: 34ch; opacity: .9; text-shadow: 0 1px 4px rgba(0,0,0,.7); }
+  #start { min-inline-size: 180px; min-block-size: 56px; padding: 0 34px; border: 0; border-radius: 999px; background: var(--gold); color: #1b1408; font: 800 20px system-ui, sans-serif; letter-spacing: .08em; cursor: pointer; }
+  #start[disabled] { opacity: .55; cursor: default; }
+  #talk-caption { position: fixed; left: 50%; transform: translateX(-50%); bottom: max(118px, calc(env(safe-area-inset-bottom) + 118px)); inline-size: min(680px, calc(100% - 32px)); padding: 10px 16px; border-radius: 12px; background: rgba(0,0,0,.55); text-align: center; z-index: 35; pointer-events: none; }
+  #talk-caption[hidden] { display: none; }
+  #talk-caption p { margin: 0; text-shadow: 0 1px 2px rgba(0,0,0,.6); white-space: pre-line; }
+  #talk-caption .cap-ar { font: 600 19px/1.7 "Noto Kufi Arabic", system-ui, sans-serif; }
+  #talk-caption .cap-en { font: 500 17px/1.45 system-ui, sans-serif; }
+  #notice { position: fixed; inset-inline: 0; top: max(14px, env(safe-area-inset-top)); display: grid; justify-items: center; z-index: 45; pointer-events: none; }
+  #notice span { max-inline-size: min(92vw, 560px); padding: 8px 14px; border-radius: 10px; background: rgba(20,22,30,.8); font-size: 14px; }
+  #notice[hidden] { display: none; }
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "./vendor/three-0.187.0/three.webgpu.js",
+  "three/webgpu": "./vendor/three-0.187.0/three.webgpu.js",
+  "three/tsl": "./vendor/three-0.187.0/three.tsl.js",
+  "three/addons/": "./vendor/three-0.187.0/addons/",
+  "./lib/formats/validate.mjs": "./lib/formats/validate-lite.mjs"
+} }
+</script>
+</head>
+<body>
+<main id="view" aria-label="Encore"></main>
+<div id="status">Loading the world…</div>
+<div id="notice" hidden><span></span></div>
+<div id="talk-caption" hidden></div>
+<section id="title" aria-labelledby="title-name">
+  <h1 id="title-name">ENCORE</h1>
+  <p id="title-line">Hold the stage. Three waves of sand ghosts.</p>
+  <button id="start" type="button" disabled>Loading…</button>
+</section>
+<script src="./vendor/turf-7.4.0/turf.min.js"></script>
+<script type="module" src="./play/main.js"></script>
+</body>
+</html>

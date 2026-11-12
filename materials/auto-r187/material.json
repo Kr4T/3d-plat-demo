@@ -1,0 +1,33 @@
+{
+  "format": "uew-material@1",
+  "id": "auto-r187",
+  "name": {
+    "en": "Automatic r187 material (imported models)",
+    "ar": "خامة r187 تلقائية (النماذج المستوردة)"
+  },
+  "source": {
+    "example": "webgpu_loader_gltf_sheen",
+    "repo": "Kr4T/3DPLAT",
+    "branch": "claude/music-video-characters",
+    "commit": "f38aa14a",
+    "path": "apps/mv-characters/stage/auto-materials.js, auto-recipe.js; library/core/pbr.js (copied unchanged to shared/auto-materials/ and shared/library/core/)",
+    "symbol": "autoMaterial (one glTF material -> one r187 node material: SSS on skin texels, sheen on cloth, specular AA on metal, a matte response on dark fibre, the cloth roughness floor and specular cut)",
+    "note": "The material an imported model's slot gets (tools/import-model.mjs). It is made from the glTF material the file carries (its own maps), which the runtime hands over as ctx.source (lib/runtime/materials.mjs make(..., { source })); tint multiplies the colour (white leaves the file's colour as it is). r187 examples behind the recipe: webgpu_materials_sss, webgpu_loader_gltf_sheen, webgpu_loader_gltf. glow (0 to 1, default 0) lets the surface give off a little of its own colour, more at grazing angles (a rim): the waves' sand ghosts use it to read against a dusk scene; 0 leaves the material as the recipe made it."
+  },
+  "params": [
+    {
+      "name": "tint",
+      "type": "colour",
+      "default": "#ffffff"
+    },
+    {
+      "name": "glow",
+      "type": "number",
+      "default": 0,
+      "min": 0,
+      "max": 1,
+      "step": 0.05
+    }
+  ],
+  "images": []
+}

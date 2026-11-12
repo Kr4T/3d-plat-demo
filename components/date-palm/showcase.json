@@ -1,0 +1,56 @@
+{
+ "writer": "tools/quality-gate/component/showcase.mjs",
+ "gpu": false,
+ "provisional": "provisional (software adapter: WebGPU swiftshader): a smoke pair, never a pass on looks (LESSONS L4); the real-GPU pair is still owed",
+ "rule": "diff = mean |WebGL 2 - WebGPU| (0-255, RGB) inside rect [x, y, w, h], the component bench's own renders (same scene and camera), MIN_DIFF 2",
+ "scene": "tools/quality-gate/component/bench.html (builder stage, 21:00, wet floor, one reference light)",
+ "materials": [
+  "materials/palm-bark/material.js",
+  "materials/palm-frond/material.js"
+ ],
+ "gate": {
+  "at": "2026-11-10T15:21:19.367Z",
+  "ok": true
+ },
+ "views": [
+  {
+   "name": "date-palm-desktop",
+   "vp": "desktop",
+   "part": "the whole piece, at its defaults",
+   "backends": [
+    "webgl",
+    "webgpu"
+   ],
+   "before": "showcase/desktop-webgl.png",
+   "after": "showcase/desktop-webgpu.png",
+   "rect": [
+    396,
+    164,
+    478,
+    542
+   ],
+   "diff": 3.3
+  }
+ ],
+ "refused": [
+  {
+   "name": "date-palm-phone",
+   "vp": "phone",
+   "part": "the whole piece, at its defaults",
+   "backends": [
+    "webgl",
+    "webgpu"
+   ],
+   "before": "showcase/phone-webgl.png",
+   "after": "showcase/phone-webgpu.png",
+   "rect": [
+    166,
+    608,
+    442,
+    512
+   ],
+   "diff": 0.07,
+   "reason": "regionDiff 0.07 < 2: the two paths look the same on this run"
+  }
+ ]
+}

@@ -1,0 +1,14 @@
+{
+  "format": "uew-material@1",
+  "id": "water",
+  "name": { "en": "Lake water", "ar": "ماء البحيرة" },
+  "source": { "example": "webgpu_water", "repo": "Kr4T/3DPLAT", "branch": "round2/boulevard", "commit": "3352816", "path": "apps/boulevard-city-3d/main.js", "symbol": "waterSimple (buildWater, default path)", "note": "Dark glossy physical water: the three.js water normal map scrolled at two scales by the TSL clock, clearcoat, metalness 0.6 so the stage's SSR pass reflects the city in it." },
+  "params": [
+    { "name": "colour", "type": "colour", "default": "#224b52" },
+    { "name": "waves", "type": "number", "default": 1, "min": 0, "max": 3 },
+    { "name": "reflection", "type": "number", "default": 0.6, "min": 0, "max": 1 }
+  ],
+  "images": [
+    { "file": "tex/waternormals.jpg", "asset": "waternormals", "url": "https://github.com/mrdoob/three.js/blob/r187/examples/textures/waternormals.jpg", "licence": "MIT" }
+  ]
+}

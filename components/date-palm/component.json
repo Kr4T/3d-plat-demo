@@ -1,0 +1,59 @@
+{
+  "format": "uew-component@1",
+  "id": "date-palm",
+  "version": "1.0.0",
+  "name": {"en": "Date palm", "ar": "نخلة"},
+  "summary": {"en": "A Riyadh date palm (Phoenix dactylifera) from Boulevard City: a ringed trunk under a crown of 48 grey-green pinnate fronds that sway in the wind. Near, middle and far versions.", "ar": "نخلة تمر رياضية من بوليفارد سيتي: جذع بحلقات تعلوه قمة من 48 سعفة رمادية خضراء تتمايل مع الريح، بثلاثة مستويات تفاصيل."},
+  "tags": {"en": ["palm", "date palm", "tree", "riyadh", "vegetation", "shade"], "ar": ["نخلة", "نخيل", "شجرة", "الرياض", "نباتات", "ظل"]},
+  "kind": "mesh",
+  "category": "vegetation",
+  "source": {
+    "repo": "Kr4T/3DPLAT",
+    "branch": "round2/boulevard",
+    "commit": "3352816",
+    "path": "apps/boulevard-city-3d/palm.js, apps/boulevard-city-3d/models/palm/palm.glb, apps/boulevard-city-3d/main.js",
+    "symbol": "palmMaterials, loadPalm (palm_lod0, palm_lod1, palm_card); main.js buildPalms / placePalms",
+    "example": "webgpu_loader_gltf",
+    "defaults": {
+      "height": 10.47,
+      "lean": 0,
+      "wind": 1,
+      "frondTint": "#ffffff",
+      "sway": 0.16,
+      "swayFast": 0.05,
+      "flutter": 0.05,
+      "note": "height: palm_lod0 at scale 1 (palm.report.json 10.47 m); the runtime scales each instance by height / 10.47 through its matrix, as Boulevard scales each mapped tree (0.85 + 0.35 r across, x (0.9 + 0.3 r) in height; 0.6 + 0.25 r for source-3 trees), and the collider with it. That jitter is per tree, not a default. No lean in Boulevard (planted palms stand upright). wind multiplies palm.js's rooted sway (0.16 m + 0.05 m at 10 m, growing with height squared) and leaflet flutter (0.05); lean and wind are per-instance values. frondTint white leaves palm.js's leaf colour as it is. draw follows main.js buildPalms / placePalms: Phone palm_lod1 within 50 m (PALM_R) then the card, no palm shadows; High palm_lod0 within 50 m (shadows), palm_lod1 to 160 m and the card beyond (no shadows); physical fronds only on High's palm_lod0, palm.js full(true) on the rest. Draws: 2 per LOD (trunk, fronds) where Boulevard has 1 (palm.js shares one material). One draw would need one material for both, branching on the baked kind as palm.js does, so one registry preset; the plan splits the look into two presets (palm-bark, palm-frond) so bark and fronds are adjusted apart, and 2 draws per LOD is inside the Phone budget (2), so the split is kept."
+    }
+  },
+  "made_by": "3DPLAT (Blender 5.2 by script, models/palm/src/palm.py in Kr4T/3DPLAT; look in TSL, palm.js)",
+  "licence": "CC-BY-4.0",
+  "files": {"lod0": "palm_lod0.glb", "lod1": "palm_lod1.glb", "card": "palm_card.glb"},
+  "materials": [
+    {"slot": "trunk", "preset": "palm-bark", "overrides": {}},
+    {"slot": "frond", "preset": "palm-frond", "overrides": {"part": "frond"}},
+    {"slot": "card", "preset": "palm-frond", "overrides": {"part": "card"}}
+  ],
+  "animated": true,
+  "draw": {
+    "phone": {"lods": ["lod1", "card"], "distances": [50], "shadow": []},
+    "high": {"lods": ["lod0", "lod1", "card"], "distances": [50, 160], "shadow": ["lod0"]}
+  },
+  "params": [
+    {"name": "height", "type": "number", "default": 10.47, "min": 4, "max": 16, "step": 0.01, "label": {"en": "Height (m)", "ar": "الارتفاع (م)"}, "affects": "scale"},
+    {"name": "lean", "type": "number", "default": 0, "min": -15, "max": 15, "step": 0.5, "label": {"en": "Lean (degrees)", "ar": "الميل (درجة)"}, "affects": "material"},
+    {"name": "wind", "type": "number", "default": 1, "min": 0, "max": 3, "step": 0.05, "label": {"en": "Wind", "ar": "الرياح"}, "affects": "material"},
+    {"name": "frondTint", "type": "colour", "default": "#ffffff", "label": {"en": "Frond tint", "ar": "لون السعف"}, "affects": "material"}
+  ],
+  "sockets": [
+    {"id": "pit", "type": "palm-pit", "pos": [0, 0, 0], "dir": [0, 1, 0], "accepts": ["paving-edge", "water-edge"], "snap": 0.5}
+  ],
+  "footprint": {"outline": [[-0.55, -0.55], [0.55, -0.55], [0.55, 0.55], [-0.55, 0.55]], "height": [0, 10.47]},
+  "clearance": 0.6,
+  "placement": {"on": ["paving", "lawn", "ground"], "along": ["water-edge", "paving-edge"], "spacing": [6, 14], "keep_out": ["water"]},
+  "collider": [
+    {"type": "cylinder", "pos": [0, 3.95, 0], "radius": 0.45, "halfHeight": 3.95}
+  ],
+  "budgets": {"measured_by":"tools/quality-gate/component/check.mjs","at":"2026-11-10","phone":{"tris":580,"draws":2,"lods":[{"lod":"lod1","tris":580,"draws":2},{"lod":"card","tris":4,"draws":1}]},"high":{"tris":2512,"draws":2,"lods":[{"lod":"lod0","tris":2512,"draws":2},{"lod":"lod1","tris":580,"draws":2},{"lod":"card","tris":4,"draws":1}]}},
+  "thumb": "thumb.jpg",
+  "slots": {"rig": null, "drive": null}
+}

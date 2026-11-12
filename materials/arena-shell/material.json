@@ -1,0 +1,11 @@
+{
+  "format": "uew-material@1",
+  "id": "arena-shell",
+  "name": { "en": "Arena shell (cladding, glazing, roof)", "ar": "غلاف الصالة (كسوة وزجاج وسقف)" },
+  "source": { "example": "webgpu_loader_gltf", "repo": "Kr4T/3DPLAT", "branch": "round2/boulevard", "commit": "3352816", "path": "apps/boulevard-city-3d/arena.js", "symbol": "arenaMaterials (cladding, glazing, roof, roof_raised)", "note": "Boulevard City's Kingdom Arena look as one material: the four looks of arenaMaterials chosen per vertex by the part the model bakes into its vertex colour alpha (0 cladding, 1/3 glazing, 2/3 roof, 1 raised roof), as Boulevard's palm.js branches on its baked kind, so the arena is one draw. Beige panels with 1.5 m joints, dark glazing with mullions (clearcoat on High), a standing-seam roof, a white membrane; at night the glazing glows warm and a wash lights the cladding from the base. The raised roof's sheen is left out." },
+  "params": [
+    { "name": "cladding", "type": "colour", "default": "#9c7f5a" },
+    { "name": "glow", "type": "number", "default": 1, "min": 0, "max": 3 }
+  ],
+  "images": []
+}

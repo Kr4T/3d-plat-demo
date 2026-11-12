@@ -1,0 +1,122 @@
+{
+  "format": "uew-behaviour@1",
+  "type": "equippable",
+  "name": {
+    "en": "Equippable",
+    "ar": "قابل للتجهيز"
+  },
+  "summary": {
+    "en": "Holds an item in a hand: a weapon or decor piece from the kit, attached to the hand bone so it follows every animation. The grip is measured from the item's own shape (the hilt beside its guard) and the hand's bones; the offsets and turns below adjust it. Needs a rigged character.",
+    "ar": "يحمل غرضًا في اليد: سلاحًا أو قطعة زينة من المجموعة، مثبتًا بعظمة اليد فيتبع كل حركة. تُقاس القبضة من شكل الغرض نفسه (المقبض بجانب الواقي) ومن عظام اليد، والإزاحات والدورانات أدناه تضبطها. يحتاج شخصية مزوّدة بهيكل عظمي."
+  },
+  "targets": [
+    "character"
+  ],
+  "params": [
+    {
+      "name": "item",
+      "type": "enum",
+      "default": "scimitar",
+      "label": {
+        "en": "Item",
+        "ar": "الغرض"
+      },
+      "affects": "module",
+      "options": [
+        "scimitar"
+      ]
+    },
+    {
+      "name": "bone",
+      "type": "enum",
+      "default": "rightHand",
+      "label": {
+        "en": "Hand",
+        "ar": "اليد"
+      },
+      "affects": "module",
+      "options": [
+        "rightHand",
+        "leftHand"
+      ]
+    },
+    {
+      "name": "offsetAlong",
+      "type": "number",
+      "default": 0,
+      "label": {
+        "en": "Grip offset along the fingers (m)",
+        "ar": "إزاحة القبضة على طول الأصابع (م)"
+      },
+      "affects": "module",
+      "min": -0.2,
+      "max": 0.2,
+      "step": 0.005
+    },
+    {
+      "name": "offsetSide",
+      "type": "number",
+      "default": 0,
+      "label": {
+        "en": "Grip offset towards the thumb (m)",
+        "ar": "إزاحة القبضة نحو الإبهام (م)"
+      },
+      "affects": "module",
+      "min": -0.2,
+      "max": 0.2,
+      "step": 0.005
+    },
+    {
+      "name": "offsetPalm",
+      "type": "number",
+      "default": 0,
+      "label": {
+        "en": "Grip offset out of the palm (m)",
+        "ar": "إزاحة القبضة خارج الكف (م)"
+      },
+      "affects": "module",
+      "min": -0.2,
+      "max": 0.2,
+      "step": 0.005
+    },
+    {
+      "name": "pitch",
+      "type": "number",
+      "default": 0,
+      "label": {
+        "en": "Grip pitch (°)",
+        "ar": "ميل القبضة (°)"
+      },
+      "affects": "module",
+      "min": -180,
+      "max": 180,
+      "step": 1
+    },
+    {
+      "name": "yaw",
+      "type": "number",
+      "default": 0,
+      "label": {
+        "en": "Grip yaw (°)",
+        "ar": "انعطاف القبضة (°)"
+      },
+      "affects": "module",
+      "min": -180,
+      "max": 180,
+      "step": 1
+    },
+    {
+      "name": "roll",
+      "type": "number",
+      "default": 0,
+      "label": {
+        "en": "Grip roll (°)",
+        "ar": "لفّ القبضة (°)"
+      },
+      "affects": "module",
+      "min": -180,
+      "max": 180,
+      "step": 1
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+ "format": "uew-materials-index@1",
+ "note": "Game-only build (tools/build-site.mjs).",
+ "presets": [
+  "arena-shell",
+  "auto-r187",
+  "bench-metal",
+  "bench-wood",
+  "bulb-glass",
+  "desert-sand",
+  "kerb-concrete",
+  "lamp-metal",
+  "palm-bark",
+  "palm-frond",
+  "stage-kit",
+  "water",
+  "wet-paving"
+ ]
+}

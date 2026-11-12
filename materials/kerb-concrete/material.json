@@ -1,0 +1,10 @@
+{
+  "format": "uew-material@1",
+  "id": "kerb-concrete",
+  "name": { "en": "Kerb concrete", "ar": "خرسانة الرصيف" },
+  "source": { "example": "webgpu_generator_city", "repo": "Kr4T/3DPLAT", "branch": "round2/boulevard", "commit": "3352816", "path": "apps/boulevard-city-3d/kerbs.js", "symbol": "kerbMaterial", "note": "Precast concrete kerbstone after r187 createCurbMaterial: two stone tones by a world noise, 1 m joints along the kerb (from the geometry's u in metres), a fine grain as bump relief, the road face 0.72 as dark as the top." },
+  "params": [
+    { "name": "colour", "type": "colour", "default": "#b9b4a8" }
+  ],
+  "images": []
+}
