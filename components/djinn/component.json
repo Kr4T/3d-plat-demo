@@ -45,7 +45,8 @@
   "internal_only": true,
   "files": {
     "lod0": "model_lod0.glb",
-    "lod1": "model_lod1.glb"
+    "lod1": "model_lod1.glb",
+    "lod2": "model_lod2.glb"
   },
   "materials": [
     {
@@ -57,17 +58,23 @@
   "draw": {
     "phone": {
       "lods": [
-        "lod1"
+        "lod1",
+        "lod2"
+      ],
+      "distances": [
+        25
       ],
       "shadow": []
     },
     "high": {
       "lods": [
         "lod0",
-        "lod1"
+        "lod1",
+        "lod2"
       ],
       "distances": [
-        30
+        30,
+        90
       ],
       "shadow": [],
       "shadowFrom": "lod1"
@@ -332,6 +339,38 @@
             ]
           }
         ]
+      },
+      "lod2": {
+        "preset": "ghost",
+        "file": "model_lod2.glb",
+        "tris": 6000,
+        "simplifier": "meshopt",
+        "bytes": 236264,
+        "sha256": "e81c46b491346cac4b8139b6b7a7112336ed3c06c2775ca265faa4a9683bd3da",
+        "textures": [
+          {
+            "mime": "image/webp",
+            "size": [
+              512,
+              512
+            ]
+          },
+          {
+            "mime": "image/webp",
+            "size": [
+              512,
+              512
+            ]
+          },
+          {
+            "mime": "image/webp",
+            "size": [
+              512,
+              512
+            ]
+          }
+        ],
+        "made_by": "tools/make-lod.mjs from model_lod1.glb"
       }
     },
     "recipes": {

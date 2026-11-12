@@ -33,7 +33,7 @@
 // Contract: build(params, ctx) -> { object, collider, features, effect: { create({ renderer, camera, ground }) } };
 // carry(ctx) and onHit(ctx) -> { create({ renderer, camera, ground }) } (lib/behaviours/).
 import { createTriggers, MODES } from './trigger.js';
-import { createPool, fxPath, capFor, G } from './sand-particles.js';
+import { createPool, fxPath, capFor, grainSize, G } from './sand-particles.js';
 
 export const MODULE = 'builder/vfx/sand-burst.js';
 export const REF = 'sand-burst@1.0.0';
@@ -76,7 +76,7 @@ function createBursts(ctx, { renderer = null, ground = null, kind = 'burst' } = 
     const r = rows.get(it.uid), size = Math.max(0.2, +it.params.size || 3) * r.scale;
     const s = Math.min(1, Math.max(0.05, strength));
     return pool.spawn({ origin: pos || r.place, birth, count: burstCount(it.params, ctx.preset, path, s, cap), tint: it.params.tint || '#ffffff', speed: Math.sqrt(2 * G * size) * (0.6 + 0.4 * s),
-      life: Math.max(0.3, +it.params.duration || 2.5), size: (ctx.preset === 'phone' ? 0.13 : 0.1) * Math.min(2, Math.max(0.6, Math.sqrt(size / 3))), ground: (pos || r.place)[1], radius: size * 0.12 });
+      life: Math.max(0.3, +it.params.duration || 2.5), size: grainSize(ctx.preset, size), ground: (pos || r.place)[1], radius: size * 0.12 });
   };
   const centreOf = (pos, it) => (pos || rows.get(it.uid).place);
   const handle = {

@@ -56,6 +56,24 @@ export function nearFade(dist) {
 export const screenShare = (scale, depth, p11) => (depth > 0 ? (scale * p11) / (2 * depth) : Infinity);
 /** The drawn size of a grain: its own, or the size that covers MAX_SCREEN_SHARE of the screen height at that depth (0 behind the camera). */
 export const clampScale = (scale, depth, p11) => Math.min(scale, (MAX_SCREEN_SHARE * 2 * Math.max(0, depth)) / p11);
+/** The look of a burst (real-GPU shot of the kill burst on the phone, 13 Nov 2026: hundreds of large whitish hard discs hid the hero;
+ * grains were 10 to 19 cm across, dust 45 to 130 cm, nearly opaque, and the palette's pale cream read white at dusk). Now: grains
+ * are a few centimetres (`grainSize`, metres across), dust a soft haze (`dustFactor` times a grain, at most `dustAlpha` opaque),
+ * and the colour is the sand's own palette darkened (`grainTone`, `dustTone`: the shaded sand, not the sunlit cream). */
+export const LOOK = Object.freeze({ grain: Object.freeze({ phone: 0.04, high: 0.035 }), spread: Object.freeze([0.55, 1.45]), dustFactor: 2.6, dustGrow: Object.freeze([0.6, 1.3]),
+  grainAlpha: 0.75, dustAlpha: 0.22, grainTone: 0.5, dustTone: 0.5 });
+/** The base size (metres across) of a burst's grains on a preset: bigger bursts (`size`, metres thrown up) throw slightly bigger grains. */
+export const grainSize = (preset, size = 3) => (preset === 'phone' ? LOOK.grain.phone : LOOK.grain.high) * Math.min(1.4, Math.max(0.7, Math.sqrt(Math.max(0.01, size) / 3)));
+/** The smallest and largest a burst's grains and dust get to be, in metres across (grain: spread of the base; dust: grown over its life). */
+export function sizeBounds(preset, size = 3) {
+  const g = grainSize(preset, size), [a, b] = LOOK.spread, d = g * LOOK.dustFactor;
+  return { grain: [g * a, g * b], dust: [d * a * LOOK.dustGrow[0], d * b * LOOK.dustGrow[1]] };
+}
+/** The colours a burst's grains and dust draw in (linear rgb before the stage's day term and the tint): the palette `name` times the tones. */
+export function colourBounds(name = 'desert-sand') {
+  const p = palette(name), k = (c, t) => c.map((v) => v * t);
+  return { grain: { deep: k(p.deep, LOOK.grainTone), pale: k(p.pale, LOOK.grainTone) }, dust: k(p.pale, LOOK.dustTone) };
+}
 export const PALETTES = Object.freeze({ 'desert-sand': Object.freeze({ pale: SAND.pale, deep: SAND.deep }) });
 
 /** The sand colours of a material preset (linear rgb). */
@@ -134,7 +152,7 @@ export function createPool(ctx, { cap, renderer = null, ground = null, name = 's
       const o = select(trail, along, A.xyz).add(vec3(th.cos().mul(r), 0, th.sin().mul(r)));
       P.assign(vec4(o, D.y));
       V.assign(vec4(select(trail, trailVel, burstVel), D.w)); // w: the row's tint, packed
-      I.assign(vec4(A.w, B.w.mul(mix(float(0.6), float(1), h(6))), D.x.mul(mix(float(0.55), float(1.45), h(8))).mul(select(dust, float(4.5), float(1))), h(7)));
+      I.assign(vec4(A.w, B.w.mul(mix(float(0.6), float(1), h(6))), D.x.mul(mix(float(LOOK.spread[0]), float(LOOK.spread[1]), h(8))).mul(select(dust, float(LOOK.dustFactor), float(1))), h(7)));
     });
     const age = time.sub(I.x);
     If(age.greaterThanEqual(0).and(age.lessThan(I.y)), () => {
@@ -167,16 +185,16 @@ export function createPool(ctx, { cap, renderer = null, ground = null, name = 's
   // sprite it came out a unit off, and a white tint, 16777215, read as red on some grains: SwiftShader shots, 12 Nov)
   const packed = aV.w, tint = vec3(packed.div(65536).floor(), packed.div(256).floor().mod(256), packed.mod(256)).div(255).toVertexStage();
   // grains lean to the deep tone and dust to the pale one, so a burst reads against the sand it came from
-  const col = select(isDust, uPale.mul(1.12), mix(uPale, uDeep, hash(aI.w.mul(7919)).mul(0.5).add(0.5)).mul(0.85)).mul(tint).mul(lit);
+  const col = select(isDust, uPale.mul(LOOK.dustTone), mix(uDeep, uPale, hash(aI.w.mul(7919))).mul(LOOK.grainTone)).mul(tint).mul(lit);
   m.positionNode = pos.toAttribute().xyz;
   // near the camera (NEAR_FADE, MAX_SCREEN_SHARE): the grain's view position, once per vertex; the size is the smaller of
   // its own and the one that covers MAX_SCREEN_SHARE of the screen height at its depth (perspective: p11 / depth)
   const viewPos = cameraViewMatrix.mul(vec4(pos.toAttribute().xyz, 1)).xyz;
   const near = smoothstep(float(NEAR_FADE.from), float(NEAR_FADE.to), viewPos.length()).toVertexStage();
   const maxScale = viewPos.z.negate().max(0).mul(float(MAX_SCREEN_SHARE * 2)).div(cameraProjectionMatrix.element(1).element(1));
-  m.scaleNode = select(alive, min(aI.z.mul(select(isDust, u.mul(1.6).add(0.6), float(1))), maxScale), float(0));
+  m.scaleNode = select(alive, min(aI.z.mul(select(isDust, u.mul(LOOK.dustGrow[1] - LOOK.dustGrow[0]).add(LOOK.dustGrow[0]), float(1))), maxScale), float(0));
   m.colorNode = vec4(col, 1);
-  m.opacityNode = select(alive, select(isDust, disc.pow(2).mul(0.35), smoothstep(0, 0.35, disc).mul(0.95)).mul(fade).mul(near), float(0)).add(clock);
+  m.opacityNode = select(alive, select(isDust, disc.pow(2).mul(LOOK.dustAlpha), smoothstep(0, 0.7, disc).mul(LOOK.grainAlpha)).mul(fade).mul(near), float(0)).add(clock);
   const sprite = new THREE.Sprite(m); sprite.count = cap; sprite.frustumCulled = false; sprite.name = `${name} particles`;
   sprite.userData.vfx = { module: MODULE, part: name, compute: true, cap };
 

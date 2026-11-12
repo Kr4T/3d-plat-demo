@@ -1123,7 +1123,10 @@
   "behaviours": [
    {
     "type": "waves",
-    "params": {}
+    "params": {
+     "playerHealth": 150,
+     "enemyDamage": 6
+    }
    },
    {
     "type": "ai_director",
