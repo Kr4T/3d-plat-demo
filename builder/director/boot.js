@@ -5,6 +5,7 @@
 //   ?director=rules      rules only, no download      ?director=small | full   force a model
 //   ?director=mock       the mock model (CI and e2e: no download, no GPU)
 //   ?seed=7              replay a run (the seed is shown on the panel)      ?tick=6   seconds between decisions
+//   The model generates only in the gaps (window.__director.gate(open), called by the waves game): never while a wave is fought.
 //   ?pace=waves          no timer: a decision only when the game calls window.__director.decide() (between waves)
 // A world that carries the AI Director behaviour (behaviours/ai_director, lib/behaviours/ai_director.mjs) starts this
 // with the behaviour's settings instead of ?director; the URL options still win, for debugging.
@@ -64,6 +65,7 @@ export async function boot({ qs = new URLSearchParams(location.search), mount = 
   // between waves there are about 5 s of quiet (Encore): a waves decision gets 4 s, then the rules answer
   const timeoutMs = () => Math.max(200, Number(qs.get('timeout')) || (pace() === 'waves' ? 4000 : tickS() * 1000 - 500));
   let seed = parseInt(qs.get('seed'), 10) > 0 ? parseInt(qs.get('seed'), 10) : set.seed || randomSeed();
+  let genOpen = true;                                 // the gate: a waves game closes it while a wave is fought (lib/director/director.mjs setGate)
   let zones = DEFAULT_ZONES, sim = null, game = null, director = null, model = null, loading = null, paused = false, simTimer = null, lineNo = 0;
   const lines = [];                                   // the voice-line records spoken so far (last 50)
 
@@ -102,6 +104,7 @@ export async function boot({ qs = new URLSearchParams(location.search), mount = 
       apply: (a) => { game.apply(a); window.dispatchEvent(new CustomEvent('director:action', { detail: structuredClone(a) })); if (a.type === 'taunt') speak(a); },
       seed, zones, model, busy: () => lastBusy, settings: set, limits: caps.mobile ? PHONE_LIMITS : undefined, intervalMs: tickS() * 1000, timeoutMs: timeoutMs(), onRecord: (r) => panel.record(r),
     });
+    director.setGate(genOpen);
     panel.setSeed(seed);
     if (pace() === 'timer' && !paused) director.start();
     api.director = director;
@@ -146,7 +149,7 @@ export async function boot({ qs = new URLSearchParams(location.search), mount = 
 
   /** Ask the loaded model for `runs` decisions on fixed states (nothing is applied to the game) and report the speed. */
   async function measure(runs = 5) {
-    if (!model || !model.info) return null;
+    if (!model || !model.info || !genOpen) return null;   // not while a wave is fought
     const was = director.running; director.stop();
     panel.busy(true, 'Measuring…');
     const gaps = []; let last = performance.now(), raf = 0;
@@ -183,6 +186,9 @@ export async function boot({ qs = new URLSearchParams(location.search), mount = 
     /** Think ahead: call while the wave is still running (about 70% cleared, or its last ghost spawned); decide() at the
      * wave's end then commits that answer if it has arrived and still passes the guard, else the rules answer. */
     prepare: () => director.prepare(),
+    /** The waves game: gate(false) when a wave starts, gate(true) when it ends (and during the 3-2-1). While closed the model
+     * generates nothing (prepare, decide, say, Measure) and one in flight is interrupted; the rules answer as before. */
+    gate: (open) => { genOpen = !!open; return director.setGate(genOpen); },
     /** New settings from the behaviour's card (the model tier is chosen once, at start). */
     configure(p) { set = directorSettings(p); panel.el.hidden = !(set.panel || qs.has('director')); if (set.seed && !(parseInt(qs.get('seed'), 10) > 0)) seed = set.seed; build(); },
     /** A line on demand: say('djinn', 'greeting'); cues are in lib/director/banter.mjs CUES. null when the world switched that speaker off. */
